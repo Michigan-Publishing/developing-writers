@@ -1,16 +1,21 @@
 backend:
-  name: test-repo
+  name: developing-writers
+  repo: ryanlanciaux/developing-writers
 
 media_folder: static/assets
 public_folder: assets
 
 collections:
-  - name: pages
-    label: Pages
-    folder: pages
+  - name: "pages"
+    label: "Pages"
+    folder: "src/pages"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: date }
-      - { name: title, label: Title }
-      - { name: body, label: Body, widget: markdown }
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list"}
+
