@@ -1,3 +1,11 @@
 module.exports = {
-  plugins: ['gatsby-mdx', 'gatsby-plugin-netlify-cms']
+  plugins: [
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        extensions: [".mdx", ".md"]
+      }
+    },
+    'gatsby-plugin-netlify-cms'
+  ]
 }
