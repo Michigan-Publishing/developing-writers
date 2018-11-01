@@ -18,7 +18,9 @@ function buildSettings(numChildren, settings = {}) {
     flyoutRadius: 130,
     baseAngle: -90,
     minAngle: 0,
-    maxAngle: 360
+    maxAngle: 360,
+    yOffset: 0,
+    xOffset: 0
   };
 
   const localSettings = {
@@ -36,19 +38,27 @@ function buildSettings(numChildren, settings = {}) {
 function getChildPosition(index, settings) {
   const angle = settings.baseAngle + index * settings.separationAngle;
 
-  return {
+  const coords = {
     x:
       settings.flyoutRadius * Math.cos(degreesToRadians(angle)) -
-      settings.menuButtonDiameter / 2,
+      settings.menuButtonDiameter / 2 +
+      settings.xOffset,
     y:
       settings.flyoutRadius * Math.sin(degreesToRadians(angle)) +
-      settings.menuButtonDiameter / 2
+      settings.menuButtonDiameter / 2 +
+      settings.yOffset
   };
+
+  return coords;
 }
 
 export default class FlyoutNav extends React.Component {
   settings = null;
   state = { childPositions: [], showItems: false, shouldHide: false };
+
+  static defaultProps = {
+    children: []
+  };
 
   componentDidMount() {
     const { children, angleSettings } = this.props;
@@ -74,23 +84,25 @@ export default class FlyoutNav extends React.Component {
   };
   render() {
     const { childPositions, showItems, shouldHide } = this.state;
-    const { children, renderToggle, style } = this.props;
+    const { children, renderToggle, style, listStyle } = this.props;
+
     return childPositions.length > 0 ? (
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
           ...style
         }}
       >
         {renderToggle(this.toggleItems)}
         <ul
           style={{
-            position: "relative",
+            position: "absolute",
+            top: 0,
+            right: 0,
             height: 0,
             width: 0,
             marginLeft: -20,
-            listStyleType: "none"
+            listStyleType: "none",
+            ...listStyle
           }}
         >
           {showItems &&

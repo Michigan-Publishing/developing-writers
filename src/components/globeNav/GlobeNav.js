@@ -8,6 +8,8 @@ import CurvedText from "./CurvedText";
 import Text from "../text";
 import { default as DefaultTouchableOpacity } from "../touchableOpacity";
 
+import FlyoutNav from "../flyoutNav";
+
 export const NavPosition = {
   top: "TOP",
   bottom: "BOTTOM"
@@ -26,7 +28,7 @@ const BottomLeft = styled.div`
 `;
 
 const TouchableOpacity = styled(DefaultTouchableOpacity)`
-  z-index: 10;
+  z-index: 0;
   position: relative;
 `;
 
@@ -35,8 +37,20 @@ export default class GlobeNav extends React.Component {
     position: NavPosition.top
   };
 
+  getFlyoutAngleSettings = () => {
+    const { position } = this.props;
+
+    return {
+      minAngle: 180,
+      maxAngle: 270,
+      baseAngle: position === NavPosition.top ? -250 : -75,
+      menuButtonDiameter: 40,
+      flyoutRadius: position === NavPosition.top ? 470 : 570
+    };
+  };
+
   render() {
-    const { position, onClick } = this.props;
+    const { position, onClick, children } = this.props;
     const Wrapper = position === NavPosition.top ? TopRight : BottomLeft;
 
     const extraStyle =
@@ -48,6 +62,11 @@ export default class GlobeNav extends React.Component {
           }
         : { bottom: 10, left: 10 };
 
+    const listStyle =
+      position === NavPosition.top
+        ? {}
+        : { right: "unset", left: 0, bottom: 0, top: "unset" };
+
     return (
       <Wrapper>
         <CurvedText
@@ -58,9 +77,17 @@ export default class GlobeNav extends React.Component {
         >
           This is the text!
         </CurvedText>
-        <TouchableOpacity onClick={onClick}>
-          <img src={position === NavPosition.top ? topRight : bottomLeft} />
-        </TouchableOpacity>
+        <FlyoutNav
+          listStyle={listStyle}
+          angleSettings={this.getFlyoutAngleSettings()}
+          renderToggle={toggle => (
+            <TouchableOpacity onClick={toggle}>
+              <img src={position === NavPosition.top ? topRight : bottomLeft} />
+            </TouchableOpacity>
+          )}
+        >
+          {children}
+        </FlyoutNav>
       </Wrapper>
     );
   }

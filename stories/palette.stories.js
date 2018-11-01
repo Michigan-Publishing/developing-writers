@@ -7,7 +7,6 @@ import { linkTo } from "@storybook/addon-links";
 import palette from "../src/utils/palette";
 
 const keys = Object.keys(palette);
-console.log("KEYS", keys);
 const ColorView = ({ name, color }) => (
   <div
     style={{

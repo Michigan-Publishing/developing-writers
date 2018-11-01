@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { linkTo } from "@storybook/addon-links";
 
 import GlobeNav, { NavPosition } from "../src/components/globeNav";
+import Orb from "../src/components/orbWrapper";
 
 const Wrapper = ({ children }) => (
   <div style={{ backgroundColor: "#000", width: "100vw", height: "100vh" }}>
@@ -12,15 +13,22 @@ const Wrapper = ({ children }) => (
   </div>
 );
 
-console.log(" HERE ", NavPosition);
 storiesOf("GlobeNav", module)
   .add("default behavior", () => (
     <Wrapper>
-      <GlobeNav />
+      <GlobeNav>
+        <Orb>One</Orb>
+        <Orb>Two</Orb>
+        <Orb>Three</Orb>
+      </GlobeNav>
     </Wrapper>
   ))
   .add("bottom left", () => (
     <Wrapper>
-      <GlobeNav position="BOTTOM" onClick={action("click")} />
+      <GlobeNav position="BOTTOM" onClick={action("click")}>
+        <Orb>One</Orb>
+        <Orb>Two</Orb>
+        <Orb>Three</Orb>
+      </GlobeNav>
     </Wrapper>
   ));
