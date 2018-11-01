@@ -6,6 +6,7 @@ import bottomLeft from "./BottomLeft.svg";
 
 import CurvedText from "./CurvedText";
 import Text from "../text";
+import { default as DefaultTouchableOpacity } from "../touchableOpacity";
 
 export const NavPosition = {
   top: "TOP",
@@ -24,13 +25,18 @@ const BottomLeft = styled.div`
   left: 0;
 `;
 
+const TouchableOpacity = styled(DefaultTouchableOpacity)`
+  z-index: 10;
+  position: relative;
+`;
+
 export default class GlobeNav extends React.Component {
   static defaultProps = {
     position: NavPosition.top
   };
 
   render() {
-    const { position } = this.props;
+    const { position, onClick } = this.props;
     const Wrapper = position === NavPosition.top ? TopRight : BottomLeft;
 
     const extraStyle =
@@ -52,7 +58,9 @@ export default class GlobeNav extends React.Component {
         >
           This is the text!
         </CurvedText>
-        <img src={position === NavPosition.top ? topRight : bottomLeft} />
+        <TouchableOpacity onClick={onClick}>
+          <img src={position === NavPosition.top ? topRight : bottomLeft} />
+        </TouchableOpacity>
       </Wrapper>
     );
   }

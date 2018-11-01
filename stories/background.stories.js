@@ -6,7 +6,7 @@ import { linkTo } from "@storybook/addon-links";
 
 import Background from "../src/components/background";
 
-storiesOf("Something", module).add("with blah", () => (
+storiesOf("Background", module).add("default", () => (
   <Background>
     <h1>Hi</h1>
   </Background>

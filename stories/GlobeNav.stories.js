@@ -21,6 +21,6 @@ storiesOf("GlobeNav", module)
   ))
   .add("bottom left", () => (
     <Wrapper>
-      <GlobeNav position="BOTTOM" />
+      <GlobeNav position="BOTTOM" onClick={action("click")} />
     </Wrapper>
   ));
