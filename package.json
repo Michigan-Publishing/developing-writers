@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^0.15.5",
     "@mdx-js/tag": "^0.15.0",
+    "@reach/menu-button": "^0.1.7",
     "gatsby": "^2.0.0",
     "gatsby-mdx": "^0.2.0",
     "gatsby-plugin-netlify-cms": "^3.0.5",

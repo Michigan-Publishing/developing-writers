@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
+import { Menu, MenuButton, MenuList, MenuLink } from "@reach/menu-button";
+
 import { Spring, animated } from "react-spring";
 
 function degreesToRadians(degrees) {
@@ -48,12 +51,8 @@ export default class FlyoutNav extends React.Component {
   state = { childPositions: [], showItems: false, shouldHide: false };
 
   componentDidMount() {
-    const { children } = this.props;
-    this.settings = buildSettings(children.length, {
-      minAngle: 180,
-      maxAngle: 360,
-      baseAngle: 90
-    });
+    const { children, angleSettings } = this.props;
+    this.settings = buildSettings(children.length, angleSettings);
 
     const childPositions = children.map((item, index) =>
       getChildPosition(index, this.settings)
@@ -64,33 +63,35 @@ export default class FlyoutNav extends React.Component {
 
   componentDidUpdate() {}
 
+  toggleItems = () => {
+    this.setState(p => {
+      if (p.showItems === true) {
+        return { shouldHide: true };
+      }
+
+      return { showItems: true };
+    });
+  };
   render() {
     const { childPositions, showItems, shouldHide } = this.state;
-    const { children } = this.props;
+    const { children, renderToggle, style } = this.props;
     return childPositions.length > 0 ? (
       <div
         style={{
-          marginLeft: 500,
-          marginTop: 500,
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
+          ...style
         }}
       >
-        <button
-          onClick={() =>
-            this.setState(p => {
-              if (p.showItems === true) {
-                return { shouldHide: true };
-              }
-
-              return { showItems: true };
-            })
-          }
-        >
-          Show items
-        </button>
+        {renderToggle(this.toggleItems)}
         <ul
-          style={{ position: "relative", height: 0, width: 0, marginLeft: -20 }}
+          style={{
+            position: "relative",
+            height: 0,
+            width: 0,
+            marginLeft: -20,
+            listStyleType: "none"
+          }}
         >
           {showItems &&
             childPositions.map((position, index) => (
