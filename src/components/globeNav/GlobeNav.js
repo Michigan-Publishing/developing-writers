@@ -34,23 +34,26 @@ const TouchableOpacity = styled(DefaultTouchableOpacity)`
 
 export default class GlobeNav extends React.Component {
   static defaultProps = {
-    position: NavPosition.top
+    position: NavPosition.top,
+    text: "Text"
   };
 
   getFlyoutAngleSettings = () => {
-    const { position } = this.props;
+    const { position, getFlyoutAngleSettings } = this.props;
 
-    return {
-      minAngle: 180,
-      maxAngle: 270,
-      baseAngle: position === NavPosition.top ? -250 : -75,
-      menuButtonDiameter: 40,
-      flyoutRadius: position === NavPosition.top ? 470 : 570
-    };
+    return getFlyoutAngleSettings
+      ? getFlyoutAngleSettings(position)
+      : {
+          minAngle: 180,
+          maxAngle: 270,
+          baseAngle: position === NavPosition.top ? -250 : -75,
+          menuButtonDiameter: 40,
+          flyoutRadius: position === NavPosition.top ? 470 : 570
+        };
   };
 
   render() {
-    const { position, onClick, children } = this.props;
+    const { position, onClick, children, text } = this.props;
     const Wrapper = position === NavPosition.top ? TopRight : BottomLeft;
 
     const extraStyle =
@@ -75,7 +78,7 @@ export default class GlobeNav extends React.Component {
             ...extraStyle
           }}
         >
-          This is the text!
+          {text}
         </CurvedText>
         <FlyoutNav
           listStyle={listStyle}

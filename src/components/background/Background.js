@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import backgroundImage from "./background.png";
+import backgroundImage from "./background-transparent.png";
 
 const Background = styled.div`
+  background-color: #000;
   background: url(${props => props.src}) no-repeat center center fixed;
+
   background-size: cover;
-  min-height: 1000px;
+  min-height: 100vh;
 `;
 
 const BackgroundWrapper = ({ children }) => (

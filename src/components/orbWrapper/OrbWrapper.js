@@ -6,11 +6,13 @@ const Circle = styled.div`
   width: ${props => props.diameter}px;
   height: ${props => props.diameter}px;
   border-radius: ${props => props.diameter}px;
+  background: rgba(0,0,0, .7);
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: ${props => props.color}
-  box-shadow: inset 0 0 15px ${props => props.color};
+  box-shadow: inset 0 0 35px ${props => props.color};
   transform: scale(1);
   transition: transform 200ms;
 

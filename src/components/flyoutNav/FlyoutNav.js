@@ -89,10 +89,10 @@ export default class FlyoutNav extends React.Component {
     return childPositions.length > 0 ? (
       <div
         style={{
+          position: "relative",
           ...style
         }}
       >
-        {renderToggle(this.toggleItems)}
         <ul
           style={{
             position: "absolute",
@@ -139,6 +139,7 @@ export default class FlyoutNav extends React.Component {
               </Spring>
             ))}
         </ul>
+        {renderToggle(this.toggleItems)}
       </div>
     ) : null;
   }
