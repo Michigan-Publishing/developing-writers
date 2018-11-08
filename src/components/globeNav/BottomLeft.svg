@@ -1,8 +1,7 @@
-
 <svg width="405px" height="407px" viewBox="0 0 405 407" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <path d="M0,406 L0,0.071 C215.194,20.683 386.099,191.733 404.708,406 L0,406 Z" id="path-1"></path>
-        <linearGradient x1="12.8671354%" y1="132.192602%" x2="-19.9533125%" y2="69.8350185%" id="linearGradient-3">
+        <linearGradient x1="12.8671354%" y1="132.192602%" x2="-59.1775042%" y2="-24.7899494%" id="linearGradient-3">
             <stop stop-color="#FFFFFF" offset="0%"></stop>
             <stop stop-color="#030303" offset="100%"></stop>
         </linearGradient>
@@ -39,8 +38,9 @@
                     <use href="#path-1"></use>
                 </mask>
                 <g id="Clip-421"></g>
-                <polygon id="Fill-420" fill="url(#linearGradient-3)" mask="url(#mask-2)" points="0 408 1920 408 1920 -672 0 -672"></polygon>
+                <polygon id="Fill-420" fill="#0C5A6F" mask="url(#mask-2)" points="-756 742 1164 742 1164 -338 -756 -338"></polygon>
             </g>
+            <path d="M0,409 L0,3.071 C215.194,23.683 386.099,194.733 404.708,409 L0,409 Z" id="Combined-Shape" fill="url(#linearGradient-3)" opacity="0.695917039"></path>
             <g id="Group-598">
                 <path d="M143.9509,47.2393 C135.2249,41.5573 126.2889,36.2083 117.1319,31.2473 C108.8369,26.7893 100.3749,22.6553 91.7429,18.8923 C102.5609,21.8953 113.2699,25.2673 123.8489,29.0233 C133.8489,32.6073 143.7189,36.5313 153.4409,40.8083 C152.0329,41.3043 150.7269,42.0413 149.4799,42.8563 C147.5179,44.1613 145.7029,45.6673 143.9509,47.2393 Z" id="Stroke-423" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
                 <path d="M70.2732,27.1475 C61.9852,22.4485 53.5112,18.0935 44.8322,14.1635 C37.1862,10.7385 29.3992,7.6495 21.4642,4.9605 C33.5272,6.4835 45.5312,8.4155 57.4592,10.7715 C68.9792,13.0805 80.4132,15.7825 91.7422,18.8915 C88.4462,19.4695 85.2322,20.4025 82.0962,21.5625 C78.0112,23.1065 74.0852,25.0205 70.2732,27.1475 Z" id="Stroke-425" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>

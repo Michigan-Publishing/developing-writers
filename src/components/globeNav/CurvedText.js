@@ -3,33 +3,48 @@ import styled from "styled-components";
 import palette from "../../utils/palette";
 const Text = styled.text`
   fill: ${palette.mainNavText};
-  font: bold 32px sans-serif;
+  font: bold 22px sans-serif;
+  letter-spacing: 5px;
 `;
-const getPath = (isTopRight = true) =>
-  isTopRight
-    ? "M0,3.071 C54.5456609,8.53579675 104.75181,22.8402267 150.618447,45.9842899 C174.865741,58.2193465 194.349692,69.6155742 210.589626,80.4592637 C248.280502,105.626124 268.497589,127.816757 290.23446,150.610175 C317.549005,179.252377 340.193402,211.663904 358.16765,247.844756 C370.421346,272.510552 382.585766,310.768765 394.660911,362.619393 C396.898195,372.226279 400.247224,387.686482 404.708,409"
-    : "M0,3.071 C54.5456609,8.53579675 104.75181,22.8402267 150.618447,45.9842899 C174.865741,58.2193465 194.349692,69.6155742 210.589626,80.4592637 C248.280502,105.626124 268.497589,127.816757 290.23446,150.610175 C317.549005,179.252377 340.193402,211.663904 358.16765,247.844756 C370.421346,272.510552 382.585766,310.768765 394.660911,362.619393 C396.898195,372.226279 400.247224,387.686482 404.708,409";
 
 export default class extends React.Component {
+  static defaultProps = {
+    bottomDx: 30,
+    bottomDy: 0,
+    topDx: 55,
+    topDy: 15
+  };
+
   render() {
-    const { children, style } = this.props;
+    const {
+      topText,
+      bottomText,
+      style,
+      width,
+      height,
+      topDx,
+      topDy,
+      bottomDx,
+      bottomDy
+    } = this.props;
 
     return (
       <svg
-        viewBox="0 0 405 407"
         xmlns="http://www.w3.org/2000/svg"
+        xlink="http://www.w3.org/1999/xlink"
+        viewBox={`0 0 ${width - 1} ${height - 1}`}
         style={style}
       >
-        <path
-          id="MyPath"
-          fill="none"
-          stroke="none"
-          d={getPath(false)}
-          style={{ transform: "translateX(300)" }}
-        />
-
-        <Text x="50%">
-          <textPath href="#MyPath">{children}</textPath>
+        <title>{topText}</title>
+        <defs>
+          <path d="M0,75 a75,75 0, 1,1 150,0 a75,75 0 1,1 -150,0" id="top" />
+          <path d="M0,75 a75,75 0, 0,0 150,0 a75,75 0 1,0 -150,0" id="bottom" />
+        </defs>
+        <Text dx={topDx} dy={topDy} transform="rotate(30deg)">
+          <textPath href="#top">{topText}</textPath>
+        </Text>
+        <Text dx={bottomDx} dy={bottomDy}>
+          <textPath href="#bottom">{bottomText}</textPath>
         </Text>
       </svg>
     );

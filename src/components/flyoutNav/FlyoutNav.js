@@ -5,6 +5,9 @@ import { Menu, MenuButton, MenuList, MenuLink } from "@reach/menu-button";
 
 import { Spring, animated } from "react-spring";
 
+const List = styled.ul`
+  list-style-type: none;
+`;
 function degreesToRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
@@ -89,22 +92,10 @@ export default class FlyoutNav extends React.Component {
     return childPositions.length > 0 ? (
       <div
         style={{
-          position: "relative",
           ...style
         }}
       >
-        <ul
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            height: 0,
-            width: 0,
-            marginLeft: -20,
-            listStyleType: "none",
-            ...listStyle
-          }}
-        >
+        <List style={listStyle}>
           {showItems &&
             childPositions.map((position, index) => (
               <Spring
@@ -138,7 +129,7 @@ export default class FlyoutNav extends React.Component {
                 )}
               </Spring>
             ))}
-        </ul>
+        </List>
         {renderToggle(this.toggleItems)}
       </div>
     ) : null;

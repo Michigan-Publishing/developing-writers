@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import topRight from "./TopRight.svg";
-import bottomLeft from "./BottomLeft.svg";
+import topRight from "./PurpleOrb.svg";
+import bottomLeft from "./BlueOrb.svg";
 
 import CurvedText from "./CurvedText";
 import Text from "../text";
@@ -15,16 +15,21 @@ export const NavPosition = {
   bottom: "BOTTOM"
 };
 
+const Image = styled.img`
+  height: ${props => props.width}px;
+  width: ${props => props.height}px;
+`;
+
 const TopRight = styled.div`
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 60px;
+  right: 50px;
 `;
 
 const BottomLeft = styled.div`
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: 60px;
+  left: 50px;
 `;
 
 const TouchableOpacity = styled(DefaultTouchableOpacity)`
@@ -35,7 +40,7 @@ const TouchableOpacity = styled(DefaultTouchableOpacity)`
 export default class GlobeNav extends React.Component {
   static defaultProps = {
     position: NavPosition.top,
-    text: "Text"
+    diameter: 150
   };
 
   getFlyoutAngleSettings = () => {
@@ -46,46 +51,67 @@ export default class GlobeNav extends React.Component {
       : {
           minAngle: 180,
           maxAngle: 270,
-          baseAngle: position === NavPosition.top ? -250 : -75,
+          baseAngle: position === NavPosition.top ? -240 : -75,
           menuButtonDiameter: 40,
-          flyoutRadius: position === NavPosition.top ? 470 : 570
+          flyoutRadius: position === NavPosition.top ? 270 : 270
         };
   };
 
   render() {
-    const { position, onClick, children, text } = this.props;
+    const {
+      position,
+      onClick,
+      children,
+      diameter,
+      topText,
+      bottomText,
+      bottomDx,
+      bottomDy,
+      topDx,
+      topDy
+    } = this.props;
     const Wrapper = position === NavPosition.top ? TopRight : BottomLeft;
 
     const extraStyle =
       position === NavPosition.top
         ? {
-            bottom: -10,
-            left: -10,
-            transform: "rotate(180deg)"
+            top: 0,
+            right: 0,
+            transform: "rotate(0deg) scale(1.5)"
           }
-        : { bottom: 10, left: 10 };
+        : { bottom: 0, left: 0, transform: "rotate(0deg) scale(1.5)" };
 
     const listStyle =
       position === NavPosition.top
-        ? {}
-        : { right: "unset", left: 0, bottom: 0, top: "unset" };
+        ? { position: "fixed", top: 50, right: 50 }
+        : { position: "fixed", bottom: 50, left: 50 };
 
     return (
       <Wrapper>
         <CurvedText
+          width={diameter}
+          height={diameter}
+          topText={topText}
+          bottomText={bottomText}
+          bottomDx={bottomDx}
+          bottomDy={bottomDy}
+          topDx={topDx}
+          topDy={topDy}
           style={{
             position: "absolute",
             ...extraStyle
           }}
-        >
-          {text}
-        </CurvedText>
+        />
         <FlyoutNav
           listStyle={listStyle}
           angleSettings={this.getFlyoutAngleSettings()}
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <img src={position === NavPosition.top ? topRight : bottomLeft} />
+              <Image
+                width={diameter}
+                height={diameter}
+                src={position === NavPosition.top ? topRight : bottomLeft}
+              />
             </TouchableOpacity>
           )}
         >

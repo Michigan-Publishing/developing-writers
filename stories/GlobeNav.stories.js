@@ -16,7 +16,7 @@ const Wrapper = ({ children }) => (
 storiesOf("GlobeNav", module)
   .add("default behavior", () => (
     <Wrapper>
-      <GlobeNav>
+      <GlobeNav topText="Top Text" bottomText="Bottom Text">
         <Orb>One</Orb>
         <Orb>Two</Orb>
         <Orb>Three</Orb>
@@ -25,7 +25,12 @@ storiesOf("GlobeNav", module)
   ))
   .add("bottom left", () => (
     <Wrapper>
-      <GlobeNav position="BOTTOM" onClick={action("click")}>
+      <GlobeNav
+        position="BOTTOM"
+        onClick={action("click")}
+        topText="Top Text"
+        bottomText="Bottom Text"
+      >
         <Orb>One</Orb>
         <Orb>Two</Orb>
         <Orb>Three</Orb>
