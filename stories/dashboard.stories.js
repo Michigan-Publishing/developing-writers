@@ -25,7 +25,7 @@ function getUpperSettings() {
     maxAngle: 275,
     baseAngle: -250,
     menuButtonDiameter: 40,
-    flyoutRadius: 550
+    flyoutRadius: 250
   };
 }
 
@@ -35,7 +35,7 @@ function getLowerSettings() {
     maxAngle: 270,
     baseAngle: -82,
     menuButtonDiameter: 30,
-    flyoutRadius: 600
+    flyoutRadius: 300
   };
 }
 storiesOf("Dashboard", module).add("default behavior", () => (
@@ -51,17 +51,16 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200} color={palette.purpleMain}>
-                <WhiteText>Sentence Level Features</WhiteText>
+              <Orb color={palette.purpleMain}>
+                <WhiteText size={1}>Sentence Level Features</WhiteText>
               </Orb>
             </TouchableOpacity>
           )}
           angleSettings={{
             ...getUpperSettings(),
-            flyoutRadius: 200,
             baseAngle: -280,
-            xOffset: 100,
-            yOffset: 50
+            flyoutRadius: 125,
+            xOffset: -50
           }}
         >
           <Orb color="#FFF">
@@ -74,7 +73,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200} color={palette.purpleMain}>
+              <Orb color={palette.purpleMain}>
                 <WhiteText>Digital Writing</WhiteText>
               </Orb>
             </TouchableOpacity>
@@ -97,7 +96,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200} color={palette.purpleMain}>
+              <Orb color={palette.purpleMain}>
                 <WhiteText>Genre</WhiteText>
               </Orb>
             </TouchableOpacity>
@@ -120,7 +119,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200} color={palette.purpleMain}>
+              <Orb color={palette.purpleMain}>
                 <WhiteText>Audience Awareness</WhiteText>
               </Orb>
             </TouchableOpacity>
@@ -152,7 +151,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200}>
+              <Orb>
                 <WhiteText>Feedback</WhiteText>
               </Orb>
             </TouchableOpacity>
@@ -173,7 +172,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200}>
+              <Orb>
                 <WhiteText>Reading</WhiteText>
               </Orb>
             </TouchableOpacity>
@@ -195,7 +194,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         <Flyout
           renderToggle={toggle => (
             <TouchableOpacity onClick={toggle}>
-              <Orb diameter={200}>
+              <Orb>
                 <WhiteText>Practice</WhiteText>
               </Orb>
             </TouchableOpacity>
