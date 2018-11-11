@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = styled.span`
+export const textCss = `
   font-family: Helvetica, Arial, sans-serif;
+`;
+
+const Text = styled.span`
+  ${textCss};
 `;
 
 export default Text;

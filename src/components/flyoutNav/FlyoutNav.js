@@ -71,23 +71,75 @@ export default class FlyoutNav extends React.Component {
       getChildPosition(index, this.settings)
     );
 
+    window.addEventListener("keydown", this.onKey);
     this.setState({ childPositions });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKey);
   }
 
   componentDidUpdate() {}
 
   toggleItems = () => {
-    this.setState(p => {
-      if (p.showItems === true) {
-        return { shouldHide: true };
-      }
+    this.setState(
+      p => {
+        if (p.showItems === true) {
+          return { shouldHide: true };
+        }
 
-      return { showItems: true };
-    });
+        return { showItems: true };
+      },
+      () => {
+        const element = document.querySelector(
+          `#${this.props.id}-list li:first-child`
+        );
+        console.log(element, `#${this.props.id}-list li:first-child`);
+        element.focus();
+      }
+    );
   };
+
+  onKey = e => {
+    if (e.key === "Escape") {
+      this.toggleItems();
+    }
+  };
+
+  /*
+    if (event.key === "ArrowDown") {
+      const { preSelectionIndex } = this.state;
+      const { children } = this.props;
+      let nextIndex = preSelectionIndex + 1;
+      if (nextIndex < React.Children.count(children)) {
+        this.setState({ preSelectionIndex: nextIndex });
+      }
+    }
+
+    if (event.key === "ArrowUp") {
+      const { preSelectionIndex } = this.state;
+      let nextIndex = preSelectionIndex - 1;
+      if (nextIndex !== -1) {
+        this.setState({ preSelectionIndex: nextIndex });
+      }
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      this.selectAndClose();
+    }
+
+    if (event.key === "Escape") {
+      this.setState({ isOpen: false });
+    }
+  };
+*/
+
   render() {
     const { childPositions, showItems, shouldHide } = this.state;
-    const { children, renderToggle, style, listStyle } = this.props;
+    const { children, renderToggle, style, listStyle, id } = this.props;
+
+    const controlsId = `${id}-list`;
 
     return childPositions.length > 0 ? (
       <div
@@ -95,7 +147,14 @@ export default class FlyoutNav extends React.Component {
           ...style
         }}
       >
-        <List style={listStyle}>
+        {renderToggle(this.toggleItems, id, controlsId, showItems)}
+        <List
+          style={listStyle}
+          role="menu"
+          aria-labeld-by={id}
+          tabindex="-1"
+          id={controlsId}
+        >
           {showItems &&
             childPositions.map((position, index) => (
               <Spring
@@ -123,6 +182,7 @@ export default class FlyoutNav extends React.Component {
                       left: props.left,
                       opacity: props.opacity
                     }}
+                    tabIndex="-1"
                   >
                     {children[index]}
                   </animated.li>
@@ -130,7 +190,6 @@ export default class FlyoutNav extends React.Component {
               </Spring>
             ))}
         </List>
-        {renderToggle(this.toggleItems)}
       </div>
     ) : null;
   }

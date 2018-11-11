@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import topRight from "./PurpleOrb.svg";
@@ -43,6 +44,10 @@ export default class GlobeNav extends React.Component {
     diameter: 150
   };
 
+  static propTypes = {
+    id: PropTypes.string.isRequired
+  };
+
   getFlyoutAngleSettings = () => {
     const { position, getFlyoutAngleSettings } = this.props;
 
@@ -59,6 +64,7 @@ export default class GlobeNav extends React.Component {
 
   render() {
     const {
+      id: buttonId,
       position,
       onClick,
       children,
@@ -103,10 +109,19 @@ export default class GlobeNav extends React.Component {
           }}
         />
         <FlyoutNav
+          id={buttonId}
           listStyle={listStyle}
           angleSettings={this.getFlyoutAngleSettings()}
-          renderToggle={toggle => (
-            <TouchableOpacity onClick={toggle}>
+          renderToggle={(toggle, id, controlsId) => (
+            <TouchableOpacity
+              onClick={toggle}
+              title={`${topText} ${bottomText}`}
+              id={id}
+              aria-controls={controlsId}
+              aria-has-popup="true"
+              aria-expanded="isExpanded"
+              tabIndex="0"
+            >
               <Image
                 width={diameter}
                 height={diameter}
