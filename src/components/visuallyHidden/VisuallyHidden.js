@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const hiddenCss = styled.css`
+const hiddenCss = `
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -10,8 +10,12 @@ const hiddenCss = styled.css`
   clip: rect(1px, 1px, 1px, 1px);
 `;
 
-const hidden = component => styled(component)`
+export const visuallyHiddenWrapper = component => styled(component)`
   ${hiddenCss};
 `;
 
-export default hidden;
+const VisuallyHidden = styled.span`
+  ${hiddenCss};
+`;
+
+export default VisuallyHidden;
