@@ -112,7 +112,7 @@ export default class GlobeNav extends React.Component {
           id={buttonId}
           listStyle={listStyle}
           angleSettings={this.getFlyoutAngleSettings()}
-          renderToggle={(toggle, id, controlsId) => (
+          renderToggle={(toggle, id, controlsId, isExpanded) => (
             <TouchableOpacity
               onClick={toggle}
               title={`${topText} ${bottomText}`}
