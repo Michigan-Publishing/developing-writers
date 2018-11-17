@@ -20,4 +20,67 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
-
+  - name: "navigationPages"
+    label: "Navigation Pages"
+    folder: "src/navigationPages"
+    create: true
+    extenstion: mdx
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields: 
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - name: "section"
+        label: "Section"
+        widget: "relation"
+        collection: "pages"
+        displayFields: 
+          - "slug"
+          - "title"
+        searchFields: 
+          - "name"
+          - "label"
+          - "title"
+        valueField: "slug"
+  - name: "contentPages"
+    label: "Content Pages"
+    folder: "src/contentPages"
+    create: true
+    extension: mdx
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields: 
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - name: "section"
+        label: "Section"
+        widget: "relation"
+        collection: "pages"
+        displayFields: 
+          - "slug"
+          - "title"
+        searchFields: 
+          - "name"
+          - "label"
+          - "title"
+        valueField: "slug"
+      - name: "relatedContent"
+        label: "Related Content"
+        widget: "list"
+        field:
+          - name: "content"
+            label: "Content"
+            widget: "relation"
+            collection: "contentPages"
+            displayFields: 
+              - "slug"
+              - "title"
+            searchFields: 
+              - "name"
+              - "label"
+              - "title"
+            valueField: "slug"
