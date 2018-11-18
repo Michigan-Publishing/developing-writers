@@ -5,7 +5,8 @@ const palette = {
   mainNavText: "#F4F5AA",
   yellowLine: "#D1D420",
   yellow: "#E2E420",
-  contentBackground: "#0F384A"
+  contentBackground: "#0F384A",
+  relatedBackground: "#378496"
 };
 
 export default palette;
