@@ -22,6 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
                 frontmatter {
                   templateKey
                   title
+                  section
                 }
               }
             }
@@ -44,12 +45,13 @@ exports.createPages = ({ graphql, actions }) => {
             },
             frontmatter: {
               templateKey,
-              title
+              title,
+              section
             }
           } = node;
           const template = path.resolve(`src/templates/${templateKey}.js`)
-          console.log(`Creating page ${title} with template ${templateKey}`);
-          console.log('TEMPLATE', template);
+          // console.log(`Creating page ${title} with template ${templateKey}`);
+          // console.log('TEMPLATE', template);
           
           createPage({
             path: `${slug}-1`,
@@ -60,6 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
               id,
               title,
               slug,
+              section,
             },
           })
         })
