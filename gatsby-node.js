@@ -22,7 +22,6 @@ exports.createPages = ({ graphql, actions }) => {
                   frontmatter {
                     templateKey
                     title
-                    section
                   }
                 }
               }
@@ -64,19 +63,48 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
+function buildSlug(node, frontMatterNodes) {
+  if (!node.frontmatter || !frontMatterNodes) {
+    return null;
+  }
+
+  let slugBody = node.frontmatter.key;
+  let currentNode = frontMatterNodes[node.frontmatter.key];
+  while (currentNode.parentKey) {
+    slugBody = `${currentNode.parentKey}/${slugBody}`;
+    currentNode = frontMatterNodes[currentNode.parentKey];
+  }
+
+  return `/${slugBody}/`;
+}
+
+// builds a lookup based on key
+buildFrontmatterLookup = nodes => {
+  return nodes.reduce((all, nextNode) => {
+    if (!nextNode.frontmatter) {
+      return all;
+    }
+
+    return {
+      ...all,
+      [nextNode.frontmatter.key]: nextNode.frontmatter
+    };
+  }, {});
+};
+
 exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
   const { createNodeField } = boundActionCreators;
-
   if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
-    console.log(" HERE HERE HERE");
     const value = createFilePath({ node, getNode });
     const nodes = getNodes();
-    console.log("NODES", nodes);
-    // console.log("SLUG VALUE: ", value);
+
+    const frontMatterLookup = buildFrontmatterLookup(nodes);
+    const slug = buildSlug(node, frontMatterLookup) || value;
+
     createNodeField({
       name: `slug`,
       node,
-      value
+      value: slug
     });
 
     // const parentSlug = createNodeField({
