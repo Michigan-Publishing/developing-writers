@@ -1,5 +1,6 @@
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
@@ -16,6 +17,16 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   id
+                  parent {
+                    ... on File {
+                      name
+                      sourceInstanceName
+                    }
+                  }
+                  code {
+                    scope
+                    body
+                  }
                   fields {
                     slug
                   }
@@ -41,13 +52,13 @@ exports.createPages = ({ graphql, actions }) => {
             fields: { slug },
             frontmatter: { templateKey, title, section }
           } = node;
-          const template = path.resolve(`src/templates/${templateKey}.js`);
+          const template = path.resolve(`./src/templates/${templateKey}.js`);
           // console.log(`Creating page ${title} with template ${templateKey}`);
-          // console.log('TEMPLATE', template);
+          console.log("TEMPLATE", template);
 
           createPage({
             path: `${slug}`,
-            component: template,
+            component: componentWithMDXScope(template, node.code.scope),
             // In your blog post template's graphql query, you can use path
             // as a GraphQL variable to query for data from the markdown file.
             context: {

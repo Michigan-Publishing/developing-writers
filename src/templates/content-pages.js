@@ -1,39 +1,29 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
+import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { MDXProvider } from "@mdx-js/tag";
+import Button from "../components/homeButton";
+
+const Something = children => <h1>SOMETHING!</h1>;
 
 class NavigationPagesTemplate extends React.Component {
   render() {
     const {
-      data: {
-        allMdx: { edges }
-      },
       pageContext: { title, section: pageSection }
     } = this.props;
 
     return (
       <div>
         <h1>{title}</h1>
-        {edges.reduce((links, edge) => {
-          const {
-            node: {
-              id,
-              fields: { slug },
-              frontmatter: { title, section }
-            }
-          } = edge;
-
-          if (section === pageSection) {
-            links.push(
-              <div key={id}>
-                <Link to={`${slug}-1`} title={title}>
-                  {title}
-                </Link>
-              </div>
-            );
-          }
-
-          return links;
-        }, [])}
+        <MDXProvider
+          components={{
+            h1: Something
+          }}
+        >
+          <MDXRenderer {...this.props} components={{ Something }}>
+            {this.props.data.mdx.code.body}
+          </MDXRenderer>
+        </MDXProvider>
       </div>
     );
   }
@@ -41,17 +31,12 @@ class NavigationPagesTemplate extends React.Component {
 
 export default NavigationPagesTemplate;
 
-export const query = graphql`
-  query {
-    allMdx {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            templateKey
-          }
-        }
+export const pageQuery = graphql`
+  query($id: String!) {
+    mdx(id: { eq: $id }) {
+      id
+      code {
+        body
       }
     }
   }
