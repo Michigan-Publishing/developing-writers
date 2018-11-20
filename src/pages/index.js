@@ -1,3 +1,4 @@
-import React from "react"
+import React from "react";
+import Background from "../components/background";
 
-export default () => <div>Hello world!</div>
+export default () => <Background>Hello world!</Background>;

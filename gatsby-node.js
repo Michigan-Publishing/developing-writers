@@ -31,6 +31,8 @@ exports.createPages = ({ graphql, actions }) => {
                     slug
                   }
                   frontmatter {
+                    key
+                    parentKey
                     templateKey
                     title
                   }
@@ -50,11 +52,9 @@ exports.createPages = ({ graphql, actions }) => {
           const {
             id,
             fields: { slug },
-            frontmatter: { templateKey, title, section }
+            frontmatter: { templateKey, title, section, key, parentKey }
           } = node;
           const template = path.resolve(`./src/templates/${templateKey}.js`);
-          // console.log(`Creating page ${title} with template ${templateKey}`);
-          console.log("TEMPLATE", template);
 
           createPage({
             path: `${slug}`,
@@ -65,7 +65,9 @@ exports.createPages = ({ graphql, actions }) => {
               id,
               title,
               slug,
-              section
+              section,
+              key,
+              parentKey
             }
           });
         });
@@ -86,7 +88,7 @@ function buildSlug(node, frontMatterNodes) {
     currentNode = frontMatterNodes[currentNode.parentKey];
   }
 
-  return `/${slugBody}/`;
+  return `/pages/${slugBody}/`;
 }
 
 // builds a lookup based on key

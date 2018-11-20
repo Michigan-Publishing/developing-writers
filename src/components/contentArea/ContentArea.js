@@ -11,9 +11,14 @@ const ContentWrapper = styled.div`
   padding: 20px;
   max-height: 80vh; 
   max-width: 50vw;
-  margin-left: 25vw;
   position: relative;
-  top: 10vh;
+  top: 2.5vh;
+
+  & h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
 `;
 
 export default class extends React.Component {

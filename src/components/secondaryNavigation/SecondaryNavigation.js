@@ -27,12 +27,13 @@ const ListContainer = styled.ul`
   height: 100%;
   list-style-type: none;
   position: relative;
+  min-height: 500px;
 `;
 
 const ListItem = styled.li`
   position: absolute;
   left: ${props => props.left}%;
-  top: ${props => props.top}px;
+  top: ${props => props.top + padding}px;
 `;
 
 function getRandomInt(max) {
