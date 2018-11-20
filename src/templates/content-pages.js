@@ -5,10 +5,9 @@ import { Link } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from "@mdx-js/tag";
 
-import Background from "../components/background";
-import SiteHeading from "../components/siteHeading";
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
+import SiteContainer from "../components/siteContainer";
 
 import styles from "../styles/reset.css";
 import global from "../styles/global.css";
@@ -33,10 +32,8 @@ class NavigationPagesTemplate extends React.Component {
       data
     } = this.props;
 
-    console.log("StUFF", this.props);
     return (
-      <Background>
-        <SiteHeading />
+      <SiteContainer>
         {this.props.data.post.wordCount.words && (
           <ContentArea>
             <h2>{title}</h2>
@@ -50,7 +47,7 @@ class NavigationPagesTemplate extends React.Component {
             linkProperties={mapLinkProperties(data.childPages.edges)}
           />
         )}
-      </Background>
+      </SiteContainer>
     );
   }
 }

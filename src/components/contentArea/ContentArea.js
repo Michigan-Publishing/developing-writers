@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
 
 export default class extends React.Component {
   render() {
-    const { children } = this.props;
-    return <ContentWrapper>{children}</ContentWrapper>;
+    const { children, style } = this.props;
+    return <ContentWrapper style={style}>{children}</ContentWrapper>;
   }
 }

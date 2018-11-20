@@ -1,4 +1,52 @@
 import React from "react";
-import Background from "../components/background";
+import styled from "styled-components";
+import SiteContainer from "../components/siteContainer";
+import GlobeLink, { GlobeColor } from "../components/globeLink/GlobeLink";
+import ContentArea from "../components/contentArea";
 
-export default () => <Background>Hello world!</Background>;
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+`;
+export default () => (
+  <SiteContainer>
+    <GlobeLink
+      color={GlobeColor.blue}
+      topText="Writing involves"
+      bottomText="choices"
+      style={{ position: "absolute", top: 20, right: 40 }}
+      bottomDx={65}
+      bottomDy={-5}
+      topDx={0}
+      to="/pages/writing-involves-choices"
+    />
+    <ContentWrapper>
+      <ContentArea
+        style={{
+          height: 300,
+          width: "50vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: -150
+        }}
+      >
+        <h1 style={{ fontSize: 30, fontWeight: "800" }}>Place holder</h1>
+      </ContentArea>
+    </ContentWrapper>
+    <GlobeLink
+      color={GlobeColor.purple}
+      topText="Writing is"
+      bottomText="social"
+      bottomDx={75}
+      bottomDy={-5}
+      topDx={55}
+      style={{ position: "absolute", bottom: 85, left: -25 }}
+      to="/pages/writing-is-social"
+    />
+  </SiteContainer>
+);
