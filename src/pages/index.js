@@ -11,8 +11,9 @@ const ContentWrapper = styled.div`
   align-items: center;
   flex-grow: 1;
 `;
-export default () => (
-  <SiteContainer>
+
+export default props => (
+  <SiteContainer {...props} showBreadcrumbs={false}>
     <GlobeLink
       color={GlobeColor.blue}
       topText="Writing involves"
@@ -35,7 +36,7 @@ export default () => (
           marginTop: -150
         }}
       >
-        <h1 style={{ fontSize: 30, fontWeight: "800" }}>Place holder</h1>
+        <h1 style={{ fontSize: 30, fontWeight: "800" }}>Placeholder</h1>
       </ContentArea>
     </ContentWrapper>
     <GlobeLink
@@ -50,3 +51,23 @@ export default () => (
     />
   </SiteContainer>
 );
+
+export const query = graphql`
+  {
+    allMdx {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            key
+            parentKey
+            title
+          }
+        }
+      }
+    }
+  }
+`;

@@ -33,7 +33,7 @@ class NavigationPagesTemplate extends React.Component {
     } = this.props;
 
     return (
-      <SiteContainer>
+      <SiteContainer {...this.props}>
         {this.props.data.post.wordCount.words && (
           <ContentArea>
             <h2>{title}</h2>
@@ -73,9 +73,45 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            key
+            parentKey
+          }
+        }
+      }
+    }
+    allMdx: allMdx {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            key
+            parentKey
           }
         }
       }
     }
   }
 `;
+
+/*
+    all: {
+          allMdx {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            key
+            parentKey
+            title
+          }
+        }
+      }
+    }
+    }
+    */
