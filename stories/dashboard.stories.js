@@ -23,6 +23,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
   <div style={{ backgroundColor: "#000" }}>
     <Background>
       <GlobeLink
+        color="blue"
         topText="A Writer's"
         bottomText="Choice"
         style={{ position: "absolute", top: 20, right: 40 }}
@@ -56,7 +57,7 @@ storiesOf("Dashboard", module).add("default behavior", () => (
         </p>
       </ContentArea>
       <GlobeLink
-        position="BOTTOM"
+        color="purple"
         topText="A Writer's"
         bottomText="Support"
         bottomDx={55}

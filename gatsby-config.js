@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    "gatsby-plugin-resolve-src",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -7,7 +8,6 @@ module.exports = {
         name: "markdown-pages"
       }
     },
-
     {
       resolve: "gatsby-mdx",
       options: {

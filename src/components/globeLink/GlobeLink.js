@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 import purple from "./PurpleOrb.svg";
 import blue from "./BlueOrb.svg";
-
+import { Link as GatsbyLink } from "gatsby";
 import CurvedText from "./CurvedText";
+import VisuallyHidden from "../visuallyHidden";
 import { default as DefaultTouchableOpacity } from "../touchableOpacity";
-
+import { textCss } from "../text";
 const Image = styled.img`
   height: ${props => props.width}px;
   width: ${props => props.height}px;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const Link = styled.a`
+const Link = styled(GatsbyLink)`
   position: relative;
   z-index: 1;
   &:hover {
@@ -32,6 +33,23 @@ const Link = styled.a`
       transform: scale(0.9);
     }
   }
+
+  @media (max-width: 480px) {
+    img {
+      display: none;
+    }
+
+    text-decoration: none;
+    color: #fff;
+    ${textCss}
+
+    span {
+      clip: unset;
+      position: initial;
+      height: auto;
+      width: auto;
+    }
+  }
 `;
 
 export const GlobeColor = {
@@ -41,7 +59,7 @@ export const GlobeColor = {
 
 export default class extends Component {
   static defaultProps = {
-    GlobeColor: GlobeColor.purple,
+    color: GlobeColor.purple,
     diameter: 150
   };
   render() {
@@ -49,6 +67,7 @@ export default class extends Component {
       style,
       diameter,
       position,
+      color,
       topText,
       bottomText,
       bottomDx,
@@ -76,10 +95,13 @@ export default class extends Component {
           }}
         />
         <Link {...linkAttributes}>
+          <VisuallyHidden>
+            {topText} {bottomText}
+          </VisuallyHidden>
           <Image
             width={diameter}
             height={diameter}
-            src={position === GlobeColor.purple ? purple : blue}
+            src={color === GlobeColor.purple ? purple : blue}
             alt={`${topText} ${bottomText}`}
             title={`${topText} ${bottomText}`}
           />
