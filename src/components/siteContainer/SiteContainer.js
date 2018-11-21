@@ -19,19 +19,28 @@ export default class extends Component {
   };
 
   shouldShowBreadcrumbs = () => {
-    console.log(
-      "should",
-      this.props.showBreadcrumbs &&
-        this.props.data &&
-        this.props.data.allMdx &&
-        this.props.data.allMdx.edges
-    );
     return (
       this.props.showBreadcrumbs &&
       this.props.data &&
       this.props.data.allMdx &&
       this.props.data.allMdx.edges
     );
+  };
+
+  componentDidMount() {
+    this.buildLinkTree();
+  }
+
+  buildLinkTree = () => {
+    const {
+      pageContext: { key },
+      data: {
+        allMdx: { edges: nodes }
+      }
+    } = this.props;
+
+    const lookup = buildFrontmatterLookup(nodes, true, true);
+    debugger;
   };
 
   buildBreadcrumbLinks = () => {
@@ -64,6 +73,7 @@ export default class extends Component {
       return output;
     }
   };
+
   render() {
     const shouldShowBreadcrumbs = this.shouldShowBreadcrumbs();
     return (
