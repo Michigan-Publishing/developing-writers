@@ -19,10 +19,14 @@ collections:
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Tags", name: "tags", widget: "list"} 
+      - label: "Points"
+        name: "points"
+        widget: "list"
+        field: {label: Point, name: point, widget: markdown}
   - name: "navigationPages"
     label: "Navigation Pages"
-    folder: "src/pages/navigationPages"
+    folder: "src/pages"
     create: true
     extenstion: mdx
     format: frontmatter
@@ -41,7 +45,7 @@ collections:
         valueField: "title"
   - name: "contentPages"
     label: "Content Pages"
-    folder: "src/pages/contentPages"
+    folder: "src/pages"
     create: true
     extension: mdx
     format: frontmatter
@@ -75,3 +79,7 @@ collections:
             searchFields: 
               - "title"
             valueField: "title"
+      - label: "Points"
+        name: "points"
+        widget: "list"
+        field: {label: Point, name: point, widget: markdown}
