@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
     "gatsby-plugin-resolve-src",
+    "gatsby-plugin-styled-components",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
