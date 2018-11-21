@@ -3,8 +3,15 @@ import styled from "styled-components";
 import Background from "../background";
 import SiteHeading from "../siteHeading";
 import Breadcrumbs from "../breadcrumbs";
+import FlyoutMenu from "../flyoutMenu";
+import Portal from "../portal";
 import { buildFrontmatterLookup } from "../../utils/node";
 
+const HeadingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 const ContentArea = styled.div`
   display: flex;
   flex-grow: 1;
@@ -17,6 +24,8 @@ export default class extends Component {
     showBreadcrumbs: true,
     breadcrumbLinks: []
   };
+
+  state = { showFlyout: false };
 
   shouldShowBreadcrumbs = () => {
     return (
@@ -40,6 +49,7 @@ export default class extends Component {
     } = this.props;
 
     const lookup = buildFrontmatterLookup(nodes, true, true);
+
     return lookup;
   };
 
@@ -78,9 +88,22 @@ export default class extends Component {
     const shouldShowBreadcrumbs = this.shouldShowBreadcrumbs();
     return (
       <Background>
-        <SiteHeading />
-        {shouldShowBreadcrumbs && (
-          <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+        <HeadingWrapper>
+          <SiteHeading />
+          {null && (
+            <button onClick={() => this.setState({ showFlyout: true })}>
+              Hi
+            </button>
+          )}
+        </HeadingWrapper>
+        <Portal>
+          <FlyoutMenu
+            onClose={() => this.setState({ showFlyout: false })}
+            isVisible={this.state.showFlyout}
+            items={this.buildLinkTree()}
+          />
+        </Portal>
+        <Breadcrumbs items={this.buildBreadcrumbLinks()} />
         )}
         <ContentArea>{this.props.children}</ContentArea>
       </Background>
