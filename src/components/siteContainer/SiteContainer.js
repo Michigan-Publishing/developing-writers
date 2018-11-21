@@ -104,7 +104,6 @@ export default class extends Component {
           />
         </Portal>
         <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-        )}
         <ContentArea>{this.props.children}</ContentArea>
       </Background>
     );
