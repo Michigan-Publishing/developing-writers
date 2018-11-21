@@ -9,9 +9,6 @@ import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
 
-import styles from "../styles/reset.css";
-import global from "../styles/global.css";
-
 function mapLinkProperties(edges) {
   if (!edges) {
     return [];

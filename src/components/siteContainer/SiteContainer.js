@@ -7,6 +7,9 @@ import FlyoutMenu from "../flyoutMenu";
 import Portal from "../portal";
 import { buildFrontmatterLookup } from "../../utils/node";
 
+import styles from "../../styles/reset.css";
+import global from "../../styles/global.css";
+
 const HeadingWrapper = styled.div`
   display: flex;
   flex-direction: row;
