@@ -40,7 +40,7 @@ export default class extends Component {
     } = this.props;
 
     const lookup = buildFrontmatterLookup(nodes, true, true);
-    debugger;
+    return lookup;
   };
 
   buildBreadcrumbLinks = () => {
