@@ -75,3 +75,7 @@ collections:
             searchFields: 
               - "title"
             valueField: "title"
+      - label: "Points"
+        name: "points"
+        widget: "list"
+        field: {label: Point, name: point, widget: markdown}
