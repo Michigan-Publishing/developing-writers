@@ -18,7 +18,7 @@ export default props => (
       color={GlobeColor.blue}
       topText="Writing involves"
       bottomText="choices"
-      style={{ position: "absolute", top: 20, right: 40 }}
+      style={{ position: "absolute", top: 20, right: 40, zIndex: 0 }}
       bottomDx={65}
       bottomDy={-5}
       topDx={0}
@@ -46,7 +46,7 @@ export default props => (
       bottomDx={75}
       bottomDy={-5}
       topDx={55}
-      style={{ position: "absolute", bottom: 85, left: -25 }}
+      style={{ position: "absolute", bottom: 85, left: -25, zIndex: 0 }}
       to="/pages/writing-is-social"
     />
   </SiteContainer>
