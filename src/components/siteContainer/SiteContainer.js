@@ -5,6 +5,8 @@ import SiteHeading from "../siteHeading";
 import Breadcrumbs from "../breadcrumbs";
 import FlyoutMenu from "../flyoutMenu";
 import Portal from "../portal";
+import HamburgerIcon from "../hamburgerIcon";
+import TouchableOpacity from "../touchableOpacity";
 import { buildFrontmatterLookup } from "../../utils/node";
 
 import styles from "../../styles/reset.css";
@@ -93,11 +95,13 @@ export default class extends Component {
       <Background>
         <HeadingWrapper>
           <SiteHeading />
-          {null && (
-            <button onClick={() => this.setState({ showFlyout: true })}>
-              Hi
-            </button>
-          )}
+          {
+            <TouchableOpacity
+              onClick={() => this.setState({ showFlyout: true })}
+            >
+              <HamburgerIcon />
+            </TouchableOpacity>
+          }
         </HeadingWrapper>
         <Portal>
           <FlyoutMenu
