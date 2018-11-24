@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from "@mdx-js/tag";
+import MDX from "@mdx-js/runtime";
 
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
@@ -31,12 +32,13 @@ class NavigationPagesTemplate extends React.Component {
 
     return (
       <SiteContainer {...this.props}>
-        {this.props.data.post.wordCount.words && (
+        {data.post.wordCount.words && (
           <ContentArea>
             <h2>{title}</h2>
-            <MDXRenderer {...this.props}>
-              {this.props.data.post.code.body}
-            </MDXRenderer>
+            <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
+            {data.post.frontmatter &&
+              data.post.frontmatter.points &&
+              data.post.frontmatter.points.map(point => <MDX>{point}</MDX>)}
           </ContentArea>
         )}
         {data.childPages && data.childPages.edges.length > 0 && (
@@ -61,6 +63,9 @@ export const pageQuery = graphql`
       wordCount {
         words
       }
+      frontmatter {
+        points
+      }
     }
     childPages: allMdx(filter: { frontmatter: { parentKey: { eq: $key } } }) {
       edges {
@@ -72,6 +77,7 @@ export const pageQuery = graphql`
             title
             key
             parentKey
+            points
           }
         }
       }
@@ -92,23 +98,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-/*
-    all: {
-          allMdx {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            key
-            parentKey
-            title
-          }
-        }
-      }
-    }
-    }
-    */
