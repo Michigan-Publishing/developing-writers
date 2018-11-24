@@ -81,7 +81,7 @@ export const pageQuery = graphql`
         words
       }
       frontmatter {
-        points
+        title
       }
     }
     childPages: allMdx(filter: { frontmatter: { parentKey: { eq: $key } } }) {
@@ -94,7 +94,6 @@ export const pageQuery = graphql`
             title
             key
             parentKey
-            points
           }
         }
       }
