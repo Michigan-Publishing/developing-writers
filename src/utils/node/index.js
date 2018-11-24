@@ -1,6 +1,5 @@
 // builds a lookup based on key
 function buildTreeFromList(nodes, parentKey = null) {
-  console.log("NODES", nodes, parentKey);
   // get matching nodes
   const matchingNodes = Object.keys(nodes).reduce((all, next) => {
     if (nodes[next].parentKey === parentKey) {
