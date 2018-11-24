@@ -28,6 +28,4 @@ collections:
       - label: "Points"
         name: "points"
         widget: "list"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: Point, name: point, widget: markdown }
+        field: { label: Point, name: point, widget: markdown }
