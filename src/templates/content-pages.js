@@ -10,8 +10,6 @@ import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
 import ExpandablePanel from "../components/expandablePanel";
 
-import marksy from "marksy/components";
-
 function mapLinkProperties(edges) {
   if (!edges) {
     return [];
@@ -24,19 +22,6 @@ function mapLinkProperties(edges) {
 
   return output;
 }
-
-const compile = marksy({
-  createElement: React.createElement,
-  components: {}
-});
-
-const demo = `
-# Some blog title
-
-Just need to show you some code first:
-
-<One />
-`;
 
 class NavigationPagesTemplate extends React.Component {
   render() {
@@ -52,9 +37,7 @@ class NavigationPagesTemplate extends React.Component {
             <h2>{title}</h2>
             <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
             {data.post.frontmatter && data.post.frontmatter.points && (
-              <ExpandablePanel>
-                {data.post.frontmatter.points.map(point => compile(point).tree)}
-              </ExpandablePanel>
+              <ExpandablePanel points={data.post.frontmatter.points} />
             )}
           </ContentArea>
         )}
@@ -82,6 +65,10 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        points {
+          point
+          title
+        }
       }
     }
     childPages: allMdx(filter: { frontmatter: { parentKey: { eq: $key } } }) {
