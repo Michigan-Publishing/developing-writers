@@ -26,9 +26,7 @@ function mapLinkProperties(edges) {
 
 const compile = marksy({
   createElement: React.createElement,
-  components: {
-    One: () => <h1>One</h1>
-  }
+  components: {}
 });
 
 const demo = `
