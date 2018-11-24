@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from "@mdx-js/tag";
-import MDX from "@mdx-js/runtime";
 
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
+
+import marksy from "marksy/components";
 
 function mapLinkProperties(edges) {
   if (!edges) {
@@ -22,6 +23,21 @@ function mapLinkProperties(edges) {
 
   return output;
 }
+
+const compile = marksy({
+  createElement: React.createElement,
+  components: {
+    One: () => <h1>One</h1>
+  }
+});
+
+const demo = `
+# Some blog title
+
+Just need to show you some code first:
+
+<One />
+`;
 
 class NavigationPagesTemplate extends React.Component {
   render() {
@@ -38,7 +54,7 @@ class NavigationPagesTemplate extends React.Component {
             <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
             {data.post.frontmatter &&
               data.post.frontmatter.points &&
-              data.post.frontmatter.points.map(point => <MDX>{point}</MDX>)}
+              data.post.frontmatter.points.map(point => compile(point).tree)}
           </ContentArea>
         )}
         {data.childPages && data.childPages.edges.length > 0 && (
