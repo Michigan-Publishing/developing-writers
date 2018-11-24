@@ -99,4 +99,6 @@ collections:
       - label: "Points"
         name: "points"
         widget: "list"
-        field: { label: Point, name: point, widget: markdown }
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: Point, name: point, widget: markdown }

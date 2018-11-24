@@ -8,6 +8,7 @@ import { MDXProvider } from "@mdx-js/tag";
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
+import ExpandablePanel from "../components/expandablePanel";
 
 import marksy from "marksy/components";
 
@@ -50,9 +51,11 @@ class NavigationPagesTemplate extends React.Component {
           <ContentArea>
             <h2>{title}</h2>
             <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
-            {data.post.frontmatter &&
-              data.post.frontmatter.points &&
-              data.post.frontmatter.points.map(point => compile(point).tree)}
+            {data.post.frontmatter && data.post.frontmatter.points && (
+              <ExpandablePanel>
+                {data.post.frontmatter.points.map(point => compile(point).tree)}
+              </ExpandablePanel>
+            )}
           </ContentArea>
         )}
         {data.childPages && data.childPages.edges.length > 0 && (
