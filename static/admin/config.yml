@@ -33,3 +33,4 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Point", name: "point", widget: "markdown" }
+      - { label: "After Points", name: "afterPoints", widget: "markdown" }

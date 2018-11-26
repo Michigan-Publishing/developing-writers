@@ -9,6 +9,7 @@ import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
 import ExpandablePanel from "../components/expandablePanel";
+import Markdown from "../components/markdown";
 
 function mapLinkProperties(edges) {
   if (!edges) {
@@ -39,6 +40,7 @@ class NavigationPagesTemplate extends React.Component {
             {data.post.frontmatter && data.post.frontmatter.points && (
               <ExpandablePanel points={data.post.frontmatter.points} />
             )}
+            <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
           </ContentArea>
         )}
         {data.childPages && data.childPages.edges.length > 0 && (
@@ -65,6 +67,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        afterPoints
         points {
           point
           title

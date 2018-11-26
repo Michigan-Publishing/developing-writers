@@ -1,15 +1,9 @@
 import React, { Component, Fragment } from "react";
 import styled, { keyframes } from "styled-components";
-import marksy from "marksy/components";
 import palette from "../../utils/palette";
-
+import Markdown from "../markdown";
 import chevronDown from "./chevronDown.svg";
 import chevronUp from "./chevronUp.svg";
-
-const compile = marksy({
-  createElement: React.createElement,
-  components: {}
-});
 
 const Container = styled.div`
   margin: 10px 0;
@@ -63,7 +57,11 @@ const Row = ({ title, body, isActive, id, onToggleRow }) => (
       {title}
       <Icon src={isActive ? chevronUp : chevronDown} />
     </Title>
-    {isActive && <Body>{compile(body).tree}</Body>}
+    {isActive && (
+      <Body>
+        <Markdown>{body}</Markdown>
+      </Body>
+    )}
   </RowContainer>
 );
 export default class extends Component {
