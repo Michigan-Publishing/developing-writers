@@ -6,6 +6,6 @@ const compile = marksy({
   components: {}
 });
 
-const Markdown = ({ children }) => compile(children).tree;
+const Markdown = ({ children }) => children && compile(children).tree;
 
 export default Markdown;
