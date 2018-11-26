@@ -10,6 +10,7 @@ import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
 import ExpandablePanel from "../components/expandablePanel";
 import Markdown from "../components/markdown";
+import RelatedContent from "../components/relatedContent";
 
 function mapLinkProperties(edges) {
   if (!edges) {
@@ -22,6 +23,31 @@ function mapLinkProperties(edges) {
   }));
 
   return output;
+}
+
+function shouldShowRelatedContent(data) {
+  return (
+    data &&
+    data.siblingPages &&
+    data.siblingPages.edges &&
+    data.siblingPages.edges.length > 0 &&
+    shouldShowChildLinks(data) === false
+  );
+}
+
+function mapSiblingContent(data) {
+  if (!shouldShowRelatedContent(data)) {
+    return null;
+  }
+
+  return data.siblingPages.edges.map(({ node }) => ({
+    href: node.fields.slug,
+    title: node.frontmatter.title
+  }));
+}
+
+function shouldShowChildLinks(data) {
+  return !!(data.childPages && data.childPages.edges.length > 0);
 }
 
 class NavigationPagesTemplate extends React.Component {
@@ -43,7 +69,10 @@ class NavigationPagesTemplate extends React.Component {
             <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
           </ContentArea>
         )}
-        {data.childPages && data.childPages.edges.length > 0 && (
+        {shouldShowRelatedContent(data) && (
+          <RelatedContent relatedLinks={mapSiblingContent(data)} />
+        )}
+        {shouldShowChildLinks(data) && (
           <Navigation
             linkProperties={mapLinkProperties(data.childPages.edges)}
           />
@@ -56,7 +85,7 @@ class NavigationPagesTemplate extends React.Component {
 export default NavigationPagesTemplate;
 
 export const pageQuery = graphql`
-  query($id: String!, $key: String!) {
+  query($id: String!, $key: String!, $parentKey: String) {
     post: mdx(id: { eq: $id }) {
       id
       code {
@@ -84,6 +113,22 @@ export const pageQuery = graphql`
             title
             key
             parentKey
+          }
+        }
+      }
+    }
+    siblingPages: allMdx(
+      filter: {
+        frontmatter: { parentKey: { eq: $parentKey }, key: { ne: $key } }
+      }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
           }
         }
       }

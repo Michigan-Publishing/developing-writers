@@ -11,18 +11,18 @@ const ContentWrapper = styled.div`
   padding: 20px;
   max-height: 80vh; 
   max-width: 50vw;
-  margin-left: 25vw;
-  position: relative;
-  top: 10vh;
+  margin-top: 60px;
 `;
 
 const Link = styled.a`
   color: ${palette.white};
 `;
 
-const Heading = styled.h4`
+const Heading = styled.h3`
   color: ${palette.white};
   margin: 0px;
+  font-size: 20px;
+  font-weight: 800;
 `;
 
 const ListContainer = styled.ul`
