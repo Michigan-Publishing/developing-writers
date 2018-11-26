@@ -22,7 +22,14 @@ collections:
         }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Key", name: "key", widget: "string" }
-      - { label: "ParentKey", name: "parentKey", widget: "string", required: false }
+      - label: "Parent Key"
+        name: "parentKey"
+        widget: "relation"
+        collection: "pages"
+        searchFields: ["title", "templateKey", "key"]
+        displayFields: ["title"]
+        valueField: "key"
+        required: false 
       - { label: "Body", name: "body", widget: "markdown" }
       - label: "Points"
         name: "points"
