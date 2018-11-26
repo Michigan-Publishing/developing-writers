@@ -21,6 +21,8 @@ collections:
           default: "navigation-pages",
         }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Key", name: "key", widget: "string" }
+      - { label: "ParentKey", name: "parentKey", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
