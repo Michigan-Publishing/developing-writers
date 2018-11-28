@@ -18,7 +18,7 @@ collections:
           label: "Template Key",
           name: "templateKey",
           widget: "hidden",
-          default: "navigation-pages",
+          default: "content-pages",
         }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Key", name: "key", widget: "string" }
