@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
   padding: 20px;
   max-height: 80vh;
   width: 50vw;
-  margin-top: 90px;
+  margin: 90px 0;
   align-self: center;
 `;
 

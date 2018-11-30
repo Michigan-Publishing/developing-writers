@@ -14,13 +14,14 @@ import styles from "../../styles/reset.css";
 import global from "../../styles/global.css";
 
 const HeadingWrapper = styled.div`
-  background: linear-gradient(rgba(0, 0, 0, 1.5) 10%, rgba(0, 0, 0, 0));
+  background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
   padding: 15px;
   display: flex;
   flex-direction: column;
   width: calc(100vw - 30px);
   position: fixed;
   top: 0;
+  z-index: 1;
 `;
 
 const ContentArea = styled.div`
@@ -30,6 +31,7 @@ const ContentArea = styled.div`
   height: 100%;
   margin-top: calc(${props => props.headingHeight}px + 30px);
   position: relative;
+  z-index: 0;
 `;
 
 const HeadingRow = styled.div`

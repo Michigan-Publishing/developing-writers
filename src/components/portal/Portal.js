@@ -10,7 +10,9 @@ export default class Portal extends Component {
   };
   componentDidMount() {
     this.div = document.createElement("div");
+    this.div.style.zIndex = 10;
     document.body.appendChild(this.div);
+
     this.setState({ hasMounted: true });
   }
 

@@ -10,7 +10,6 @@ const ContentWrapper = styled.div`
   color: ${palette.white};
   overflow-y: scroll;
   padding: 20px;
-  max-height: 80vh; 
   max-width: 50vw;
   position: relative;
   top: 2.5vh;
