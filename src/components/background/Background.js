@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import standard from "./background-transparent.png";
+import standard from "./background.jpg";
 import webp from "./background.webp";
 
 const Background = styled.div`
-  background-color: #000;
   background: url(${props => props.src}) no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
-  padding: 40px;
   display: flex;
   flex-direction: column;
 `;
@@ -30,7 +28,7 @@ class BackgroundSourceWrapper extends React.Component {
   state = { isLoading: true, src: null };
 
   async componentDidMount() {
-    const useWebp = await supportsWebp();
+    const useWebp = false;
 
     this.setState({
       isLoading: false,

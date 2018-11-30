@@ -64,35 +64,55 @@ const Row = ({ title, body, isActive, id, onToggleRow }) => (
     )}
   </RowContainer>
 );
+
+const ContentSection = styled.div`
+  margin: 10px 0;
+`;
 export default class extends Component {
-  state = { expandedRowIndex: null };
-
-  onToggleRow = expandedRowIndex => {
-    this.setState(previousState => ({
-      expandedRowIndex:
-        previousState.expandedRowIndex === expandedRowIndex
-          ? null
-          : expandedRowIndex
-    }));
-  };
-
   render() {
     const { points } = this.props;
-    const { expandedRowIndex } = this.state;
 
     return (
       <Container>
         {points.map((point, index) => (
-          <Row
-            title={point.title}
-            key={point.title}
-            id={index}
-            body={point.point}
-            isActive={expandedRowIndex === index}
-            onToggleRow={this.onToggleRow}
-          />
+          <ContentSection>
+            <h2>{point.title}</h2>
+            <Markdown>{point.point}</Markdown>
+          </ContentSection>
         ))}
       </Container>
     );
   }
 }
+// export default class extends Component {
+//   state = { expandedRowIndex: null };
+
+//   onToggleRow = expandedRowIndex => {
+//     this.setState(previousState => ({
+//       expandedRowIndex:
+//         previousState.expandedRowIndex === expandedRowIndex
+//           ? null
+//           : expandedRowIndex
+//     }));
+//   };
+
+//   render() {
+//     const { points } = this.props;
+//     const { expandedRowIndex } = this.state;
+
+//     return (
+//       <Container>
+//         {points.map((point, index) => (
+//           <Row
+//             title={point.title}
+//             key={point.title}
+//             id={index}
+//             body={point.point}
+//             isActive={expandedRowIndex === index}
+//             onToggleRow={this.onToggleRow}
+//           />
+//         ))}
+//       </Container>
+//     );
+//   }
+// }

@@ -5,13 +5,15 @@ import { textCss } from "../text/Text";
 
 const ContentWrapper = styled.div`
   ${textCss}
-  background-color: ${palette.relatedBackground};
+  background-color: rgba(${palette.rgbRelatedBackground}, .9);
+  box-shadow: 0px 0px 100px rgba(${palette.rgbRelatedBackground}, 100);
   color: ${palette.white};
   overflow-y: scroll;
   padding: 20px;
-  max-height: 80vh; 
-  max-width: 50vw;
-  margin-top: 60px;
+  max-height: 80vh;
+  width: 50vw;
+  margin: 90px 0;
+  align-self: center;
 `;
 
 const Link = styled.a`

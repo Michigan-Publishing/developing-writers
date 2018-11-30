@@ -13,6 +13,7 @@ const Heading = styled.h2`
 `;
 
 const Container = styled.div`
+  z-index: 10;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@ const CloseButton = styled.button`
   border: none;
   font-size: 40px;
   color: ${palette.white};
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const Overlay = styled.div`
