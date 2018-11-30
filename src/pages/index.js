@@ -46,7 +46,7 @@ export default props => (
       bottomDx={75}
       bottomDy={-5}
       topDx={55}
-      style={{ position: "absolute", bottom: 85, left: -25, zIndex: 0 }}
+      style={{ position: "absolute", bottom: 50, left: 25, zIndex: 0 }}
       to="/pages/writing-is-social"
     />
   </SiteContainer>
