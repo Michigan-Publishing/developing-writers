@@ -33,7 +33,7 @@ const ListItem = styled.li`
   position: absolute;
   left: ${props => props.left}%;
   top: ${props => props.top + padding}px;
-  background-color: ${palette.contentBackground};
+  background-color: rgba(${palette.rgbContentBackground}, 0.8);
   padding: 20px;
   border-radius: 20px;
 `;
