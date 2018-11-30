@@ -14,7 +14,6 @@ const Link = styled.a`
   &:after {
     content: " ";
     display: block;
-    border-bottom: 1px solid ${palette.white};
     opacity: 0.5;
   }
 `;
@@ -34,6 +33,9 @@ const ListItem = styled.li`
   position: absolute;
   left: ${props => props.left}%;
   top: ${props => props.top + padding}px;
+  background-color: ${palette.contentBackground};
+  padding: 20px;
+  border-radius: 20px;
 `;
 
 function getRandomInt(max) {
