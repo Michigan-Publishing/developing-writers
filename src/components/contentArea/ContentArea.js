@@ -5,7 +5,7 @@ import { textCss } from "../text/Text";
 
 const ContentWrapper = styled.div`
   ${textCss}
-  background-color: rgba(${palette.rgbContentBackground}, .8);
+  background-color: rgba(${palette.rgbContentBackground}, .9);
   box-shadow: 0px 0px 100px rgba(${palette.rgbContentBackground}, 100);
   color: ${palette.white};
   overflow-y: scroll;

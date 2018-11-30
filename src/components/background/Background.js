@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import standard from "./background-transparent.png";
+import standard from "./background.jpg";
 import webp from "./background.webp";
 
 const Background = styled.div`
@@ -30,7 +30,7 @@ class BackgroundSourceWrapper extends React.Component {
   state = { isLoading: true, src: null };
 
   async componentDidMount() {
-    const useWebp = await supportsWebp();
+    const useWebp = false;
 
     this.setState({
       isLoading: false,
