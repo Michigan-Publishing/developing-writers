@@ -6,7 +6,9 @@ const palette = {
   yellowLine: "#D1D420",
   yellow: "#E2E420",
   contentBackground: "#0F384A",
-  relatedBackground: "#378496"
+  relatedBackground: "#378496",
+  rgbContentBackground: "16, 56, 74",
+  rgbRelatedBackground: "55, 132, 150"
 };
 
 export default palette;
