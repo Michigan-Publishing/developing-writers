@@ -16,6 +16,7 @@ module.exports = {
       }
     },
     "gatsby-plugin-netlify-cms",
-    "gatsby-transformer-remark"
+    "gatsby-transformer-remark",
+    "gatsby-plugin-react-helmet"
   ]
 };
