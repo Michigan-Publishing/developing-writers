@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
+
 import SiteContainer from "../components/siteContainer";
 import GlobeLink, { GlobeColor } from "../components/globeLink/GlobeLink";
 import ContentArea from "../components/contentArea";
@@ -14,6 +16,11 @@ const ContentWrapper = styled.div`
 
 export default props => (
   <SiteContainer {...props} showBreadcrumbs={false}>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Developing Writers</title>
+    </Helmet>
+
     <GlobeLink
       color={GlobeColor.blue}
       topText="Writing involves"

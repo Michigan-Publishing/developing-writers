@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { MDXProvider } from "@mdx-js/tag";
+import { Helmet } from "react-helmet";
 
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
@@ -59,6 +60,10 @@ class NavigationPagesTemplate extends React.Component {
 
     return (
       <SiteContainer {...this.props}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{title} | Developing Writers</title>
+        </Helmet>
         {data.post.wordCount.words && (
           <ContentArea>
             <h2>{title}</h2>

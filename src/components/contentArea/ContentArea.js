@@ -3,7 +3,7 @@ import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.main`
   ${textCss}
   background-color: rgba(${palette.rgbContentBackground}, .9);
   box-shadow: 0px 0px 100px rgba(${palette.rgbContentBackground}, 100);
@@ -20,6 +20,12 @@ const ContentWrapper = styled.div`
     font-weight: 800;
     margin-bottom: 10px;
   }
+
+  & p,
+li {
+  margin: 20px 10px;
+}
+
 `;
 
 export default class extends React.Component {
