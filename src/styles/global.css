@@ -1,11 +1,23 @@
+html {
+  font-size: 16px;
+
+  @media only screen and (min-width: 900px) {
+    font-size: 18px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    font-size: 20px;
+  }
+}
+
 body {
   background-color: #000;
-  line-height: 24px;
+  line-height: 1.5rem;
 }
 
 blockquote {
   background: #378496;
-  border-left: 10px solid #ccc;
+  border-left: 0.75rem solid #ccc;
   margin: 1.5em 0;
   padding: 0.5em 10px;
   quotes: "\201C" "\201D" "\2018" "\2019";
