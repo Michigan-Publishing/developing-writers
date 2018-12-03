@@ -8,17 +8,16 @@ import Portal from "../portal";
 import HamburgerIcon from "../hamburgerIcon";
 import TouchableOpacity from "../touchableOpacity";
 import { buildFrontmatterLookup } from "../../utils/node";
-import Rect from "@reach/rect";
 import palette from "../../utils/palette";
 import styles from "../../styles/reset.css";
 import global from "../../styles/global.css";
 
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
-  padding: 15px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 30px);
+  width: calc(100vw - 2rem);
   position: fixed;
   top: 0;
   z-index: 1;
@@ -29,7 +28,7 @@ const ContentArea = styled.div`
   flex-grow: 1;
   flex-direction: column;
   height: 100%;
-  margin-top: calc(${props => props.headingHeight}px + 30px);
+  margin-top: 8.5rem;
   position: relative;
   z-index: 0;
 `;
@@ -108,40 +107,34 @@ export default class extends Component {
   render() {
     const shouldShowBreadcrumbs = this.shouldShowBreadcrumbs();
     return (
-      <Rect>
-        {({ rect, ref }) => (
-          <Fragment>
-            <HeadingWrapper ref={ref}>
-              <HeadingRow>
-                <SiteHeading />
-                {
-                  <TouchableOpacity
-                    onClick={() => this.setState({ showFlyout: true })}
-                  >
-                    <HamburgerIcon />
-                  </TouchableOpacity>
-                }
-              </HeadingRow>
-              <HeadingRow>
-                <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-              </HeadingRow>
-            </HeadingWrapper>
+      <Fragment>
+        <HeadingWrapper>
+          <HeadingRow>
+            <SiteHeading />
+            {
+              <TouchableOpacity
+                onClick={() => this.setState({ showFlyout: true })}
+              >
+                <HamburgerIcon />
+              </TouchableOpacity>
+            }
+          </HeadingRow>
+          <HeadingRow>
+            <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+          </HeadingRow>
+        </HeadingWrapper>
 
-            <Background>
-              <Portal>
-                <FlyoutMenu
-                  onClose={() => this.setState({ showFlyout: false })}
-                  isVisible={this.state.showFlyout}
-                  items={this.buildLinkTree()}
-                />
-              </Portal>
-              <ContentArea headingHeight={rect && rect.height}>
-                {this.props.children}
-              </ContentArea>
-            </Background>
-          </Fragment>
-        )}
-      </Rect>
+        <Background>
+          <Portal>
+            <FlyoutMenu
+              onClose={() => this.setState({ showFlyout: false })}
+              isVisible={this.state.showFlyout}
+              items={this.buildLinkTree()}
+            />
+          </Portal>
+          <ContentArea>{this.props.children}</ContentArea>
+        </Background>
+      </Fragment>
     );
   }
 }

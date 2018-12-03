@@ -5,26 +5,26 @@ import { textCss } from "../text/Text";
 import palette from "../../utils/palette";
 
 const BreadcrumbWrapper = styled.div`
-  margin: 10px 0;
+  margin: .75rem 0;
   display: flex;
   flex-direction: row;
   ${textCss}
   color: ${palette.white};
 
   a, a:visited {
-    margin: 0 10px;
+    margin: 0 .75rem;
     color: ${palette.white};
     opacity: .8;
   }
 
   a:first-child {
-    margin-right: 10px;
+    margin-right: .75rem;
     margin-left: 0;
   }
 
   span:not(:last-child)::after {
     content: ">";
-    margin-right: 10px;
+    margin-right: .75rem;
     opacity: .6;
   }
 

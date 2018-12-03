@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import palette from "../../utils/palette";
 const HeadingWrapper = styled.div`
   font-family: Helvetica, sans-serif;
-  font-size: 45px;
+  font-size: 3rem;
   font-weight: normal;
   color: ${palette.white};
   text-transform: uppercase;
