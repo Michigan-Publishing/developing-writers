@@ -14,7 +14,7 @@ const Heading = styled.h2`
 
 const Container = styled.div`
   z-index: 10;
-  padding: 0px 20px;
+  padding: 0px 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -22,7 +22,7 @@ const Container = styled.div`
   background-color: ${palette.contentBackground};
   color: ${palette.white};
   ${textCss};
-  font-size: 40px;
+  font-size: 3rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -38,15 +38,15 @@ const Container = styled.div`
 
 const LinkContainer = styled.div`
   opacity: ${props => props.opacity};
-  margin: 30px 0;
+  margin: 2rem 0;
 `;
 
 const CloseButton = styled.button`
   background: none;
   border: none;
-  font-size: 40px;
+  font-size: 3rem;
   color: ${palette.white};
-  margin-bottom: 40px;
+  margin-bottom: 3rem;
 `;
 
 const Overlay = styled.div`
@@ -68,18 +68,18 @@ const LinkWrapper = styled.div`
   color: #fff;
 
   & > div {
-    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "20px")};
+    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "1.5rem")};
   }
 
   a {
     display: inline-block;
-    margin: 20px;
-    margin-top: ${props => (props.depth >= 1 ? 10 : 30)}px;
+    margin: 1.5rem;
+    margin-top: ${props => (props.depth >= 1 ? 0.75 : 2)}rem;
   }
 `;
 
 const LinkBlockWrapper = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 `;
 
 function buildLinks(items, depth = 0) {

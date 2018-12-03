@@ -14,7 +14,7 @@ const HeadingWrapper = styled.div`
     content: " ";
     display: block;
     border: 1px solid ${palette.yellowLine};
-    margin-top: 20px;
+    margin-top: 1.5rem;
     max-width: 700px;
   }
 
