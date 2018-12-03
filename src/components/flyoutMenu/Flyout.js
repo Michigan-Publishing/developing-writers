@@ -7,9 +7,21 @@ import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 import TouchableOpacity from "../touchableOpacity";
 
+const FlyoutHeading = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 const Heading = styled.h2`
+  display: flex;
+  width: 100%;
+  text-align: center;
   ${textCss};
   color: ${palette.yellow};
+  justify-content: center;
 `;
 
 const Container = styled.div`
@@ -46,7 +58,6 @@ const CloseButton = styled.button`
   border: none;
   font-size: 3rem;
   color: ${palette.white};
-  margin-bottom: 3rem;
 `;
 
 const Overlay = styled.div`
@@ -115,6 +126,10 @@ export default class extends Component {
     document.body.appendChild(this.div);
   }
 
+  componentWillUnmount() {
+    document.body.remove(this.div);
+  }
+
   onClose = () => {
     this.setState({
       shouldClose: true,
@@ -125,6 +140,7 @@ export default class extends Component {
 
   afterAnimation = () => {
     if (this.state.shouldClose) {
+      document.body.classList.remove("modalOpen");
       this.setState(
         {
           shouldClose: false,
@@ -133,7 +149,11 @@ export default class extends Component {
         },
         () => this.props.onClose()
       );
+
+      return;
     }
+
+    document.body.classList.add("modalOpen");
   };
 
   render() {
@@ -154,10 +174,12 @@ export default class extends Component {
         >
           {props => (
             <Container style={{ width: props.width, opacity: props.opacity }}>
-              <CloseButton aria-label="Close" onClick={this.onClose}>
-                <span aria-hidden="true">&times;</span>
-              </CloseButton>
-              <Heading>Navigation</Heading>
+              <FlyoutHeading>
+                <CloseButton aria-label="Close" onClick={this.onClose}>
+                  <span aria-hidden="true">&times;</span>
+                </CloseButton>
+                <Heading>Navigation</Heading>
+              </FlyoutHeading>
               <LinkContainer opacity={props.opacity}>{links}</LinkContainer>
             </Container>
           )}
