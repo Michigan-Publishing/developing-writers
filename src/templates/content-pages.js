@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 import ContentArea from "../components/contentArea";
 import Navigation from "../components/secondaryNavigation";
 import SiteContainer from "../components/siteContainer";
-import ExpandablePanel from "../components/expandablePanel";
+import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
 
@@ -69,7 +69,7 @@ class NavigationPagesTemplate extends React.Component {
             <h2>{title}</h2>
             <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
             {data.post.frontmatter && data.post.frontmatter.points && (
-              <ExpandablePanel points={data.post.frontmatter.points} />
+              <Point points={data.post.frontmatter.points} />
             )}
             <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
           </ContentArea>
