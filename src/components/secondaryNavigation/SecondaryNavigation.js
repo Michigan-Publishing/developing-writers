@@ -7,7 +7,7 @@ const padding = 20;
 const Link = styled.a`
   color: ${palette.white};
   ${textCss};
-  font-size: 30px;
+  font-size: 2rem;
   text-decoration: none;
   position: flex;
 
@@ -34,8 +34,8 @@ const ListItem = styled.li`
   left: ${props => props.left}%;
   top: ${props => props.top + padding}px;
   background-color: rgba(${palette.rgbContentBackground}, 0.8);
-  padding: 20px;
-  border-radius: 20px;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
 `;
 
 function getRandomInt(max) {

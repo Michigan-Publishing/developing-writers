@@ -3,8 +3,8 @@ import styled from "styled-components";
 import palette from "../../utils/palette";
 const Text = styled.text`
   fill: ${palette.mainNavText};
-  font: bold 22px sans-serif;
-  letter-spacing: 5px;
+  font: bold 1.5rem sans-serif;
+  letter-spacing: 0.3rem;
 `;
 
 export default class extends React.Component {

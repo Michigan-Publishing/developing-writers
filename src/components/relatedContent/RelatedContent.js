@@ -6,12 +6,12 @@ import { textCss } from "../text/Text";
 const ContentWrapper = styled.div`
   ${textCss}
   background-color: rgba(${palette.rgbRelatedBackground}, .9);
-  box-shadow: 0px 0px 100px rgba(${palette.rgbRelatedBackground}, 100);
+  box-shadow: 0 0 6.5rem rgba(${palette.rgbRelatedBackground}, 100);
   color: ${palette.white};
-  padding: 20px;
+  padding: 1.5rem;
   max-height: 80vh;
   width: 50vw;
-  margin: 90px 0;
+  margin: 6rem 0;
   align-self: center;
 `;
 
@@ -21,19 +21,19 @@ const Link = styled.a`
 
 const Heading = styled.h3`
   color: ${palette.white};
-  margin: 0px;
-  font-size: 20px;
+  margin: 0;
+  font-size: 1.5rem;
   font-weight: 800;
 `;
 
 const ListContainer = styled.ul`
   padding: 0;
-  margin-left: 10px;
+  margin-left: 0.75rem;
   list-style-type: none;
 `;
 
 const ListItem = styled.li`
-  margin: 20px 0;
+  margin: 1.5rem 0;
 `;
 
 export default class extends React.Component {

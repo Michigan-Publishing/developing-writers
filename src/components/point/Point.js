@@ -4,11 +4,11 @@ import palette from "../../utils/palette";
 import Markdown from "../markdown";
 
 const Container = styled.div`
-  margin: 10px 0;
+  margin: 0.75rem 0;
 `;
 
 const ContentSection = styled.div`
-  margin: 10px 0;
+  margin: 0.75rem 0;
 `;
 export default class extends Component {
   render() {
