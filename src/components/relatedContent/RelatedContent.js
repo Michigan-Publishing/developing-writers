@@ -8,7 +8,6 @@ const ContentWrapper = styled.div`
   background-color: rgba(${palette.rgbRelatedBackground}, .9);
   box-shadow: 0px 0px 100px rgba(${palette.rgbRelatedBackground}, 100);
   color: ${palette.white};
-  overflow-y: scroll;
   padding: 20px;
   max-height: 80vh;
   width: 50vw;
