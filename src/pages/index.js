@@ -6,6 +6,9 @@ import SiteContainer from "../components/siteContainer";
 import GlobeLink, { GlobeColor } from "../components/globeLink/GlobeLink";
 import ContentArea from "../components/contentArea";
 
+// eslint-disable-next-line
+import styles from "../styles/global.css";
+
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;

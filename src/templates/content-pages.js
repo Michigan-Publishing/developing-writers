@@ -10,6 +10,9 @@ import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
 
+// eslint-disable-next-line
+import styles from "../styles/global.css";
+
 function mapLinkProperties(edges) {
   if (!edges) {
     return [];
