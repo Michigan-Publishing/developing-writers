@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { Spring, Trail, config } from "react-spring";
+import { Spring } from "react-spring";
 
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
-import TouchableOpacity from "../touchableOpacity";
 
 const FlyoutHeading = styled.div`
   display: flex;
@@ -40,6 +39,7 @@ const Container = styled.div`
   right: 0;
   height: 100vh;
 
+  overflow-y: scroll;
   a,
   a:visited,
   a:active {

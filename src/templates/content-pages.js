@@ -1,9 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-import { Link } from "gatsby";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
-import { MDXProvider } from "@mdx-js/tag";
 import { Helmet } from "react-helmet";
 
 import ContentArea from "../components/contentArea";
@@ -54,7 +51,7 @@ function shouldShowChildLinks(data) {
 class NavigationPagesTemplate extends React.Component {
   render() {
     const {
-      pageContext: { title, section: pageSection, key, parentKey, id },
+      pageContext: { title },
       data
     } = this.props;
 

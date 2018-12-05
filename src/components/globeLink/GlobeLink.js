@@ -6,8 +6,7 @@ import blue from "./BlueOrb.svg";
 import { Link as GatsbyLink } from "gatsby";
 import CurvedText from "./CurvedText";
 import VisuallyHidden from "../visuallyHidden";
-import { default as DefaultTouchableOpacity } from "../touchableOpacity";
-import { textCss } from "../text";
+import { textCss } from "../text/Text";
 const Image = styled.img`
   height: ${props => props.width}px;
   width: ${props => props.height}px;
