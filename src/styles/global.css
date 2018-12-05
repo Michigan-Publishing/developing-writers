@@ -15,6 +15,11 @@ body {
   line-height: 1.5rem;
 }
 
+body.modalOpen {
+  height: 100vh;
+  overflow: hidden;
+}
+
 blockquote {
   background: #378496;
   border-left: 0.75rem solid #ccc;

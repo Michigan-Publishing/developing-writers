@@ -1,15 +1,26 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { Spring, Trail, config } from "react-spring";
+import { Spring } from "react-spring";
 
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
-import TouchableOpacity from "../touchableOpacity";
+
+const FlyoutHeading = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
 
 const Heading = styled.h2`
+  display: flex;
+  width: 100%;
+  text-align: center;
   ${textCss};
   color: ${palette.yellow};
+  justify-content: center;
 `;
 
 const Container = styled.div`
@@ -22,12 +33,13 @@ const Container = styled.div`
   background-color: ${palette.contentBackground};
   color: ${palette.white};
   ${textCss};
-  font-size: 3rem;
+  font-size: 2rem;
   position: absolute;
   top: 0;
   right: 0;
   height: 100vh;
 
+  overflow-y: scroll;
   a,
   a:visited,
   a:active {
@@ -41,12 +53,16 @@ const LinkContainer = styled.div`
   margin: 2rem 0;
 `;
 
+const StyledLink = styled(Link)`
+  margin-bottom: ${props => (props.depth === 0 ? 0.5 : 0)}rem;
+  display: inline-block;
+`;
+
 const CloseButton = styled.button`
   background: none;
   border: none;
   font-size: 3rem;
   color: ${palette.white};
-  margin-bottom: 3rem;
 `;
 
 const Overlay = styled.div`
@@ -66,20 +82,20 @@ const LinkWrapper = styled.div`
   font-weight: ${props => (props.depth >= 1 ? "normal" : "bold")};
   opacity: ${props => (props.depth >= 1 ? 0.8 : 0.6)};
   color: #fff;
-
+  padding-left: ${props => (props.depth >= 1 ? 1 : 0)}rem;
+  padding-top: ${props => (props.depth < 1 ? 0.5 : 0)}rem;
   & > div {
-    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "1.5rem")};
+    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "1rem")};
   }
 
   a {
     display: inline-block;
-    margin: 1.5rem;
-    margin-top: ${props => (props.depth >= 1 ? 0.75 : 2)}rem;
+    margin: 0.5rem 1rem;
   }
 `;
 
 const LinkBlockWrapper = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 function buildLinks(items, depth = 0) {
@@ -89,7 +105,9 @@ function buildLinks(items, depth = 0) {
 
   return items.map(item => (
     <LinkBlockWrapper>
-      <Link to={item.slug}>{item.title}</Link>
+      <StyledLink to={item.slug} depth={depth}>
+        {item.title}
+      </StyledLink>
 
       <LinkWrapper depth={depth} data-depth={depth}>
         {buildLinks(item.children, depth + 1)}
@@ -115,6 +133,10 @@ export default class extends Component {
     document.body.appendChild(this.div);
   }
 
+  componentWillUnmount() {
+    document.body.remove(this.div);
+  }
+
   onClose = () => {
     this.setState({
       shouldClose: true,
@@ -125,6 +147,7 @@ export default class extends Component {
 
   afterAnimation = () => {
     if (this.state.shouldClose) {
+      document.body.classList.remove("modalOpen");
       this.setState(
         {
           shouldClose: false,
@@ -133,7 +156,11 @@ export default class extends Component {
         },
         () => this.props.onClose()
       );
+
+      return;
     }
+
+    document.body.classList.add("modalOpen");
   };
 
   render() {
@@ -154,10 +181,12 @@ export default class extends Component {
         >
           {props => (
             <Container style={{ width: props.width, opacity: props.opacity }}>
-              <CloseButton aria-label="Close" onClick={this.onClose}>
-                <span aria-hidden="true">&times;</span>
-              </CloseButton>
-              <Heading>Navigation</Heading>
+              <FlyoutHeading>
+                <CloseButton aria-label="Close" onClick={this.onClose}>
+                  <span aria-hidden="true">&times;</span>
+                </CloseButton>
+                <Heading>Navigation</Heading>
+              </FlyoutHeading>
               <LinkContainer opacity={props.opacity}>{links}</LinkContainer>
             </Container>
           )}

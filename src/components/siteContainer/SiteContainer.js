@@ -8,9 +8,6 @@ import Portal from "../portal";
 import HamburgerIcon from "../hamburgerIcon";
 import TouchableOpacity from "../touchableOpacity";
 import { buildFrontmatterLookup } from "../../utils/node";
-import palette from "../../utils/palette";
-import styles from "../../styles/reset.css";
-import global from "../../styles/global.css";
 
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
@@ -62,7 +59,6 @@ export default class extends Component {
 
   buildLinkTree = () => {
     const {
-      pageContext: { key },
       data: {
         allMdx: { edges: nodes }
       }
@@ -105,7 +101,6 @@ export default class extends Component {
   };
 
   render() {
-    const shouldShowBreadcrumbs = this.shouldShowBreadcrumbs();
     return (
       <Fragment>
         <HeadingWrapper>

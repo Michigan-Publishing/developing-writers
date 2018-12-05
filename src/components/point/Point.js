@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
-import styled, { keyframes } from "styled-components";
-import palette from "../../utils/palette";
+import React, { Component } from "react";
+import styled from "styled-components";
 import Markdown from "../markdown";
 
 const Container = styled.div`
