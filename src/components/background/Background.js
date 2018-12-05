@@ -7,7 +7,6 @@ const MAX_SCALE_OFFSET = 30;
 
 const Background = styled.div`
   background: url(${props => props.src}) no-repeat center center fixed;
-  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

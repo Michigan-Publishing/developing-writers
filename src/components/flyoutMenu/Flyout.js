@@ -134,7 +134,7 @@ export default class extends Component {
   }
 
   componentWillUnmount() {
-    document.body.remove(this.div);
+    document.body.removeChild(this.div);
   }
 
   onClose = () => {
