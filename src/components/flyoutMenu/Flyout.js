@@ -34,7 +34,7 @@ const Container = styled.div`
   background-color: ${palette.contentBackground};
   color: ${palette.white};
   ${textCss};
-  font-size: 3rem;
+  font-size: 2rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -51,6 +51,11 @@ const Container = styled.div`
 const LinkContainer = styled.div`
   opacity: ${props => props.opacity};
   margin: 2rem 0;
+`;
+
+const StyledLink = styled(Link)`
+  margin-bottom: ${props => (props.depth === 0 ? 0.5 : 0)}rem;
+  display: inline-block;
 `;
 
 const CloseButton = styled.button`
@@ -77,20 +82,20 @@ const LinkWrapper = styled.div`
   font-weight: ${props => (props.depth >= 1 ? "normal" : "bold")};
   opacity: ${props => (props.depth >= 1 ? 0.8 : 0.6)};
   color: #fff;
-
+  padding-left: ${props => (props.depth >= 1 ? 1 : 0)}rem;
+  padding-top: ${props => (props.depth < 1 ? 0.5 : 0)}rem;
   & > div {
-    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "1.5rem")};
+    margin-bottom: ${props => (props.depth >= 1 ? "auto" : "1rem")};
   }
 
   a {
     display: inline-block;
-    margin: 1.5rem;
-    margin-top: ${props => (props.depth >= 1 ? 0.75 : 2)}rem;
+    margin: 0.5rem 1rem;
   }
 `;
 
 const LinkBlockWrapper = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 function buildLinks(items, depth = 0) {
@@ -100,7 +105,9 @@ function buildLinks(items, depth = 0) {
 
   return items.map(item => (
     <LinkBlockWrapper>
-      <Link to={item.slug}>{item.title}</Link>
+      <StyledLink to={item.slug} depth={depth}>
+        {item.title}
+      </StyledLink>
 
       <LinkWrapper depth={depth} data-depth={depth}>
         {buildLinks(item.children, depth + 1)}
