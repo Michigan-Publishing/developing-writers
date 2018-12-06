@@ -105,8 +105,7 @@ buildFrontmatterLookup = nodes => {
   }, {});
 };
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, actions: { createNodeField }, getNode, getNodes }) => {
   if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode });
     const nodes = getNodes();
