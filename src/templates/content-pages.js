@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from 'gatsby'
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { Helmet } from "react-helmet";
@@ -88,3 +89,69 @@ class NavigationPagesTemplate extends React.Component {
 }
 
 export default NavigationPagesTemplate;
+
+export const pageQuery = graphql`
+  query($id: String!, $key: String!, $parentKey: String) {
+    post: mdx(id: { eq: $id }) {
+      id
+      code {
+        body
+      }
+      wordCount {
+        words
+      }
+      frontmatter {
+        title
+        afterPoints
+        points {
+          point
+          title
+        }
+      }
+    }
+    childPages: allMdx(filter: { frontmatter: { parentKey: { eq: $key } } }) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            key
+            parentKey
+          }
+        }
+      }
+    }
+    siblingPages: allMdx(
+      filter: {
+        frontmatter: { parentKey: { eq: $parentKey }, key: { ne: $key } }
+      }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+    allMdx: allMdx {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            key
+            parentKey
+          }
+        }
+      }
+    }
+  }
+`;
