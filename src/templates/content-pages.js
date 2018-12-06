@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from 'gatsby'
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { Helmet } from "react-helmet";
