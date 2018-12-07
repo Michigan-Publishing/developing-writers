@@ -1,7 +1,7 @@
 import CMS from "netlify-cms";
 
 const fulcrumDefaultFields = [
-  { name: "id", label: "Fulcrum ID", widget: "string" },
+  { name: "handle", label: "Fulcrum Handle", widget: "string" },
   { name: "title", label: "Title", widget: "string" },
 ];
 
@@ -17,8 +17,8 @@ const audioFields = fulcrumDefaultFields;
 const imageFields = fulcrumImageVideoFields;
 const videoFields = fulcrumImageVideoFields;
 
-const textAudioBlock =  (id, title) => `<iframe src='https://www.fulcrum.org/embed?hdl=2027%2Ffulcrum.${id}' title='${escape(title)}' style='display:block; overflow:hidden; border-width:0; width:98%; max-width:98%; max-height:400px; margin:auto'></iframe>`;
-const imageVideoBlock = (id, title, height, width) => `<div style='width:auto; page-break-inside:avoid; -webkit-column-break-inside:avoid; break-inside:avoid; max-width:${width}px; margin:auto'><div style='overflow:hidden; padding-bottom:56.25%; position:relative; height:0;'><!-- actual height: ${height}px --><iframe src='https://www.fulcrum.org/embed?hdl=2027%2Ffulcrum.${id}' title='${escape(title)}' style='overflow:hidden; border-width:0; left:0; top:0; width:100%; height:100%; position:absolute;'></iframe></div></div>`;
+const textAudioBlock =  (handle, title) => `<iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(title)}' style='display:block; overflow:hidden; border-width:0; width:98%; max-width:98%; max-height:400px; margin:auto'></iframe>`;
+const imageVideoBlock = (handle, title, width) => `<div style='width:auto; page-break-inside:avoid; -webkit-column-break-inside:avoid; break-inside:avoid; max-width:${width}px; margin:auto'><div style='overflow:hidden; padding-bottom:56.25%; position:relative; height:0;'><iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(title)}' style='overflow:hidden; border-width:0; left:0; top:0; width:100%; height:100%; position:absolute;'></iframe></div></div>`;
 
 CMS.registerEditorComponent({
   id: "fulcrumText",
@@ -31,10 +31,10 @@ CMS.registerEditorComponent({
     };
   },
   toBlock: function(obj) {
-    return textAudioBlock(obj.id, obj.title);
+    return textAudioBlock(obj.handle, obj.title);
   },
   toPreview: function(obj) {
-    return textAudioBlock(obj.id, obj.title);
+    return textAudioBlock(obj.handle, obj.title);
   }
 });
 
@@ -49,10 +49,10 @@ CMS.registerEditorComponent({
     };
   },
   toBlock: function(obj) {
-    return textAudioBlock(obj.id, obj.title);
+    return textAudioBlock(obj.handle, obj.title);
   },
   toPreview: function(obj) {
-    return textAudioBlock(obj.id, obj.title);
+    return textAudioBlock(obj.handle, obj.title);
   }
 });
 
@@ -67,10 +67,10 @@ CMS.registerEditorComponent({
     };
   },
   toBlock: function(obj) {
-    return imageVideoBlock(obj.id, obj.title, obj.height, obj.width);
+    return imageVideoBlock(obj.handle, obj.title, obj.width);
   },
   toPreview: function(obj) {
-    return imageVideoBlock(obj.id, obj.title, obj.height, obj.width);
+    return imageVideoBlock(obj.handle, obj.title, obj.width);
   }
 });
 
@@ -85,9 +85,9 @@ CMS.registerEditorComponent({
     };
   },
   toBlock: function(obj) {
-    return imageVideoBlock(obj.id, obj.title, obj.height, obj.width);
+    return imageVideoBlock(obj.handle, obj.title, obj.width);
   },
   toPreview: function(obj) {
-    return imageVideoBlock(obj.id, obj.title, obj.height, obj.width);
+    return imageVideoBlock(obj.handle, obj.title, obj.width);
   }
 });

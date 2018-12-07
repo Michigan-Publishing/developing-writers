@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import { Component } from "react";
 import { MOBILE_WIDTH } from "../../constants";
 
 const displayModes = {
