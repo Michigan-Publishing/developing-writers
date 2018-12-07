@@ -22,8 +22,8 @@ const Background = styled.div`
   background-size: cover;
   transform-origin: top center;
   transform: perspective(500px)
-    skewY(-${props => props.backgroundCalculation / 1000}turn)
-    scale(${props => 1 + props.backgroundCalculation / 200});
+    skewY(-${props => props.backgroundCalculation / 10000}turn)
+    scale(${props => 1 + props.backgroundCalculation / 2000});
   transition: transform 200ms;
   min-width: 100%;
   min-height: 100%;
