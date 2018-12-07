@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 import palette from "../../utils/palette";
+import { MOBILE_WIDTH } from "../../constants";
+
 const HeadingWrapper = styled.div`
   font-family: Helvetica, sans-serif;
   font-size: 3rem;
@@ -21,6 +23,11 @@ const HeadingWrapper = styled.div`
   & a {
     text-decoration: none;
     color: #fff;
+  }
+
+  @media (max-width: ${MOBILE_WIDTH}px) {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 `;
 
