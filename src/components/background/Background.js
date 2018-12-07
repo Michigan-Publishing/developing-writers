@@ -3,8 +3,6 @@ import standard from "./background.jpg";
 import styled from "styled-components";
 import throttle from "lodash.throttle";
 
-const MAX_SCALE_OFFSET = 30;
-
 const BackgroundContainer = styled.div`
   min-height: 100vh;
   min-width: 100vw;
@@ -24,12 +22,8 @@ const Background = styled.div`
   background-size: cover;
   transform-origin: top center;
   transform: perspective(500px)
-    translate3d(
-      -${props => props.backgroundCalculation}px,
-      -${props => props.backgroundCalculation}px,
-      ${props => props.backgroundCalculation * 0.75}px
-    )
-    skew(${props => props.backgroundCalculation / 10}deg);
+    skewY(-${props => props.backgroundCalculation / 1000}turn)
+    scale(${props => 1 + props.backgroundCalculation / 200});
   transition: transform 200ms;
   min-width: 100%;
   min-height: 100%;
@@ -46,7 +40,7 @@ function getPercentScrolled() {
 }
 
 export default class BackgroundWrapper extends React.Component {
-  state = { backgroundCalculation: 100 };
+  state = { backgroundCalculation: 0 };
   element = React.createRef();
   componentDidMount() {
     window.addEventListener("scroll", this.throttledOnScroll);
@@ -60,7 +54,7 @@ export default class BackgroundWrapper extends React.Component {
     const percentScrolled = getPercentScrolled();
 
     this.setState({
-      backgroundCalculation: 100 + (percentScrolled * MAX_SCALE_OFFSET) / 100
+      backgroundCalculation: percentScrolled
     });
   };
 
