@@ -5,14 +5,34 @@ import throttle from "lodash.throttle";
 
 const MAX_SCALE_OFFSET = 30;
 
-const Background = styled.div`
-  background: url(${props => props.src}) no-repeat center center fixed;
+const BackgroundContainer = styled.div`
   min-height: 100vh;
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
-  transition: background-size 2s;
-  background-size: ${props => Math.ceil(1.2 * props.backgroundSize || 100)}vw
-    ${props => Math.ceil(props.backgroundSize || 100)}vh;
+`;
+
+const BackgroundBox = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+`;
+const Background = styled.div`
+  background: url(${props => props.src}) no-repeat center center fixed;
+  background-origin: border-box;
+  background-size: cover;
+  transform-origin: top center;
+  transform: perspective(500px)
+    translate3d(
+      -${props => props.backgroundCalculation}px,
+      -${props => props.backgroundCalculation}px,
+      ${props => props.backgroundCalculation * 0.75}px
+    )
+    skew(${props => props.backgroundCalculation / 10}deg);
+  transition: transform 200ms;
+  min-width: 100%;
+  min-height: 100%;
 `;
 
 function getPercentScrolled() {
@@ -26,7 +46,7 @@ function getPercentScrolled() {
 }
 
 export default class BackgroundWrapper extends React.Component {
-  state = { backgroundSize: 100 };
+  state = { backgroundCalculation: 100 };
   element = React.createRef();
   componentDidMount() {
     window.addEventListener("scroll", this.throttledOnScroll);
@@ -40,7 +60,7 @@ export default class BackgroundWrapper extends React.Component {
     const percentScrolled = getPercentScrolled();
 
     this.setState({
-      backgroundSize: 100 + (percentScrolled * MAX_SCALE_OFFSET) / 100
+      backgroundCalculation: 100 + (percentScrolled * MAX_SCALE_OFFSET) / 100
     });
   };
 
@@ -49,9 +69,15 @@ export default class BackgroundWrapper extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <Background src={standard} backgroundSize={this.state.backgroundSize}>
+      <BackgroundContainer>
+        <BackgroundBox>
+          <Background
+            src={standard}
+            backgroundCalculation={this.state.backgroundCalculation}
+          />
+        </BackgroundBox>
         {children}
-      </Background>
+      </BackgroundContainer>
     );
   }
 }
