@@ -38,11 +38,11 @@ export default class extends Component {
       <BreadcrumbWrapper>
         {items.map((item, index) =>
           index !== items.length - 1 ? (
-            <LinkWrapper>
+            <LinkWrapper key={item.slug}>
               <Link to={item.slug}>{item.title}</Link>
             </LinkWrapper>
           ) : (
-            <LinkWrapper>{item.title}</LinkWrapper>
+            <LinkWrapper key={item.slug}>{item.title}</LinkWrapper>
           )
         )}
       </BreadcrumbWrapper>

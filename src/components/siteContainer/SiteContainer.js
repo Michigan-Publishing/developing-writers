@@ -42,7 +42,7 @@ export default class extends Component {
     breadcrumbLinks: []
   };
 
-  state = { showFlyout: false };
+  state = { showFlyout: false, headingHeight: 0 };
 
   shouldShowBreadcrumbs = () => {
     return (
@@ -55,6 +55,9 @@ export default class extends Component {
 
   componentDidMount() {
     this.buildLinkTree();
+    this.setState({
+      headingHeight: this.headingWrapper.clientHeight
+    });
   }
 
   buildLinkTree = () => {
@@ -103,7 +106,7 @@ export default class extends Component {
   render() {
     return (
       <Fragment>
-        <HeadingWrapper>
+        <HeadingWrapper ref={(headingWrapper) => this.headingWrapper = headingWrapper}>
           <HeadingRow>
             <SiteHeading />
             {

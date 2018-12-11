@@ -44,7 +44,7 @@ export default class extends React.Component {
         <Heading>Related Content</Heading>
         <ListContainer>
           {relatedLinks.map(link => (
-            <ListItem>
+            <ListItem key={link.href}>
               <Link href={link.href}>{link.title}</Link>
             </ListItem>
           ))}
