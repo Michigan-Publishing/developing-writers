@@ -91,3 +91,24 @@ CMS.registerEditorComponent({
     return imageVideoBlock(obj.handle, obj.title, obj.width);
   }
 });
+
+CMS.registerEditorComponent({
+  id: "collapsibleBlockQuote",
+  label: "Collapsible Block Quote",
+  fields: [
+    { name: "previewText", label: "Preview Text", widget: "string" },
+    { name: "fullText", label: "Full Text", widget: "markdown" },
+  ],
+  pattern: /^collapsible (\S+)$/,
+  fromBlock: function(match) {
+    return {
+      id: match[1]
+    };
+  },
+  toBlock: function(obj) {
+    return obj.fullText;
+  },
+  toPreview: function(obj) {
+    return obj.fullText;
+  }
+})
