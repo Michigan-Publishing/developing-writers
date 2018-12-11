@@ -53,8 +53,11 @@ function shouldShowChildLinks(data) {
 }
 
 export default class ContentPages extends Component {
-  state = { headerOffset: 0 };
-
+  constructor(props) {
+    super(props);
+    this.state = { headerOffset: 0 };
+  }
+  
   componentDidMount() {
     this.setState({
       headerOffset: this.siteContainer ? this.siteContainer.headingWrapper.clientHeight : 0
