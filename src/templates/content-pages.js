@@ -53,6 +53,14 @@ function shouldShowChildLinks(data) {
 }
 
 class NavigationPagesTemplate extends React.Component {
+  state = { headerOffset: 0 };
+
+  componentDidMount() {
+    this.setState({
+      headerOffset: this.siteContainer ? this.siteContainer.headingWrapper.clientHeight : 0
+    });
+  }
+
   render() {
     const {
       pageContext: { title },
@@ -60,7 +68,7 @@ class NavigationPagesTemplate extends React.Component {
     } = this.props;
 
     return (
-      <SiteContainer {...this.props}>
+      <SiteContainer ref={(siteContainer) => this.siteContainer = siteContainer} {...this.props}>
         <Helmet>
           <meta charSet="utf-8" />
           <title>{title} | Developing Writers</title>
@@ -70,7 +78,7 @@ class NavigationPagesTemplate extends React.Component {
             <h2>{title}</h2>
             <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
             {data.post.frontmatter && data.post.frontmatter.points && (
-              <Point points={data.post.frontmatter.points} />
+              <Point points={data.post.frontmatter.points} headerOffset={this.state.headerOffset} />
             )}
             <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
           </ContentArea>

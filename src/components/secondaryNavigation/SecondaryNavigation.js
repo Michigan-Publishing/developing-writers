@@ -71,7 +71,7 @@ export default class extends Component {
     return (
       <ListContainer ref={node => (this.container = node)}>
         {linkProperties.map((link, index) => (
-          <ListItem left={getRandomInt(35)} top={index * paddingHeight}>
+          <ListItem key={link.href} left={getRandomInt(35)} top={index * paddingHeight}>
             <Link href={link.href}>{link.title}</Link>
           </ListItem>
         ))}

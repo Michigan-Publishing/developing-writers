@@ -11,16 +11,28 @@ const ContentSection = styled.div`
 `;
 export default class extends Component {
   render() {
-    const { points } = this.props;
+    const { points, headerOffset } = this.props;
 
     return (
       <Container>
-        {points.map((point, index) => (
-          <ContentSection>
+        {points.map((point, index) => {
+          const slug = (point.title || '').toLowerCase().replace(/[^a-z\d\s]+$/g,"").replace(/ +/g, "-");
+          
+          return (
+          <ContentSection key={slug}>
+            <div 
+              id={slug}
+              style={{ 
+                display: "block",
+                position: "relative",
+                top: -1 * headerOffset,
+                visibility: "hidden",
+              }}></div>
             <h2>{point.title}</h2>
             <Markdown>{point.point}</Markdown>
           </ContentSection>
-        ))}
+        )
+        })}
       </Container>
     );
   }
