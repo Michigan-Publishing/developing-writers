@@ -8,6 +8,7 @@ import GlobeLink, { GlobeColor } from "../components/globeLink/GlobeLink";
 import ContentArea from "../components/contentArea";
 import Text from "../components/text";
 import ViewportDisplay from "../components/viewportDisplay";
+import Carousel from "../components/carousel";
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -57,19 +58,7 @@ export default props => (
             to="/pages/writing-involves-choices"
           />
           <ContentWrapper>
-            <ContentArea
-              style={{
-                height: 300,
-                width: "50vw",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: -150
-              }}
-            >
-              <h1 style={{ fontSize: 30, fontWeight: "800" }}>Placeholder</h1>
-            </ContentArea>
+            <Carousel />
           </ContentWrapper>
           <GlobeLink
             color={GlobeColor.purple}
