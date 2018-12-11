@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { graphql } from 'gatsby'
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
@@ -52,7 +52,7 @@ function shouldShowChildLinks(data) {
   return !!(data.childPages && data.childPages.edges.length > 0);
 }
 
-class NavigationPagesTemplate extends React.Component {
+export default class ContentPages extends Component {
   state = { headerOffset: 0 };
 
   componentDidMount() {
@@ -95,8 +95,6 @@ class NavigationPagesTemplate extends React.Component {
     );
   }
 }
-
-export default NavigationPagesTemplate;
 
 export const pageQuery = graphql`
   query($id: String!, $key: String!, $parentKey: String) {
