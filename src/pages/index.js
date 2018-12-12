@@ -42,7 +42,7 @@ const LinkRow = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
 `;
@@ -69,44 +69,17 @@ export default props => (
       <meta charSet="utf-8" />
       <title>Developing Writers</title>
     </Helmet>
-
-    <ViewportDisplay
-      desktopRender={
-        <ContentWrapper>
-          <Carousel />
-          <LinkRow>
-            <LinkButton to="/pages/writing-involves-choices">
-              <LinkText>Writing involves choices</LinkText>
-            </LinkButton>
-            <LinkButton to="/pages/writing-is-social">
-              <LinkText>Writing is social</LinkText>
-            </LinkButton>
-          </LinkRow>
-        </ContentWrapper>
-      }
-      mobileRender={
-        <MobileWrapper>
-          <Link to="/pages/writing-involves-choices">
-            <LinkText>Writing involves choices</LinkText>
-          </Link>
-          <Link to="/pages/writing-is-social">
-            <LinkText>Writing is social</LinkText>
-          </Link>
-          <ContentArea
-            style={{
-              height: 300,
-              width: "50vw",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <h1 style={{ fontSize: 30, fontWeight: "800" }}>Placeholder</h1>
-          </ContentArea>
-        </MobileWrapper>
-      }
-    />
+    <ContentWrapper>
+      <Carousel />
+      <LinkRow>
+        <LinkButton to="/pages/writing-involves-choices">
+          <LinkText>Writing involves choices</LinkText>
+        </LinkButton>
+        <LinkButton to="/pages/writing-is-social">
+          <LinkText>Writing is social</LinkText>
+        </LinkButton>
+      </LinkRow>
+    </ContentWrapper>
   </SiteContainer>
 );
 

@@ -104,9 +104,12 @@ export default class extends Component {
   };
 
   render() {
+    const { contentStyles } = this.props;
     return (
       <Fragment>
-        <HeadingWrapper ref={(headingWrapper) => this.headingWrapper = headingWrapper}>
+        <HeadingWrapper
+          ref={headingWrapper => (this.headingWrapper = headingWrapper)}
+        >
           <HeadingRow>
             <SiteHeading />
             {
@@ -130,7 +133,7 @@ export default class extends Component {
               items={this.buildLinkTree()}
             />
           </Portal>
-          <ContentArea>{this.props.children}</ContentArea>
+          <ContentArea style={contentStyles}>{this.props.children}</ContentArea>
         </Background>
       </Fragment>
     );
