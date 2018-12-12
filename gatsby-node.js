@@ -51,9 +51,11 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMdx.edges.forEach(({ node }) => {
           const {
             id,
-            fields: { slug },
+            fields,
             frontmatter: { templateKey, title, section, key, parentKey }
           } = node;
+          const slug = fields ? fields.slug : undefined;
+          
           const template = path.resolve(`./src/templates/${templateKey}.js`);
 
           createPage({
@@ -83,7 +85,7 @@ function buildSlug(node, frontMatterNodes) {
 
   let slugBody = node.frontmatter.key;
   let currentNode = frontMatterNodes[node.frontmatter.key];
-  while (currentNode.parentKey) {
+  while (currentNode && currentNode.parentKey) {
     slugBody = `${currentNode.parentKey}/${slugBody}`;
     currentNode = frontMatterNodes[currentNode.parentKey];
   }
