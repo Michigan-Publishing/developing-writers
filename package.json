@@ -31,6 +31,7 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-spring": "^6.1.5",
+    "react-whirl": "^1.0.2-alpha.0",
     "styled-components": "^4.0.2"
   },
   "devDependencies": {

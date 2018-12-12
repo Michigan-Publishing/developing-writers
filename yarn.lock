@@ -10012,6 +10012,10 @@ react-waypoint@^7.1.0:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
 
+react-whirl@^1.0.2-alpha.0:
+  version "1.0.2-alpha.0"
+  resolved "https://registry.yarnpkg.com/react-whirl/-/react-whirl-1.0.2-alpha.0.tgz#95241ff262f2bece32d160178b7ba298c83680cd"
+
 react@15:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
