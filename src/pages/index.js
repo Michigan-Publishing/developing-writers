@@ -59,7 +59,6 @@ const Link = styled(GatsbyLink)`
   margin-bottom: 2rem;
 `;
 const LinkText = styled(Text)`
-  margin-bottom: 20px;
   font-size: 1.5rem;
 `;
 
