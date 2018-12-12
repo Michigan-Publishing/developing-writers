@@ -70,15 +70,16 @@ export default props => (
       <title>Developing Writers</title>
     </Helmet>
     <ContentWrapper>
-      <Carousel />
-      <LinkRow>
-        <LinkButton to="/pages/writing-involves-choices">
-          <LinkText>Writing involves choices</LinkText>
-        </LinkButton>
-        <LinkButton to="/pages/writing-is-social">
-          <LinkText>Writing is social</LinkText>
-        </LinkButton>
-      </LinkRow>
+      <Carousel>
+        <LinkRow>
+          <LinkButton to="/pages/writing-involves-choices">
+            <LinkText>Writing involves choices</LinkText>
+          </LinkButton>
+          <LinkButton to="/pages/writing-is-social">
+            <LinkText>Writing is social</LinkText>
+          </LinkButton>
+        </LinkRow>
+      </Carousel>
     </ContentWrapper>
   </SiteContainer>
 );

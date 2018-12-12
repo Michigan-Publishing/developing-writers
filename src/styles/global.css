@@ -13,6 +13,7 @@ html {
 body {
   background-color: #000;
   line-height: 1.5rem;
+  margin: 0;
 }
 
 body.modalOpen {

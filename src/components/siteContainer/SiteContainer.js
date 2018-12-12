@@ -4,6 +4,7 @@ import Background from "../background";
 import SiteHeading from "../siteHeading";
 import Breadcrumbs from "../breadcrumbs";
 import FlyoutMenu from "../flyoutMenu";
+import Footer, { FOOTER_HEIGHT } from "../footer";
 import Portal from "../portal";
 import HamburgerIcon from "../hamburgerIcon";
 import TouchableOpacity from "../touchableOpacity";
@@ -28,6 +29,7 @@ const ContentArea = styled.div`
   margin-top: 8.5rem;
   position: relative;
   z-index: 0;
+  padding-bottom: ${FOOTER_HEIGHT}px;
 `;
 
 const HeadingRow = styled.div`
@@ -105,6 +107,8 @@ export default class extends Component {
 
   render() {
     const { contentStyles } = this.props;
+    const linkTree = this.buildLinkTree();
+
     return (
       <Fragment>
         <HeadingWrapper
@@ -130,10 +134,11 @@ export default class extends Component {
             <FlyoutMenu
               onClose={() => this.setState({ showFlyout: false })}
               isVisible={this.state.showFlyout}
-              items={this.buildLinkTree()}
+              items={linkTree}
             />
           </Portal>
           <ContentArea style={contentStyles}>{this.props.children}</ContentArea>
+          <Footer links={linkTree} />
         </Background>
       </Fragment>
     );
