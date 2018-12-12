@@ -112,6 +112,7 @@ export default class extends React.Component {
             description="Eleventh slide"
           />
         </Whirl>
+        {this.props.children}
       </Wrapper>
     );
   }
