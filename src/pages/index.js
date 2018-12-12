@@ -70,7 +70,7 @@ export default props => (
       <title>Developing Writers</title>
     </Helmet>
     <ContentWrapper>
-      <Carousel>
+      <Carousel width={1024} height={576}>
         <LightBackground>
           <h2>
             Welcome! Here’s what 169 college students taught us about writing.

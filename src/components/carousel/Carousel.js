@@ -42,12 +42,19 @@ const Next = onNext => <Button onClick={onNext}>⟩</Button>;
 const Previous = onPrevious => <Button onClick={onPrevious}>⟨</Button>;
 
 export default class extends React.Component {
+  static defaultProps = {
+    width: 1024,
+    height: 576
+  };
+
   render() {
+    const { width, height } = this.props;
+
     return (
       <Wrapper>
         <Whirl
-          height="576px"
-          width="1024px"
+          height={height}
+          width={width}
           controlsStyle={{
             top: "50%",
             marginLeft: "-25px",
