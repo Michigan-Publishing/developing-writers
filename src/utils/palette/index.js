@@ -1,4 +1,5 @@
 const palette = {
+  lightBackground: "#CFDBDF",
   black: "#000",
   white: "#FFF",
   purpleMain: "#662D91",

@@ -26,14 +26,13 @@ const LinkButton = styled(GatsbyLink)`
   height: 64px;
   ${textCss}
   background-color: rgba(${palette.rgbRelatedBackground}, .9);
-  box-shadow: 0 0 6.5rem rgba(${palette.rgbRelatedBackground}, 100);
   color: ${palette.white};
   padding: 1.5rem;
+  text-decoration: none;
 `;
 
 const LinkRow = styled.div`
-  margin-top: 45px;
-  width: 1280px;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   align-items: space-between;
@@ -47,19 +46,21 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
 `;
 
-const MobileWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
-`;
-
-const Link = styled(GatsbyLink)`
-  margin-bottom: 2rem;
-`;
 const LinkText = styled(Text)`
   font-size: 1.5rem;
+`;
+
+const LightBackground = styled.div`
+  border-top: 5px solid ${palette.relatedBackground};
+  background-color: ${palette.lightBackground};
+  padding: 2rem 0;
+
+  & h2 {
+    color: ${palette.relatedBackground};
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 export default props => (
@@ -70,14 +71,19 @@ export default props => (
     </Helmet>
     <ContentWrapper>
       <Carousel>
-        <LinkRow>
-          <LinkButton to="/pages/writing-involves-choices">
-            <LinkText>Writing involves choices</LinkText>
-          </LinkButton>
-          <LinkButton to="/pages/writing-is-social">
-            <LinkText>Writing is social</LinkText>
-          </LinkButton>
-        </LinkRow>
+        <LightBackground>
+          <h2>
+            Welcome! Here’s what 169 college students taught us about writing.
+          </h2>
+          <LinkRow>
+            <LinkButton to="/pages/writing-involves-choices">
+              <LinkText>Writing involves choices</LinkText>
+            </LinkButton>
+            <LinkButton to="/pages/writing-is-social">
+              <LinkText>Writing is social</LinkText>
+            </LinkButton>
+          </LinkRow>
+        </LightBackground>
       </Carousel>
     </ContentWrapper>
   </SiteContainer>

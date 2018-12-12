@@ -46,8 +46,8 @@ export default class extends React.Component {
     return (
       <Wrapper>
         <Whirl
-          height="720px"
-          width="1280px"
+          height="576px"
+          width="1024px"
           controlsStyle={{
             top: "50%",
             marginLeft: "-25px",
