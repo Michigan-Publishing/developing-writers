@@ -99,14 +99,15 @@ CMS.registerEditorComponent({
     { name: "previewText", label: "Preview Text", widget: "string" },
     { name: "fullText", label: "Full Text", widget: "markdown" },
   ],
-  pattern: /^collapsible (\S+)$/,
+  pattern: /^{{% collapsible-block-quote previewText="(.*)" %}}((.|\n)*){{% \/collapsible-block-quote %}}$/,
   fromBlock: function(match) {
     return {
-      id: match[1]
+      previewText: match[1],
+      fullText: match[2],
     };
   },
   toBlock: function(obj) {
-    return obj.fullText;
+    return '{{% collapsible-block-quote previewText="'+ obj.previewText +'" %}}' + obj.fullText + '{{% /collapsible-block-quote %}}';
   },
   toPreview: function(obj) {
     return obj.fullText;
