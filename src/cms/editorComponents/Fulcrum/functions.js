@@ -29,11 +29,16 @@ String.prototype.originalMatchFunction = String.prototype.match;
 String.prototype.match = function(val) {
   const matches = this.originalMatchFunction.apply(this, arguments);
 
-  if(val && val.toString().indexOf("data-block-type='image'") > 0){
+  if(this && this.indexOf('In our study,') == 0 && val && val.toString().indexOf("data-block-type='video'") > 0){
     console.log('THIS');
     console.log(this);
-    console.log('MATCHES');
-    console.log(matches);
+    console.log("MATCH VALUE");
+    console.log(val);
+
+    if(matches) {
+      console.log('MATCHES');
+      console.log(matches);
+    }
   }
 
   return matches;

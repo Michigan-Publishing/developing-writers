@@ -15,9 +15,11 @@ export default {
     };
   },
   toBlock: function(obj) {
+    console.log('TOBLOCK OBJ', obj);
     return imageVideoBlock(fulcrumType, obj.handle, obj.title, obj.width);
   },
   toPreview: function(obj) {
+    console.log('PREVIEW OBJ',obj);
     return imageVideoBlock(fulcrumType, obj.handle, obj.title, obj.width);
   }
 };
