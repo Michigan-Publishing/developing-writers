@@ -29,7 +29,7 @@ String.prototype.originalMatchFunction = String.prototype.match;
 String.prototype.match = function(val) {
   const matches = this.originalMatchFunction.apply(this, arguments);
 
-  if(this && this.indexOf('In our study,') == 0 && val && val.toString().indexOf("data-block-type='video'") > 0){
+  if(val && val.toString().indexOf("ExpandableBlockQuote") > 0) { //this && this.indexOf('mark') >= 0 && val && val.toString().indexOf("mark") > 0){
     console.log('THIS');
     console.log(this);
     console.log("MATCH VALUE");
