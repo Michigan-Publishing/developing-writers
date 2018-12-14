@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Link as GatsbyLink } from "gatsby";
 import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 
 const padding = 20;
 
-export const Link = styled.a`
+export const Link = styled(GatsbyLink)`
   color: ${palette.white};
   ${textCss};
   font-size: 2rem;
@@ -81,7 +82,7 @@ export default class extends Component {
             left={getRandomInt(35)}
             top={index * paddingHeight}
           >
-            <Link href={link.href}>{link.title}</Link>
+            <Link to={link.href}>{link.title}</Link>
           </ListItem>
         ))}
       </ListContainer>
