@@ -9,6 +9,8 @@ import ContentArea from "../components/contentArea";
 import Text from "../components/text";
 import ViewportDisplay from "../components/viewportDisplay";
 import Carousel from "../components/carousel";
+import Breakpoints, { breakpointSizes } from "../components/breakpoints";
+import { Media } from "react-breakpoints";
 
 import { textCss } from "../components/text/Text";
 import palette from "../utils/palette";
@@ -64,29 +66,39 @@ const LightBackground = styled.div`
 `;
 
 export default props => (
-  <SiteContainer {...props} showBreadcrumbs={false}>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>Developing Writers</title>
-    </Helmet>
-    <ContentWrapper>
-      <Carousel width={1024} height={576}>
-        <LightBackground>
-          <h2>
-            Welcome! Here’s what 169 college students taught us about writing.
-          </h2>
-          <LinkRow>
-            <LinkButton to="/pages/writing-involves-choices">
-              <LinkText>Writing involves choices</LinkText>
-            </LinkButton>
-            <LinkButton to="/pages/writing-is-social">
-              <LinkText>Writing is social</LinkText>
-            </LinkButton>
-          </LinkRow>
-        </LightBackground>
-      </Carousel>
-    </ContentWrapper>
-  </SiteContainer>
+  <Breakpoints>
+    <SiteContainer {...props} showBreadcrumbs={false}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Developing Writers</title>
+      </Helmet>
+      <ContentWrapper>
+        <Media>
+          {({ breakpoints, currentBreakpoint }) => (
+            <Carousel
+              width={currentBreakpoint === breakpointSizes.desktop ? 1024 : 682}
+              height={currentBreakpoint === breakpointSizes.desktop ? 576 : 384}
+            >
+              <LightBackground>
+                <h2>
+                  Welcome! Here’s what 169 college students taught us about
+                  writing.
+                </h2>
+                <LinkRow>
+                  <LinkButton to="/pages/writing-involves-choices">
+                    <LinkText>Writing involves choices</LinkText>
+                  </LinkButton>
+                  <LinkButton to="/pages/writing-is-social">
+                    <LinkText>Writing is social</LinkText>
+                  </LinkButton>
+                </LinkRow>
+              </LightBackground>
+            </Carousel>
+          )}
+        </Media>
+      </ContentWrapper>
+    </SiteContainer>
+  </Breakpoints>
 );
 
 export const query = graphql`
