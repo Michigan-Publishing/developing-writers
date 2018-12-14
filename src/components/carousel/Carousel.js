@@ -24,6 +24,9 @@ const Wrapper = styled.div`
   color: ${palette.white};
   padding: 1rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Button = styled.button`

@@ -9,7 +9,10 @@ import ContentArea from "../components/contentArea";
 import Text from "../components/text";
 import ViewportDisplay from "../components/viewportDisplay";
 import Carousel from "../components/carousel";
-import Breakpoints, { breakpointSizes } from "../components/breakpoints";
+import Breakpoints, {
+  breakpointNames,
+  breakpoints
+} from "../components/breakpoints";
 import { Media } from "react-breakpoints";
 
 import { textCss } from "../components/text/Text";
@@ -18,26 +21,36 @@ import palette from "../utils/palette";
 // eslint-disable-next-line
 import styles from "../styles/global.css";
 
-const LinkButton = styled(GatsbyLink)`
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  flex: 1;
-  text-align: center;
-  margin: 0 20px;
-  height: 64px;
-  ${textCss}
-  background-color: rgba(${palette.rgbRelatedBackground}, .9);
-  color: ${palette.white};
-  padding: 1.5rem;
-  text-decoration: none;
+import {
+  Link as LinkButton,
+  LinkBackground
+} from "../components/secondaryNavigation";
+
+const StyledLinkButton = styled(LinkButton)`
+  ${LinkBackground}
+  z-index: 10;
 `;
 
 const LinkRow = styled.div`
   margin-top: 2rem;
   display: flex;
-  flex-direction: row;
-  align-items: space-between;
+  flex-direction: ${props =>
+    props.width > breakpoints[breakpointNames.tablet] ? "row" : "column"};
+  justify-content: space-around;
+  width: ${props => props.width}px;
+
+  & a {
+    ${props =>
+      props.width < breakpoints[breakpointNames.tablet] &&
+      "margin-bottom: 1em;"}
+  }
+`;
+
+const SecondaryHeading = styled.h2`
+  ${textCss}
+  color: ${palette.white};
+  margin: 1rem 0 0 0;
+  background-opacity: .9;
 `;
 
 const ContentWrapper = styled.div`
@@ -52,18 +65,17 @@ const LinkText = styled(Text)`
   font-size: 1.5rem;
 `;
 
-const LightBackground = styled.div`
-  border-top: 5px solid ${palette.relatedBackground};
-  background-color: ${palette.lightBackground};
-  padding: 2rem 0;
-
-  & h2 {
-    color: ${palette.relatedBackground};
-    margin: 0;
-    width: 100%;
-    text-align: center;
+const getSlideshowDimensions = breakpoint => {
+  if (breakpoints[breakpoint] > breakpoints[breakpointNames.tablet]) {
+    return { width: 1024, height: 576 };
   }
-`;
+
+  if (breakpoints[breakpoint] > breakpoints[breakpointNames.mobile]) {
+    return { width: 682, height: 384 };
+  }
+
+  return { width: 341, height: 192 };
+};
 
 export default props => (
   <Breakpoints>
@@ -74,27 +86,28 @@ export default props => (
       </Helmet>
       <ContentWrapper>
         <Media>
-          {({ breakpoints, currentBreakpoint }) => (
-            <Carousel
-              width={currentBreakpoint === breakpointSizes.desktop ? 1024 : 682}
-              height={currentBreakpoint === breakpointSizes.desktop ? 576 : 384}
-            >
-              <LightBackground>
-                <h2>
-                  Welcome! Here’s what 169 college students taught us about
-                  writing.
-                </h2>
-                <LinkRow>
-                  <LinkButton to="/pages/writing-involves-choices">
+          {({ breakpoints, currentBreakpoint }) => {
+            const { width, height } = getSlideshowDimensions(currentBreakpoint);
+
+            return (
+              <Fragment>
+                <Carousel width={width} height={height}>
+                  <SecondaryHeading>
+                    Welcome! Start here to find out what 169 students can tell
+                    you about writing.
+                  </SecondaryHeading>
+                </Carousel>
+                <LinkRow width={width}>
+                  <StyledLinkButton to="/pages/writing-involves-choices">
                     <LinkText>Writing involves choices</LinkText>
-                  </LinkButton>
-                  <LinkButton to="/pages/writing-is-social">
+                  </StyledLinkButton>
+                  <StyledLinkButton to="/pages/writing-is-social">
                     <LinkText>Writing is social</LinkText>
-                  </LinkButton>
+                  </StyledLinkButton>
                 </LinkRow>
-              </LightBackground>
-            </Carousel>
-          )}
+              </Fragment>
+            );
+          }}
         </Media>
       </ContentWrapper>
     </SiteContainer>
