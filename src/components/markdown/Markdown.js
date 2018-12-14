@@ -1,7 +1,6 @@
 import React from "react";
 import marksy from "marksy/components";
-
-const ExpandableBlockquote = () => <h1>Hi</h1>;
+import ExpandableBlockquote from '../expandableBlockquote';
 
 const compile = marksy({
   createElement: React.createElement,

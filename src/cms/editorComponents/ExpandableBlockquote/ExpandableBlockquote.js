@@ -5,15 +5,15 @@ export default {
     { name: "previewText", label: "Preview Text", widget: "string" },
     { name: "fullText", label: "Full Text", widget: "markdown" },
   ],
-  pattern: "h\\(ExpandableBlockquote, {previewText='(.*)', fullText='(.*)'}, ''\\)", //  new RegExp('^<ExpandableBlockQuote previewText="(.*)" fullText="(.*)" \\/>$'),
+  pattern: new RegExp(':::md-component ExpandableBlockquote previewText="(.*?)" fullText="(.*?)"$'),
   fromBlock: function(match) {
     return {
-      previewText: match[1],
-      fullText: match[2],
+      previewText: unescape(match[1]),
+      fullText: unescape(match[2]),
     };
   },
   toBlock: function(obj) {
-    return "h(ExpandableBlockquote, {previewText='" + escape(obj.previewText) + "', fullText='" + escape(obj.fullText) + "'}, '')";
+    return `:::md-component ExpandableBlockquote previewText="${escape(obj.previewText)}" fullText="${escape(obj.fullText)}"`;
   },
   toPreview: function(obj) {
     return obj.fullText;
