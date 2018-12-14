@@ -1,1 +1,1 @@
-export { default } from "./SecondaryNavigation";
+export { default, Link, LinkBackground } from "./SecondaryNavigation";

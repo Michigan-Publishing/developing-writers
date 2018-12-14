@@ -24,6 +24,9 @@ const Wrapper = styled.div`
   color: ${palette.white};
   padding: 1rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -42,12 +45,20 @@ const Next = onNext => <Button onClick={onNext}>⟩</Button>;
 const Previous = onPrevious => <Button onClick={onPrevious}>⟨</Button>;
 
 export default class extends React.Component {
+  static defaultProps = {
+    width: 1024,
+    height: 576
+  };
+
   render() {
+    const { width, height } = this.props;
+
     return (
       <Wrapper>
         <Whirl
-          height="576px"
-          width="1024px"
+          key={width}
+          height={`${height}px`}
+          width={`${width}px`}
           controlsStyle={{
             top: "50%",
             marginLeft: "-25px",

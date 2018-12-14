@@ -5,12 +5,13 @@ import { Link } from "gatsby";
 import palette from "../../utils/palette";
 import { MOBILE_WIDTH } from "../../constants";
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled.header`
   font-family: Helvetica, sans-serif;
   font-size: 3rem;
   font-weight: normal;
   color: ${palette.white};
   text-transform: uppercase;
+  margin-top: 1rem;
 
   &:after {
     content: " ";
