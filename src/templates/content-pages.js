@@ -65,8 +65,6 @@ export default class ContentPages extends Component {
   }
 
   render() {
-    console.log('PROPS');
-    console.log(this.props);
     const {
       pageContext: { title },
       data

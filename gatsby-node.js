@@ -100,6 +100,16 @@ buildFrontmatterLookup = nodes => {
       return all;
     }
 
+    Object.keys(nextNode.frontmatter)
+      .filter((key) => nextNode.frontmatter[key] && typeof nextNode.frontmatter[key] === 'string')
+      .forEach((key) => {
+        nextNode.frontmatter[key] = nextNode.frontmatter[key].replace(new RegExp(':::md-component (.*)$', 'g'), 
+          (match, p1) => {
+            return match && p1 ? `<${p1} />` : nextNode.frontmatter[key];
+          });
+        
+      });
+    
     return {
       ...all,
       [nextNode.frontmatter.key]: nextNode.frontmatter
