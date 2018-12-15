@@ -29,24 +29,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  width: 1024px;
-  height: 576px;
-
-  @media(max-width: ${breakpoints.TABLET_LANDSCAPE_WIDTH}px) {
-    width: 682.6px;
-    height: 384px;
-  }
-
-  @media(max-width: ${breakpoints.TABLET_WIDTH}px) {
-    width: 512px;
-    height: 288px;
-  }
-
-  @media(max-width: ${breakpoints.MOBILE_WIDTH}px) {
-    height: 256px;
-    width: 144px;
-  }
 `;
 
 const Button = styled.button`
@@ -86,6 +68,9 @@ export default class extends React.Component {
           }}
           next={Next}
           previous={Previous}
+          stretch
+          width="1024px"
+          height="576px"
         >
           <ImageContent
             imgSrc={slide1}
