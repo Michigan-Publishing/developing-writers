@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ImageContent, Whirl } from "react-whirl";
 
+import * as breakpoints from "../../constants";
+
 import palette from "../../utils/palette";
 import slide1 from "./slide1.jpg";
 import slide2 from "./slide2.jpg";
@@ -27,6 +29,24 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 1024px;
+  height: 576px;
+
+  @media(max-width: ${breakpoints.TABLET_LANDSCAPE_WIDTH}px) {
+    width: 682.6px;
+    height: 384px;
+  }
+
+  @media(max-width: ${breakpoints.TABLET_WIDTH}px) {
+    width: 512px;
+    height: 288px;
+  }
+
+  @media(max-width: ${breakpoints.MOBILE_WIDTH}px) {
+    height: 256px;
+    width: 144px;
+  }
 `;
 
 const Button = styled.button`
@@ -50,15 +70,15 @@ export default class extends React.Component {
     height: 576
   };
 
-  render() {
-    const { width, height } = this.props;
+  state = { mounted: false };
 
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+  render() {
     return (
       <Wrapper>
         <Whirl
-          key={width}
-          height={`${height}px`}
-          width={`${width}px`}
           controlsStyle={{
             top: "50%",
             marginLeft: "-25px",
