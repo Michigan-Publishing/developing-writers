@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import BreakpointProvider from "react-breakpoints";
 
+import {
+  MOBILE_WIDTH,
+  MOBILE_LANDSCAPE_WIDTH,
+  TABLET_WIDTH,
+  TABLET_LANDSCAPE_WIDTH,
+  DESKTOP_WIDTH,
+  DESKTOP_LARGE_WIDTH,
+  DESKTOP_WIDE_WIDTH
+} from "../../constants";
+
 export const breakpointNames = {
   mobile: "mobile",
   mobileLandscape: "mobileLandscape",
@@ -11,14 +21,15 @@ export const breakpointNames = {
   desktopLarge: "desktopLarge",
   desktopWide: "desktopWide"
 };
+
 export const breakpoints = {
-  mobile: 320,
-  mobileLandscape: 480,
-  tablet: 768,
-  tabletLandscape: 1024,
-  desktop: 1200,
-  desktopLarge: 1500,
-  desktopWide: 1920
+  mobile: MOBILE_WIDTH,
+  mobileLandscape: MOBILE_LANDSCAPE_WIDTH,
+  tablet: TABLET_WIDTH,
+  tabletLandscape: TABLET_LANDSCAPE_WIDTH,
+  desktop: DESKTOP_WIDTH,
+  desktopLarge: DESKTOP_LARGE_WIDTH,
+  desktopWide: DESKTOP_WIDE_WIDTH
 };
 
 const Breakpoints = ({ children }) => (

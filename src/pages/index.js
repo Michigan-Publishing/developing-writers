@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
@@ -18,6 +18,8 @@ import { Media } from "react-breakpoints";
 import { textCss } from "../components/text/Text";
 import palette from "../utils/palette";
 
+import * as breakpointConstants from "../constants";
+
 // eslint-disable-next-line
 import styles from "../styles/global.css";
 
@@ -34,15 +36,16 @@ const StyledLinkButton = styled(LinkButton)`
 const LinkRow = styled.div`
   margin-top: 2rem;
   display: flex;
-  flex-direction: ${props =>
-    props.width > breakpoints[breakpointNames.tablet] ? "row" : "column"};
+  flex-direction: row;
   justify-content: space-around;
-  width: ${props => props.width}px;
+  width: 1024px;
 
-  & a {
-    ${props =>
-      props.width < breakpoints[breakpointNames.tablet] &&
-      "margin-bottom: 1em;"}
+  @media (max-width: ${breakpointConstants.TABLET_LANDSCAPE_WIDTH}px) {
+    width: 80%;
+    flex-direction: column;
+    & a {
+      margin-bottom: 1em;
+    }
   }
 `;
 
@@ -77,42 +80,38 @@ const getSlideshowDimensions = breakpoint => {
   return { width: 341, height: 192 };
 };
 
-export default props => (
-  <Breakpoints>
-    <SiteContainer {...props} showBreadcrumbs={false}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Developing Writers</title>
-      </Helmet>
-      <ContentWrapper>
-        <Media>
-          {({ breakpoints, currentBreakpoint }) => {
-            const { width, height } = getSlideshowDimensions(currentBreakpoint);
-
-            return (
-              <Fragment>
-                <Carousel width={width} height={height}>
-                  <SecondaryHeading>
-                    Welcome! Start here to find out what 169 students can tell
-                    you about writing.
-                  </SecondaryHeading>
-                </Carousel>
-                <LinkRow width={width}>
-                  <StyledLinkButton to="/pages/writing-involves-choices">
-                    <LinkText>Writing involves choices</LinkText>
-                  </StyledLinkButton>
-                  <StyledLinkButton to="/pages/writing-is-social">
-                    <LinkText>Writing is social</LinkText>
-                  </StyledLinkButton>
-                </LinkRow>
-              </Fragment>
-            );
-          }}
-        </Media>
-      </ContentWrapper>
-    </SiteContainer>
-  </Breakpoints>
-);
+export default class Pages extends Component {
+  render() {
+    return (
+      <Breakpoints>
+        <SiteContainer {...this.props} showBreadcrumbs={false}>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>Developing Writers</title>
+          </Helmet>
+          <ContentWrapper>
+            <Fragment>
+              <Carousel>
+                <SecondaryHeading>
+                  Welcome! Start here to find out what 169 students can tell you
+                  about writing.
+                </SecondaryHeading>
+              </Carousel>
+              <LinkRow>
+                <StyledLinkButton to="/pages/writing-involves-choices">
+                  <LinkText>Writing involves choices</LinkText>
+                </StyledLinkButton>
+                <StyledLinkButton to="/pages/writing-is-social">
+                  <LinkText>Writing is social</LinkText>
+                </StyledLinkButton>
+              </LinkRow>
+            </Fragment>
+          </ContentWrapper>
+        </SiteContainer>
+      </Breakpoints>
+    );
+  }
+}
 
 export const query = graphql`
   {
