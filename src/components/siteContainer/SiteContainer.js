@@ -123,13 +123,15 @@ export default class extends Component {
               {
                 <MenuConsumer>
                   {({ closeElement, setToggleElement }) => (
-                    <HamburgerButton
-                      setToggleElement={setToggleElement}
-                      closeElement={closeElement}
-                      onClick={() => {
-                        document.body.classList.add("modalOpen");
-                      }}
-                    />
+                    <span style={{ fontSize: "1.5rem" }}>
+                      <HamburgerButton
+                        setToggleElement={setToggleElement}
+                        closeElement={closeElement}
+                        onClick={() => {
+                          document.body.classList.add("modalOpen");
+                        }}
+                      />
+                    </span>
                   )}
                 </MenuConsumer>
               }
