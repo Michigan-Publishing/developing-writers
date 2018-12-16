@@ -2,18 +2,14 @@ import React, { Fragment, Component } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
-import { Link as GatsbyLink } from "gatsby";
 import SiteContainer from "../components/siteContainer";
-import GlobeLink, { GlobeColor } from "../components/globeLink/GlobeLink";
-import ContentArea from "../components/contentArea";
 import Text from "../components/text";
-import ViewportDisplay from "../components/viewportDisplay";
 import Carousel from "../components/carousel";
+// eslint-disable-next-line
 import Breakpoints, {
   breakpointNames,
   breakpoints
 } from "../components/breakpoints";
-import { Media } from "react-breakpoints";
 
 import { textCss } from "../components/text/Text";
 import palette from "../utils/palette";
@@ -68,6 +64,7 @@ const LinkText = styled(Text)`
   font-size: 1.5rem;
 `;
 
+// eslint-disable-next-line
 const getSlideshowDimensions = breakpoint => {
   if (breakpoints[breakpoint] > breakpoints[breakpointNames.tablet]) {
     return { width: 1024, height: 576 };

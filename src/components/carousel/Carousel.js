@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
 import { ImageContent, Whirl } from "react-whirl";
-
-import * as breakpoints from "../../constants";
 
 import palette from "../../utils/palette";
 import slide1 from "./slide1.jpg";
