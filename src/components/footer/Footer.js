@@ -62,7 +62,7 @@ class Footer extends Component {
           <strong>{link.title}</strong>
         </Link>
         {link.children.map(childLink => (
-          <ChildLink to={childLink.slug}>{childLink.title}</ChildLink>
+          <ChildLink key={childLink.slug} to={childLink.slug}>{childLink.title}</ChildLink>
         ))}
       </Fragment>
     );
@@ -79,12 +79,12 @@ class Footer extends Component {
               </Link>
             </Column>
             {this.props.links.map(link => (
-              <Column>{this.getLinkColumn(link)}</Column>
+              <Column key={link.slug}>{this.getLinkColumn(link)}</Column>
             ))}
           </ColumnWrapper>
         </Left>
         <Right>
-          <img src={logo} height="125px" width="auto" />
+          <img alt="University of Michigan logo" src={logo} height="125px" width="auto" />
         </Right>
       </FooterWrapper>
     );
