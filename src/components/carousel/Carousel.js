@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ImageContent, Whirl } from "react-whirl";
 
+import * as breakpoints from "../../constants";
+
 import palette from "../../utils/palette";
 import slide1 from "./slide1.jpg";
 import slide2 from "./slide2.jpg";
@@ -24,6 +26,9 @@ const Wrapper = styled.div`
   color: ${palette.white};
   padding: 1rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -42,12 +47,20 @@ const Next = onNext => <Button onClick={onNext}>⟩</Button>;
 const Previous = onPrevious => <Button onClick={onPrevious}>⟨</Button>;
 
 export default class extends React.Component {
+  static defaultProps = {
+    width: 1024,
+    height: 576
+  };
+
+  state = { mounted: false };
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
   render() {
     return (
       <Wrapper>
         <Whirl
-          height="576px"
-          width="1024px"
           controlsStyle={{
             top: "50%",
             marginLeft: "-25px",
@@ -55,6 +68,9 @@ export default class extends React.Component {
           }}
           next={Next}
           previous={Previous}
+          stretch
+          width="1024px"
+          height="576px"
         >
           <ImageContent
             imgSrc={slide1}

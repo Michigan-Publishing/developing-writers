@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link as GatsbyLink } from "gatsby";
 import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 
 const padding = 20;
-const Link = styled.a`
+
+export const Link = styled(GatsbyLink)`
   color: ${palette.white};
   ${textCss};
   font-size: 2rem;
@@ -29,13 +31,17 @@ const ListContainer = styled.ul`
   min-height: 500px;
 `;
 
-const ListItem = styled.li`
-  position: absolute;
-  left: ${props => props.left}%;
-  top: ${props => props.top + padding}px;
+export const LinkBackground = `
   background-color: rgba(${palette.rgbContentBackground}, 0.8);
   padding: 1.5rem;
   border-radius: 1.5rem;
+`;
+
+const ListItem = styled.li`
+  ${LinkBackground}
+  position: absolute;
+  left: ${props => props.left}%;
+  top: ${props => props.top + padding}px;
 `;
 
 function getRandomInt(max) {
@@ -71,8 +77,12 @@ export default class extends Component {
     return (
       <ListContainer ref={node => (this.container = node)}>
         {linkProperties.map((link, index) => (
-          <ListItem key={link.href} left={getRandomInt(35)} top={index * paddingHeight}>
-            <Link href={link.href}>{link.title}</Link>
+          <ListItem
+            key={link.href}
+            left={getRandomInt(35)}
+            top={index * paddingHeight}
+          >
+            <Link to={link.href}>{link.title}</Link>
           </ListItem>
         ))}
       </ListContainer>

@@ -3626,6 +3626,13 @@ create-react-class@^15.5.1, create-react-class@^15.5.2, create-react-class@^15.6
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+create-react-context@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.2.tgz#9836542f9aaa22868cd7d4a6f82667df38019dca"
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
 create-react-context@^0.2.1, create-react-context@^0.2.2:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
@@ -6214,6 +6221,10 @@ hoist-non-react-statics@1.x.x, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
+hoist-non-react-statics@2.5.0:
+  version "2.5.0"
+  resolved "http://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
+
 hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.5.0, hoist-non-react-statics@^2.5.5:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
@@ -7451,7 +7462,7 @@ lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
-lodash.debounce@^4.0.8:
+lodash.debounce@4.0.8, lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
@@ -9659,6 +9670,14 @@ react-autowhatever@^10.1.2:
     react-themeable "^1.1.0"
     section-iterator "^2.0.0"
 
+react-breakpoints@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-breakpoints/-/react-breakpoints-3.0.3.tgz#cce7f3d03134c433903e6411d96a4c9a58aaa9f5"
+  dependencies:
+    create-react-context "0.2.2"
+    hoist-non-react-statics "2.5.0"
+    lodash.debounce "4.0.8"
+
 react-datetime@^2.11.0:
   version "2.16.2"
   resolved "https://registry.yarnpkg.com/react-datetime/-/react-datetime-2.16.2.tgz#d5d41fe3f6f3fa8fa1b068f2fae75cec25e1bb39"
@@ -10012,9 +10031,9 @@ react-waypoint@^7.1.0:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
 
-react-whirl@^1.0.2-alpha.0:
-  version "1.0.2-alpha.0"
-  resolved "https://registry.yarnpkg.com/react-whirl/-/react-whirl-1.0.2-alpha.0.tgz#95241ff262f2bece32d160178b7ba298c83680cd"
+react-whirl@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-whirl/-/react-whirl-1.1.1.tgz#0ae097c860bc81f2192fd652b2fa5c6b97a1c9b6"
 
 react@15:
   version "15.6.2"
