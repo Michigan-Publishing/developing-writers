@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 import palette from "../../utils/palette";
-import { MOBILE_WIDTH } from "../../constants";
+import { TABLET_WIDTH } from "../../constants";
 
 const HeadingWrapper = styled.header`
   font-family: Helvetica, sans-serif;
@@ -26,7 +26,7 @@ const HeadingWrapper = styled.header`
     color: #fff;
   }
 
-  @media (max-width: ${MOBILE_WIDTH}px) {
+  @media (max-width: ${TABLET_WIDTH}px) {
     font-size: 2rem;
     line-height: 2.5rem;
   }

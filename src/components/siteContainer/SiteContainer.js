@@ -3,13 +3,11 @@ import styled from "styled-components";
 import Background from "../background";
 import SiteHeading from "../siteHeading";
 import Breadcrumbs from "../breadcrumbs";
+import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu";
 import FlyoutMenu from "../flyoutMenu";
 import Footer, { FOOTER_HEIGHT } from "../footer";
-import Portal from "../portal";
-import HamburgerIcon from "../hamburgerIcon";
-import TouchableOpacity from "../touchableOpacity";
 import { buildFrontmatterLookup } from "../../utils/node";
-
+import palette from "../../utils/palette";
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
   padding: 1rem;
@@ -19,6 +17,11 @@ const HeadingWrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
+
+  a,
+  a:visited {
+    color: ${palette.white};
+  }
 `;
 
 const ContentArea = styled.div`
@@ -110,37 +113,45 @@ export default class extends Component {
     const linkTree = this.buildLinkTree();
 
     return (
-      <Fragment>
-        <HeadingWrapper
-          ref={headingWrapper => (this.headingWrapper = headingWrapper)}
-        >
-          <HeadingRow>
-            <SiteHeading />
-            {
-              <TouchableOpacity
-                onClick={() => this.setState({ showFlyout: true })}
-              >
-                <HamburgerIcon />
-              </TouchableOpacity>
-            }
-          </HeadingRow>
-          <HeadingRow>
-            <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-          </HeadingRow>
-        </HeadingWrapper>
+      <MenuProvider>
+        <Fragment>
+          <HeadingWrapper
+            ref={headingWrapper => (this.headingWrapper = headingWrapper)}
+          >
+            <HeadingRow>
+              <SiteHeading />
+              {
+                <MenuConsumer>
+                  {({ closeElement, setToggleElement }) => (
+                    <HamburgerButton
+                      setToggleElement={setToggleElement}
+                      closeElement={closeElement}
+                      onClick={() => {
+                        document.body.classList.add("modalOpen");
+                      }}
+                    />
+                  )}
+                </MenuConsumer>
+              }
+            </HeadingRow>
+            <HeadingRow>
+              <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+            </HeadingRow>
+          </HeadingWrapper>
 
-        <Background>
-          <Portal>
+          <Background>
             <FlyoutMenu
               onClose={() => this.setState({ showFlyout: false })}
               isVisible={this.state.showFlyout}
               items={linkTree}
             />
-          </Portal>
-          <ContentArea style={contentStyles}>{this.props.children}</ContentArea>
-          <Footer links={linkTree} />
-        </Background>
-      </Fragment>
+            <ContentArea style={contentStyles}>
+              {this.props.children}
+            </ContentArea>
+            <Footer links={linkTree} />
+          </Background>
+        </Fragment>
+      </MenuProvider>
     );
   }
 }
