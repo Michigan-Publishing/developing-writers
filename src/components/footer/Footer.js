@@ -6,6 +6,9 @@ import { textCss } from "../text/Text";
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 import logo from "./umich-logo.png";
+import library from "./mliblogo.png";
+import press from "./press.png";
+import collaboratory from "./collaboratory.png";
 
 export const FOOTER_HEIGHT = 172;
 
@@ -71,6 +74,10 @@ const Right = styled(Left)`
   align-items: center;
   justify-content: flex-end;
   padding-right: 1rem;
+
+  & img:not(:first-child) {
+    margin-left: 20px;
+  }
 `;
 
 const Link = styled(GatsbyLink)`
@@ -90,6 +97,33 @@ const ChildLink = styled(Link)`
   }
 `;
 
+const LogoWrapper = styled.div`
+  height: auto;
+  width: auto;
+  background-color: ${palette.blue};
+  margin-right: 2rem;
+`;
+
+const OtherLogos = styled.div`
+  border-left: 2px solid rgba(${palette.rgbBlue}, 0.5);
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  justify-content: space-between;
+`;
+
+const LogoRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: ${props => props.height}px;
+
+  & img {
+    height: 100%;
+    width: auto;
+  }
+`;
 class Footer extends Component {
   getLinkColumn = link => {
     return (
@@ -122,12 +156,27 @@ class Footer extends Component {
           </ColumnWrapper>
         </Left>
         <Right>
-          <img
-            alt="University of Michigan logo"
-            src={logo}
-            height="125px"
-            width="auto"
-          />
+          <LogoWrapper>
+            <img
+              alt="University of Michigan logo"
+              src={logo}
+              height="125px"
+              width="auto"
+            />
+          </LogoWrapper>
+          <OtherLogos>
+            <LogoRow height={40}>
+              <img src={collaboratory} alt="Humanities Collaboratory Logo" />
+            </LogoRow>
+            <LogoRow height={80}>
+              <img
+                src={library}
+                alt="University of Michigan Library Logo"
+                width="auto"
+              />
+              <img src={press} alt="University of Michigan Press Logo" />
+            </LogoRow>
+          </OtherLogos>
         </Right>
       </FooterWrapper>
     );
