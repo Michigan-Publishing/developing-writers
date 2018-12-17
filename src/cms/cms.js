@@ -1,25 +1,29 @@
 import CMS from "netlify-cms";
 
-console.log('Testing');
 const fulcrumDefaultFields = [
   { name: "handle", label: "Fulcrum Handle", widget: "string" },
-  { name: "title", label: "Title", widget: "string" },
+  { name: "title", label: "Title", widget: "string" }
 ];
 
-const fulcrumImageVideoFields = fulcrumDefaultFields.concat(
-  [
-    // I don't think this is actually used, but I'm leaving it here for some reason or another.
-    // { name: "height", label: "Height", widget: "number" },
-    { name: "width", label: "Width", widget: "number" },
-  ]);
+const fulcrumImageVideoFields = fulcrumDefaultFields.concat([
+  // I don't think this is actually used, but I'm leaving it here for some reason or another.
+  // { name: "height", label: "Height", widget: "number" },
+  { name: "width", label: "Width", widget: "number" }
+]);
 
 const textFields = fulcrumDefaultFields;
 const audioFields = fulcrumDefaultFields;
 const imageFields = fulcrumImageVideoFields;
 const videoFields = fulcrumImageVideoFields;
 
-const textAudioBlock =  (handle, title) => `<iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(title)}' style='display:block; overflow:hidden; border-width:0; width:98%; max-width:98%; max-height:400px; margin:auto'></iframe>`;
-const imageVideoBlock = (handle, title, width) => `<div style='width:auto; page-break-inside:avoid; -webkit-column-break-inside:avoid; break-inside:avoid; max-width:${width}px; margin:auto'><div style='overflow:hidden; padding-bottom:56.25%; position:relative; height:0;'><iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(title)}' style='overflow:hidden; border-width:0; left:0; top:0; width:100%; height:100%; position:absolute;'></iframe></div></div>`;
+const textAudioBlock = (handle, title) =>
+  `<iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(
+    title
+  )}' style='display:block; overflow:hidden; border-width:0; width:98%; max-width:98%; max-height:400px; margin:auto'></iframe>`;
+const imageVideoBlock = (handle, title, width) =>
+  `<div style='width:auto; page-break-inside:avoid; -webkit-column-break-inside:avoid; break-inside:avoid; max-width:${width}px; margin:auto'><div style='overflow:hidden; padding-bottom:56.25%; position:relative; height:0;'><iframe src='https://www.fulcrum.org/embed?hdl=${handle}' title='${escape(
+    title
+  )}' style='overflow:hidden; border-width:0; left:0; top:0; width:100%; height:100%; position:absolute;'></iframe></div></div>`;
 
 CMS.registerEditorComponent({
   id: "fulcrumText",
@@ -98,19 +102,25 @@ CMS.registerEditorComponent({
   label: "Collapsible Block Quote",
   fields: [
     { name: "previewText", label: "Preview Text", widget: "string" },
-    { name: "fullText", label: "Full Text", widget: "markdown" },
+    { name: "fullText", label: "Full Text", widget: "markdown" }
   ],
   pattern: /^{{% collapsible-block-quote previewText="(.*)" %}}((.|\n)*){{% \/collapsible-block-quote %}}$/,
   fromBlock: function(match) {
     return {
       previewText: match[1],
-      fullText: match[2],
+      fullText: match[2]
     };
   },
   toBlock: function(obj) {
-    return '{{% collapsible-block-quote previewText="'+ obj.previewText +'" %}}' + obj.fullText + '{{% /collapsible-block-quote %}}';
+    return (
+      '{{% collapsible-block-quote previewText="' +
+      obj.previewText +
+      '" %}}' +
+      obj.fullText +
+      "{{% /collapsible-block-quote %}}"
+    );
   },
   toPreview: function(obj) {
     return obj.fullText;
   }
-})
+});
