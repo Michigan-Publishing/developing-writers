@@ -11,7 +11,9 @@ const palette = {
   relatedBackground: "#378496",
   rgbContentBackground: "16, 56, 74",
   rgbRelatedBackground: "55, 132, 150",
-  rgbBlack: "0, 0, 0"
+  rgbBlack: "0, 0, 0",
+  blue: "rgba(0, 39, 76)",
+  rgbBlue: "0, 39, 76"
 };
 
 export default palette;

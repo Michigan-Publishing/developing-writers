@@ -45,3 +45,9 @@ a:visited,
 a:hover {
   color: #fff;
 }
+
+footer a,
+footer a:visited,
+footer a:hover {
+  color: #378496;
+}

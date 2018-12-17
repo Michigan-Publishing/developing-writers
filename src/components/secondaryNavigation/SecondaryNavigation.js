@@ -3,6 +3,8 @@ import { Link as GatsbyLink } from "gatsby";
 import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+import { from } from "rxjs";
 
 const padding = 20;
 
@@ -12,23 +14,16 @@ export const Link = styled(GatsbyLink)`
   font-size: 2rem;
   text-decoration: none;
   position: flex;
-
-  &:after {
-    content: " ";
-    display: block;
-    opacity: 0.5;
-  }
 `;
 
 const ListContainer = styled.ul`
-  padding: ${padding}px 0;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
   list-style-type: none;
-  position: relative;
   min-height: 500px;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    margin-top: 6rem;
+    padding: 0;
+  }
 `;
 
 export const LinkBackground = `
@@ -39,9 +34,16 @@ export const LinkBackground = `
 
 const ListItem = styled.li`
   ${LinkBackground}
-  position: absolute;
-  left: ${props => props.left}%;
-  top: ${props => props.top + padding}px;
+  display: block;
+  float: left;
+  clear: both;
+  margin-bottom: 2rem;
+  margin-left: ${props => props.left}%;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
 `;
 
 function getRandomInt(max) {

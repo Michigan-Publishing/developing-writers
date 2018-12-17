@@ -5,14 +5,7 @@ import { Spring } from "react-spring";
 
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
-
-const FlyoutHeading = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
+import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu";
 
 const Heading = styled.h2`
   display: flex;
@@ -23,55 +16,16 @@ const Heading = styled.h2`
   justify-content: center;
 `;
 
-const Container = styled.div`
-  z-index: 10;
-  padding: 0px 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  background-color: ${palette.contentBackground};
-  color: ${palette.white};
+const LinkContainer = styled.div`
   ${textCss};
   font-size: 2rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100vh;
-
-  overflow-y: scroll;
-  a,
-  a:visited,
-  a:active {
-    text-decoration: none;
-    color: ${palette.white};
-  }
-`;
-
-const LinkContainer = styled.div`
   opacity: ${props => props.opacity};
-  margin: 2rem 0;
+  margin: 1rem 0;
 `;
 
 const StyledLink = styled(Link)`
   margin-bottom: ${props => (props.depth === 0 ? 0.5 : 0)}rem;
   display: inline-block;
-`;
-
-const CloseButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: ${palette.white};
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  height: 100vh;
-  width: 100vw;
 `;
 
 const LinkWrapper = styled.div`
@@ -116,82 +70,31 @@ function buildLinks(items, depth = 0) {
   ));
 }
 
-const OPEN_WIDTH = "90vw";
-const CLOSED_WIDTH = "0vw";
-const OPEN_OPACITY = 1;
-const CLOSED_OPACITY = 0;
-
 export default class extends Component {
-  state = {
-    shouldClose: false,
-    nextWidth: OPEN_WIDTH,
-    nextOpacity: OPEN_OPACITY
-  };
-
-  componentDidMount() {
-    this.div = document.createElement("div");
-    document.body.appendChild(this.div);
-  }
-
-  componentWillUnmount() {
-    document.body.removeChild(this.div);
-  }
-
-  onClose = () => {
-    this.setState({
-      shouldClose: true,
-      nextWidth: CLOSED_WIDTH,
-      nextOpacity: CLOSED_OPACITY
-    });
-  };
-
-  afterAnimation = () => {
-    if (this.state.shouldClose) {
-      document.body.classList.remove("modalOpen");
-      this.setState(
-        {
-          shouldClose: false,
-          nextWidth: OPEN_WIDTH,
-          nextOpacity: OPEN_OPACITY
-        },
-        () => this.props.onClose()
-      );
-
-      return;
-    }
-
-    document.body.classList.add("modalOpen");
-  };
-
   render() {
-    const { isVisible, items } = this.props;
-
-    if (!isVisible) {
-      return null;
-    }
+    const { items } = this.props;
 
     const links = buildLinks(items);
     return (
-      <Fragment>
-        <Overlay onClick={this.onClose} />
-        <Spring
-          from={{ width: CLOSED_WIDTH, opacity: CLOSED_OPACITY }}
-          to={{ width: this.state.nextWidth, opacity: this.state.nextOpacity }}
-          onRest={this.afterAnimation}
-        >
-          {props => (
-            <Container style={{ width: props.width, opacity: props.opacity }}>
-              <FlyoutHeading>
-                <CloseButton aria-label="Close" onClick={this.onClose}>
-                  <span aria-hidden="true">&times;</span>
-                </CloseButton>
-                <Heading>Navigation</Heading>
-              </FlyoutHeading>
-              <LinkContainer opacity={props.opacity}>{links}</LinkContainer>
-            </Container>
-          )}
-        </Spring>
-      </Fragment>
+      <MenuConsumer>
+        {({ toggleElement, setCloseElement }) => {
+          return (
+            <Fragment>
+              <Menu
+                setCloseElement={setCloseElement}
+                toggleElement={toggleElement}
+                Heading={() => <Heading>NAVIGATION</Heading>}
+                onClose={() => document.body.classList.remove("modalOpen")}
+              >
+                <LinkContainer opacity={this.props.opacity}>
+                  {links}
+                </LinkContainer>
+              </Menu>
+              <Backdrop />
+            </Fragment>
+          );
+        }}
+      </MenuConsumer>
     );
   }
 }
