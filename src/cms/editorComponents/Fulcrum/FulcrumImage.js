@@ -17,6 +17,6 @@ export default {
     return imageVideoBlock(fulcrumType, obj.handle, obj.title, obj.width);
   },
   toPreview: function(obj) {
-    return imageVideoPreview(fulcrumType, obj.handle, obj.title, obj.width);
+    return imageVideoPreview(obj.handle, obj.title, obj.width);
   }
 };

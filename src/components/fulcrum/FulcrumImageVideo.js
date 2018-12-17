@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { FulcrumAudio } from '../../cms/editorComponents';
-import { RefCountDisposable } from 'rx';
 
-export default class FulcrumAudio extends Component {
+export default class FulcrumImageVideo extends Component {
   render() {
     const {
       blockType,
