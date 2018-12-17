@@ -1,5 +1,6 @@
 import CMS from "netlify-cms";
 
+console.log('Testing');
 const fulcrumDefaultFields = [
   { name: "handle", label: "Fulcrum Handle", widget: "string" },
   { name: "title", label: "Title", widget: "string" },
