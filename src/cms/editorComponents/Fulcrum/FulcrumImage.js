@@ -1,4 +1,4 @@
-import { imageFields, imageVideoBlock, imageVideoPattern } from './functions';
+import { imageFields, imageVideoBlock, imageVideoPattern, imageVideoPreview } from './functions';
 
 const fulcrumType = 'image';
 export default {
@@ -17,6 +17,6 @@ export default {
     return imageVideoBlock(fulcrumType, obj.handle, obj.title, obj.width);
   },
   toPreview: function(obj) {
-    return imageVideoBlock(fulcrumType, obj.handle, obj.title, obj.width);
+    return imageVideoPreview(fulcrumType, obj.handle, obj.title, obj.width);
   }
 };

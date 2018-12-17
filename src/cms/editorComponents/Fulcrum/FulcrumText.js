@@ -1,4 +1,4 @@
-import { textFields, textAudioBlock, textAudioPattern } from './functions';
+import { textFields, textAudioBlock, textAudioPattern, textAudioPreview } from './functions';
 
 const fulcrumType = 'text';
 export default {
@@ -16,6 +16,6 @@ export default {
     return textAudioBlock(fulcrumType, obj.handle, obj.title);
   },
   toPreview: function(obj) {
-    return textAudioBlock(fulcrumType, obj.handle, obj.title);
+    return textAudioPreview(fulcrumType, obj.handle, obj.title);
   }
 };
