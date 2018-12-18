@@ -58,11 +58,6 @@ exports.createPages = ({ graphql, actions }) => {
           
           const template = path.resolve(`./src/templates/${templateKey}.js`);
 
-          node.code.body = node.code.body.replace(new RegExp('`\\:\\:\\:md-component (.*)`\\)', 'g'), 
-          (match, p1) => {
-            return match && p1 ? ('`<' + p1 + '/>`)') : node.code.body;
-          });
-
           createPage({
             path: `${slug}`,
             component: componentWithMDXScope(template, node.code.scope),
@@ -108,7 +103,7 @@ buildFrontmatterLookup = nodes => {
     Object.keys(nextNode.frontmatter)
       .filter((key) => nextNode.frontmatter[key] && typeof nextNode.frontmatter[key] === 'string')
       .forEach((key) => {
-        nextNode.frontmatter[key] = nextNode.frontmatter[key].replace(new RegExp('`\\:\\:\\:md-component (.*)`\\)', 'g'), 
+        nextNode.frontmatter[key] = nextNode.frontmatter[key].replace(new RegExp('\\:\\:\\:md-component (.*)', 'g'), 
           (match, p1) => {
             return match && p1 ? `<${p1} />` : nextNode.frontmatter[key];
           });
@@ -128,6 +123,14 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode, getNodes 
 
     const frontMatterLookup = buildFrontmatterLookup(nodes);
     const slug = buildSlug(node, frontMatterLookup) || value;
+
+    node.rawBody = node.rawBody.replace(new RegExp('\\:\\:\\:md-component (.*)', 'g'), 
+      (match, p1) => {
+        console.log(match);
+        return match && p1 ? `<${p1} />` : node.rawBody;
+    });
+
+    node.frontmatter.key == 'how-do-writers-respond-to-audience-expectations' && console.log(node.rawBody);
 
     createNodeField({
       name: `slug`,
