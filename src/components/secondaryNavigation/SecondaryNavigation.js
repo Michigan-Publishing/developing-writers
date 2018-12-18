@@ -4,9 +4,6 @@ import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
-import { from } from "rxjs";
-
-const padding = 20;
 
 export const Link = styled(GatsbyLink)`
   color: ${palette.white};
