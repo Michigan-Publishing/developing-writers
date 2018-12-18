@@ -12,7 +12,9 @@ import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
 import Breakpoints from "../components/breakpoints";
+import ExpandableBlockquote from '../components/expandableBlockquote';
 import { FulcrumImageVideo, FulcrumTextAudio } from '../components/fulcrum';
+import { Game1, Game2, PieChart, WordCount } from '../components/games';
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -74,7 +76,8 @@ class ContentPages extends Component {
       pageContext: { title },
       data
     } = this.props;
-    const newScope = { ...this.props.scope, ...{ FulcrumImageVideo, FulcrumTextAudio }};
+    const contextComponents = { ExpandableBlockquote, FulcrumImageVideo, FulcrumTextAudio, Game1, Game2, PieChart, WordCount };
+    const newScope = { ...this.props.scope, ...contextComponents};
     const newProps = {...{...this.props, ...{ scope: newScope }}};
 
     return (
