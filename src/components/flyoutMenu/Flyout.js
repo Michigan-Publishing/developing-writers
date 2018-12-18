@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { Spring } from "react-spring";
 
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
@@ -58,7 +57,7 @@ function buildLinks(items, depth = 0) {
   }
 
   return items.map(item => (
-    <LinkBlockWrapper>
+    <LinkBlockWrapper key={item.slug}>
       <StyledLink to={item.slug} depth={depth}>
         {item.title}
       </StyledLink>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { withMDXScope } from "gatsby-mdx/context";
 import { Helmet } from "react-helmet";
 
 import ContentArea from "../components/contentArea";
@@ -11,6 +12,7 @@ import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
 import Breakpoints from "../components/breakpoints";
+import { FulcrumImageVideo, FulcrumTextAudio } from '../components/fulcrum';
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -53,7 +55,7 @@ function shouldShowChildLinks(data) {
   return !!(data.childPages && data.childPages.edges.length > 0);
 }
 
-export default class ContentPages extends Component {
+class ContentPages extends Component {
   constructor(props) {
     super(props);
     this.state = { headerOffset: 0 };
@@ -72,6 +74,8 @@ export default class ContentPages extends Component {
       pageContext: { title },
       data
     } = this.props;
+    const newScope = { ...this.props.scope, ...{ FulcrumImageVideo, FulcrumTextAudio }};
+    const newProps = {...{...this.props, ...{ scope: newScope }}};
 
     return (
       <Breakpoints>
@@ -86,7 +90,7 @@ export default class ContentPages extends Component {
           {data.post.wordCount.words && (
             <ContentArea>
               <h1>{title}</h1>
-              <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
+              <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
               {data.post.frontmatter && data.post.frontmatter.points && (
                 <Point
                   points={data.post.frontmatter.points}
@@ -109,6 +113,8 @@ export default class ContentPages extends Component {
     );
   }
 }
+
+export default withMDXScope(ContentPages);
 
 export const pageQuery = graphql`
   query($id: String!, $key: String!, $parentKey: String) {

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FulcrumAudio } from "../../cms/editorComponents";
 
 export default class FulcrumTextAudio extends Component {
   render() {
