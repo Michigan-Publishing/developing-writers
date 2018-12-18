@@ -8,6 +8,8 @@ import FlyoutMenu from "../flyoutMenu";
 import Footer, { FOOTER_HEIGHT } from "../footer";
 import { buildFrontmatterLookup } from "../../utils/node";
 import palette from "../../utils/palette";
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
   padding: 1rem;
@@ -17,10 +19,18 @@ const HeadingWrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
+  overflow: hidden;
 
   a,
   a:visited {
     color: ${palette.white};
+  }
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    position: initial;
+    background: unset;
+    background: ${palette.contentBackground};
+    border-bottom: 2px solid ${palette.relatedBackground};
   }
 `;
 
@@ -33,6 +43,10 @@ const ContentArea = styled.div`
   position: relative;
   z-index: 0;
   padding-bottom: ${FOOTER_HEIGHT}px;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    margin-top: 0;
+  }
 `;
 
 const HeadingRow = styled.div`

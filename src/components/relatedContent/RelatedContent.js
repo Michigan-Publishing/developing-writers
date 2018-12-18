@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
-
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 const ContentWrapper = styled.div`
   ${textCss}
   background-color: rgba(${palette.rgbRelatedBackground}, .9);
@@ -13,6 +13,16 @@ const ContentWrapper = styled.div`
   width: 50vw;
   margin: 6rem 0;
   align-self: center;
+
+@media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+  padding: 1rem;
+  max-width: 95vw;
+  width: 95vw;
+
+  & h3, ul {
+    padding: 0 1rem;
+  }
+}
 `;
 
 const Link = styled.a`
