@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import { textCss } from "../text/Text";
 import palette from "../../utils/palette";
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 const BreadcrumbWrapper = styled.div`
   margin: .75rem 0;
@@ -22,12 +23,23 @@ const BreadcrumbWrapper = styled.div`
     margin-left: 0;
   }
 
+  & span { 
+    display: inline-block
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   span:not(:last-child)::after {
     content: ">";
     margin-right: .75rem;
     opacity: .6;
   }
 
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    flex-direction: column !important;
+  }
 `;
 
 const LinkWrapper = styled.span``;

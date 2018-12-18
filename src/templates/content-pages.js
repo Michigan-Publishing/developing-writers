@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { graphql } from 'gatsby'
+import { graphql } from "gatsby";
 
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { Helmet } from "react-helmet";
@@ -10,6 +10,7 @@ import SiteContainer from "../components/siteContainer";
 import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
+import Breakpoints from "../components/breakpoints";
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -57,10 +58,12 @@ export default class ContentPages extends Component {
     super(props);
     this.state = { headerOffset: 0 };
   }
-  
+
   componentDidMount() {
     this.setState({
-      headerOffset: this.siteContainer ? this.siteContainer.headingWrapper.clientHeight : 0
+      headerOffset: this.siteContainer
+        ? this.siteContainer.headingWrapper.clientHeight
+        : 0
     });
   }
 
@@ -71,30 +74,38 @@ export default class ContentPages extends Component {
     } = this.props;
 
     return (
-      <SiteContainer ref={(siteContainer) => this.siteContainer = siteContainer} {...this.props}>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{title} | Developing Writers</title>
-        </Helmet>
-        {data.post.wordCount.words && (
-          <ContentArea>
-            <h2>{title}</h2>
-            <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
-            {data.post.frontmatter && data.post.frontmatter.points && (
-              <Point points={data.post.frontmatter.points} headerOffset={this.state.headerOffset} />
-            )}
-            <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
-          </ContentArea>
-        )}
-        {shouldShowRelatedContent(data) && (
-          <RelatedContent relatedLinks={mapSiblingContent(data)} />
-        )}
-        {shouldShowChildLinks(data) && (
-          <Navigation
-            linkProperties={mapLinkProperties(data.childPages.edges)}
-          />
-        )}
-      </SiteContainer>
+      <Breakpoints>
+        <SiteContainer
+          ref={siteContainer => (this.siteContainer = siteContainer)}
+          {...this.props}
+        >
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>{title} | Developing Writers</title>
+          </Helmet>
+          {data.post.wordCount.words && (
+            <ContentArea>
+              <h1>{title}</h1>
+              <MDXRenderer {...this.props}>{data.post.code.body}</MDXRenderer>
+              {data.post.frontmatter && data.post.frontmatter.points && (
+                <Point
+                  points={data.post.frontmatter.points}
+                  headerOffset={this.state.headerOffset}
+                />
+              )}
+              <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
+            </ContentArea>
+          )}
+          {shouldShowRelatedContent(data) && (
+            <RelatedContent relatedLinks={mapSiblingContent(data)} />
+          )}
+          {shouldShowChildLinks(data) && (
+            <Navigation
+              linkProperties={mapLinkProperties(data.childPages.edges)}
+            />
+          )}
+        </SiteContainer>
+      </Breakpoints>
     );
   }
 }
