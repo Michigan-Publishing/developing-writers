@@ -32,7 +32,7 @@
     "react": "^16.5.1",
     "react-breakpoints": "^3.0.3",
     "react-dom": "^16.5.1",
-    "react-flyout-menu": "^1.0.6",
+    "react-flyout-menu": "^1.0.7",
     "react-helmet": "^5.2.0",
     "react-spring": "^6.1.5",
     "react-whirl": "^1.1.1",
