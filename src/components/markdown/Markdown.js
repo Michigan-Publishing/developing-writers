@@ -1,10 +1,8 @@
 import React from "react";
 import marksy from "marksy/components";
 import ExpandableBlockquote from '../expandableBlockquote';
-import {
-  FulcrumImageVideo,
-  FulcrumTextAudio
-} from '../fulcrum'
+import { FulcrumImageVideo, FulcrumTextAudio } from '../fulcrum'
+import { Game1, Game2, PieChart, WordCloud } from '../games';
 
 const compile = marksy({
   createElement: React.createElement,
@@ -12,6 +10,10 @@ const compile = marksy({
     ExpandableBlockquote,
     FulcrumImageVideo,
     FulcrumTextAudio,
+    Game1,
+    Game2,
+    PieChart,
+    WordCloud,
   }
 });
 
