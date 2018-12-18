@@ -34,6 +34,10 @@ const Heading = styled.h4`
   font-size: 1.5rem;
   margin: 1rem 0;
   padding: 0;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    font-size: 1rem;
+  }
 `;
 
 const ColumnWrapper = styled.div`
@@ -52,6 +56,7 @@ const Column = styled.div`
   width: 32%;
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    font-size: 1rem;
     width: 100%;
   }
 `;
@@ -63,6 +68,7 @@ const Left = styled.div`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     width: 100%;
     justify-content: flex-start;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -90,18 +96,18 @@ const Right = styled(Left)`
 
 const Link = styled(GatsbyLink)`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1.75rem;
   }
 `;
 const ChildLink = styled(Link)`
   margin: 0.5rem;
   font-size: 0.75rem;
-  line-height: 0.8rem;
+  line-height: 1.3rem;
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 `;
 
