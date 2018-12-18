@@ -1,1 +1,1 @@
-export { default } from './ExplandableBlockquote';
+export { default } from './ExpandableBlockquote';
