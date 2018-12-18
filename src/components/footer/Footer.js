@@ -73,10 +73,18 @@ const Right = styled(Left)`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 1rem;
+  padding-right: 3rem;
 
   & img:not(:first-child) {
     margin-left: 20px;
+  }
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 `;
 
@@ -98,10 +106,14 @@ const ChildLink = styled(Link)`
 `;
 
 const LogoWrapper = styled.div`
-  height: auto;
+  height: 100px;
   width: auto;
   background-color: ${palette.blue};
   margin-right: 2rem;
+
+  & img {
+    height: 100%;
+  }
 `;
 
 const OtherLogos = styled.div`
@@ -109,8 +121,17 @@ const OtherLogos = styled.div`
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
-  height: 140px;
+  height: 110px;
+  min-width: 430px;
   justify-content: space-between;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    padding: 0;
+    border: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: unset;
+  }
 `;
 
 const LogoRow = styled.div`
@@ -122,6 +143,9 @@ const LogoRow = styled.div`
   & img {
     height: 100%;
     width: auto;
+  }
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    margin-top: 1rem;
   }
 `;
 class Footer extends Component {
@@ -157,24 +181,19 @@ class Footer extends Component {
         </Left>
         <Right>
           <LogoWrapper>
-            <img
-              alt="University of Michigan logo"
-              src={logo}
-              height="125px"
-              width="auto"
-            />
+            <img alt="University of Michigan logo" src={logo} width="auto" />
           </LogoWrapper>
           <OtherLogos>
-            <LogoRow height={40}>
-              <img src={collaboratory} alt="Humanities Collaboratory Logo" />
-            </LogoRow>
-            <LogoRow height={80}>
+            <LogoRow height={60}>
               <img
                 src={library}
                 alt="University of Michigan Library Logo"
                 width="auto"
               />
               <img src={press} alt="University of Michigan Press Logo" />
+            </LogoRow>
+            <LogoRow height={40}>
+              <img src={collaboratory} alt="Humanities Collaboratory Logo" />
             </LogoRow>
           </OtherLogos>
         </Right>
