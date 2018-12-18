@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 const ContentWrapper = styled.main`
   ${textCss}
   background-color: rgba(${palette.rgbContentBackground}, .9);
   box-shadow: 0 0 6.25rem rgba(${palette.rgbContentBackground}, 100);
   color: ${palette.white};
-  padding: 2rem;
+  padding: 0 2rem;
   max-width: 50vw;
   position: relative;
   top: 2.5vh;
@@ -23,6 +24,13 @@ const ContentWrapper = styled.main`
   & p,
 li {
   margin: 1.5rem .75rem;
+}
+
+@media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+  max-width: 95vw;
+  width: 95vw;
+  padding: 0 .5rem;
+  margin: 0 .5rem 0 .5rem;
 }
 
 `;

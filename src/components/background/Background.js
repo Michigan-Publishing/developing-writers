@@ -2,6 +2,7 @@ import React from "react";
 import standard from "./background.jpg";
 import styled from "styled-components";
 import throttle from "lodash.throttle";
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 const BackgroundContainer = styled.div`
   min-height: 100vh;
@@ -15,6 +16,12 @@ const BackgroundBox = styled.div`
   height: 100vh;
   position: fixed;
   overflow: hidden;
+
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
 `;
 const Background = styled.div`
   background: url(${props => props.src}) no-repeat center center fixed;
