@@ -49,7 +49,7 @@ const TopLink = styled.a`
 `;
 
 const GameBackground = styled.div`
-  background-color: #ededed;
+  background-color: ${palette.gameBackground};
 `;
 
 const Row = styled.div`
