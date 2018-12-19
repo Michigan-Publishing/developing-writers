@@ -25,11 +25,10 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     },
-    {
-      resolve: "gatsby-plugin-zopfli"
-    },
+    "gatsby-plugin-zopfli",
     "gatsby-transformer-remark",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-offline",
     "gatsby-plugin-favicon"
   ]
 };
