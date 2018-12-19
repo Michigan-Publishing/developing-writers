@@ -54,6 +54,5 @@ export default class extends Component {
         </VisuallyHidden>
       </Wrapper>
     );
-    return <h1>Word cloud</h1>;
   }
 }
