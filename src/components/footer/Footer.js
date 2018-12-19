@@ -23,7 +23,7 @@ const FooterWrapper = styled.footer`
   justify-content: space-between;
   ${textCss}
   padding: 1rem 0 2rem 0;
-  color: ${palette.relatedBackground};
+  color: ${palette.contentBackground};
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     flex-direction: column;
