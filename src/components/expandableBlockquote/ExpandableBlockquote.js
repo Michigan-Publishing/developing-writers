@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import TouchableOpacity from '../touchableOpacity';
+import Markdown from '../../components/markdown';
+import pallette from '../../utils/palette'
 
 export default class ExpandableBlockquote extends Component {
   constructor(props) {
@@ -17,13 +20,18 @@ export default class ExpandableBlockquote extends Component {
   }
 
   render() {
+    const opacityStyle = { color: pallette.white, cursor: 'pointer' };
+
     return (
       this.state.expanded ? 
-      <blockquote>{unescape(this.props.fullText)} <a href="/" onClick={this.toggleExpanded}>[Less]</a></blockquote> : 
-      <blockquote>{unescape(this.props.previewText)} <a href="/" onClick={this.toggleExpanded}>[More]</a></blockquote>
+      <blockquote>
+        <Markdown>{unescape(this.props.fullText)}</Markdown>&nbsp;
+        <TouchableOpacity style={opacityStyle} onClick={this.toggleExpanded}>[Less]</TouchableOpacity>
+      </blockquote> : 
+      <blockquote>
+        {unescape(this.props.previewText)}&nbsp;
+        <TouchableOpacity style={opacityStyle} onClick={this.toggleExpanded}>[More]</TouchableOpacity>
+      </blockquote>
     )
   }
 }
-
-
-// ({ previewText, fullText }) => <h1>{unescape(previewText)} - {unescape(fullText)}</h1>;
