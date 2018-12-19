@@ -6,14 +6,6 @@ import palette from "../../utils/palette";
 
 import VisuallyHidden from "../visuallyHidden";
 
-const data = [
-  { text: "Some item", value: 1000 },
-  { text: "Another", value: 200 },
-  { text: "Third one", value: 800 },
-  { text: "Fourth one", value: 1000000 },
-  { text: "Fifth one", value: 10 }
-];
-
 const fontSizeMapper = word => Math.log2(word.value) * 5;
 const rotate = word => word.value % 45;
 
@@ -23,6 +15,8 @@ const Wrapper = styled.div`
 
 export default class extends Component {
   render() {
+    const { data } = this.props;
+
     return (
       <Wrapper>
         <span aria-hidden="true">
