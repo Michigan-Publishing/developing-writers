@@ -1,7 +1,7 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
-export default class WordCount extends Component {
+export default class WordCloud extends Component {
   render() {
-    return "Word Count";
+    return <span>Word Cloud</span>;
   }
 }
