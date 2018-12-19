@@ -9,6 +9,7 @@ const BackgroundContainer = styled.div`
   min-width: 100vw;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 `;
 
 const BackgroundBox = styled.div`
