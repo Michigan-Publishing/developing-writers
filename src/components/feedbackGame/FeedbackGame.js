@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
+import { LiveAnnouncer, LiveMessenger } from 'react-aria-live';
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 
@@ -14,6 +15,7 @@ const Fieldset = styled.fieldset`
   border: none;
   border-left: 0.75rem solid #ccc;
   margin-bottom: 2rem;
+  color: ${palette.black};
 `;
 
 const Legend = styled.label`
@@ -38,6 +40,7 @@ const Strong = styled.p`
   ${textCss};
   font-weight: bold;
   margin: 1rem 0 1rem 1rem;
+  color: ${palette.black};
 `;
 
 const TopLink = styled.a`
@@ -46,6 +49,7 @@ const TopLink = styled.a`
   color: #555;
   margin: 1rem 0 1rem 1rem;
   font-size: 1.5rem;
+  color: ${palette.black};
 `;
 
 const GameBackground = styled.div`
@@ -177,7 +181,7 @@ const RadioWrapper = styled.div`
   }
 
   & input[type="radio"] + label {
-    background-color: ${palette.white}
+    background-color: ${palette.white};
     padding: 20px;
     border-radius: 40px;
     border: 1px solid #ddd;
@@ -188,7 +192,7 @@ const RadioWrapper = styled.div`
   }
 
   & input[type="radio"]:checked + label {
-    color: ${palette.white}
+    color: ${palette.white};
     background-color: ${palette.relatedBackground};
   }
 `;
@@ -266,7 +270,6 @@ class GameStepButtons extends Component {
   state = { showAnswer: false };
   render() {
     const {
-      onClick,
       quote,
       correctOutput,
       correctResponse,
@@ -282,78 +285,87 @@ class GameStepButtons extends Component {
         <Strong>
           Which of the responses does the following quote represent?
         </Strong>
-        <Formik
-          initialValues={{ result: "" }}
-          validate={values => {
-            let errors = {};
+        <LiveAnnouncer>
+          <LiveMessenger>
+            {({announcePolite, announceAssertive}) => 
+              <Formik
+                initialValues={{ result: "" }}
+                validate={values => {
+                  let errors = {};
 
-            if (values.result !== correctResponse) {
-              errors.result = "Sorry this is not correct! Try again";
+                  if (values.result !== correctResponse) {
+                    const errorMessage = "Sorry this is not correct! Try again";
+                    announcePolite(errorMessage);
+                    errors.result = errorMessage;
+                  }
+
+                  return errors;
+                }}
+                onSubmit={values => {
+                  announcePolite(correctOutput);
+                  this.setState({ showAnswer: true });
+                }}
+              >
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                  isSubmitting,
+                  submitForm
+                }) => (
+                  <Fragment>
+                    <Form onSubmit={handleSubmit}>
+                      <RadioButtonGroup
+                        id={`radio-${quote}`}
+                        label={quote}
+                        value={values.result}
+                        error={errors.result}
+                        touched={touched.result}
+                      >
+                        <Row>
+                          {Object.keys(responses).map((k, index) => (
+                            <Field
+                              key={index}
+                              component={RadioButton}
+                              name="result"
+                              id={responses[k].key}
+                              label={responses[k].label}
+                              onUpdateValue={props => {
+                                setTimeout(submitForm, 100);
+                              }}
+                            />
+                          ))}
+                        </Row>
+                      </RadioButtonGroup>
+                    </Form>
+                    {
+                      <Centered>
+                        <SuccessRow
+                          style={{
+                            display:
+                              this.state.showAnswer && !errors.result
+                                ? "flex"
+                                : "none"
+                          }}
+                        >
+                          <p>{correctOutput}</p>
+                          <p>
+                            <a href={link} target="_blank" rel="nofollow noopener noreferrer">
+                              {linkText}
+                            </a>
+                          </p>
+                        </SuccessRow>
+                      </Centered>
+                    }
+                  </Fragment>
+                )}
+              </Formik>
             }
-
-            console.log("ERRORS", errors);
-            return errors;
-          }}
-          onSubmit={values => {
-            this.setState({ showAnswer: true });
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            submitForm
-          }) => (
-            <Fragment>
-              <Form onSubmit={handleSubmit}>
-                <RadioButtonGroup
-                  id={`radio-${quote}`}
-                  label={quote}
-                  value={values.result}
-                  error={errors.result}
-                  touched={touched.result}
-                >
-                  <Row>
-                    {Object.keys(responses).map(k => (
-                      <Field
-                        component={RadioButton}
-                        name="result"
-                        id={responses[k].key}
-                        label={responses[k].label}
-                        onUpdateValue={props => {
-                          setTimeout(submitForm, 100);
-                        }}
-                      />
-                    ))}
-                  </Row>
-                </RadioButtonGroup>
-              </Form>
-              {
-                <Centered>
-                  <SuccessRow
-                    style={{
-                      display:
-                        this.state.showAnswer && !errors.result
-                          ? "flex"
-                          : "none"
-                    }}
-                  >
-                    <p>{correctOutput}</p>
-                    <p>
-                      <a href={link} target="_blank" rel="nofollow">
-                        {linkText}
-                      </a>
-                    </p>
-                  </SuccessRow>
-                </Centered>
-              }
-            </Fragment>
-          )}
-        </Formik>
+          </LiveMessenger>
+        </LiveAnnouncer>
       </Fragment>
     );
   }
@@ -362,16 +374,16 @@ export default class FeedbackGame extends Component {
   render() {
     return (
       <GameBackground>
-        <h1>Feedback Game</h1>
+        <h1 style={{ color: palette.black }}>Feedback Game</h1>
         <Tabs>
           <TabList>
             {gameSteps.map((item, index) => (
-              <Tab>Question {index + 1}</Tab>
+              <Tab style={{ color: palette.black }} key={index}>Question {index + 1}</Tab>
             ))}
           </TabList>
-          {gameSteps.map(step => (
-            <TabPanel>
-              <GameStepButtons {...step} />
+          {gameSteps.map((step, index) => (
+            <TabPanel key={index}>
+              <GameStepButtons key={index} {...step} />
             </TabPanel>
           ))}
         </Tabs>

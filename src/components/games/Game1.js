@@ -1,7 +1,8 @@
-import { Component } from "react";
+import React, { Component } from "react";
+import FeedbackGame from '../feedbackGame';
 
 export default class PieChart extends Component {
   render() {
-    return "Pie Chart";
+    return <FeedbackGame />;
   }
 }

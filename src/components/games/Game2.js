@@ -1,7 +1,7 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 export default class Game2 extends Component {
   render() {
-    return "Game Two";
+    return <span>Game Two</span>;
   }
 }
