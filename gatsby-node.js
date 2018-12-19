@@ -144,11 +144,8 @@ exports.onCreateNode = ({ node, actions: { createNodeField }, getNode, getNodes 
 
     node.rawBody = node.rawBody.replace(new RegExp('\\:\\:\\:md-component (.*)', 'g'), 
       (match, p1) => {
-        console.log(match);
         return match && p1 ? `<${p1} />` : node.rawBody;
     });
-
-    node.frontmatter.key == 'how-do-writers-respond-to-audience-expectations' && console.log(node.rawBody);
 
     createNodeField({
       name: `slug`,
