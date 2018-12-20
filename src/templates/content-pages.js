@@ -15,6 +15,7 @@ import Breakpoints from "../components/breakpoints";
 import ExpandableBlockquote from '../components/expandableBlockquote';
 import { FulcrumImageVideo, FulcrumTextAudio } from '../components/fulcrum';
 import { Game1, Game2, PieChart, WordCloud } from '../components/games';
+import { AboutTheAuthor } from '../components/aboutTheAuthor';
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -76,7 +77,7 @@ class ContentPages extends Component {
       pageContext: { title },
       data
     } = this.props;
-    const contextComponents = { ExpandableBlockquote, FulcrumImageVideo, FulcrumTextAudio, Game1, Game2, PieChart, WordCloud };
+    const contextComponents = { ExpandableBlockquote, FulcrumImageVideo, FulcrumTextAudio, Game1, Game2, PieChart, WordCloud, AboutTheAuthor };
     const newScope = { ...this.props.scope, ...contextComponents};
     const newProps = {...{...this.props, ...{ scope: newScope }}};
 
