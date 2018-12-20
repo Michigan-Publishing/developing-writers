@@ -1,7 +1,6 @@
 import CMS from "netlify-cms";
 import { FulcrumAudio, FulcrumImage, FulcrumText, FulcrumVideo, ExpandableBlockquote } from './editorComponents';
-import { Game1, Game2, PieChart, WordCloud } from './editorComponents';
-import { AboutTheAuthor } from './aboutTheAuthor';
+import { Game1, Game2, PieChart, WordCloud, AboutTheAuthor } from './editorComponents';
 
 CMS.registerEditorComponent(FulcrumText);
 CMS.registerEditorComponent(FulcrumAudio);

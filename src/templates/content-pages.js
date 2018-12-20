@@ -15,7 +15,7 @@ import Breakpoints from "../components/breakpoints";
 import ExpandableBlockquote from '../components/expandableBlockquote';
 import { FulcrumImageVideo, FulcrumTextAudio } from '../components/fulcrum';
 import { Game1, Game2, PieChart, WordCloud } from '../components/games';
-import { AboutTheAuthor } from '../components/aboutTheAuthor';
+import AboutTheAuthor from '../components/aboutTheAuthor';
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
@@ -91,7 +91,7 @@ class ContentPages extends Component {
             <meta charSet="utf-8" />
             <title>{title} | Developing Writers</title>
           </Helmet>
-          {data.post.wordCount.words && (
+          {(data.post.wordCount.words || data.post.frontmatter.title === "About The Authors") && (
             <ContentArea>
               <h1>{title}</h1>
               <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
