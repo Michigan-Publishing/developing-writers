@@ -176,7 +176,7 @@ class Footer extends Component {
           <Heading>Developing Writers</Heading>
           <ColumnWrapper>
             <Column>
-              <Link to="#">
+              <Link to="/pages/about-the-study/">
                 <strong>About</strong>
               </Link>
             </Column>
