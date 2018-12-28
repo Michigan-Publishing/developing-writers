@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import { ImageContent, Whirl } from "react-whirl";
+import { ReaderHidden } from "../readerHidden";
+import VisuallyHidden from "../visuallyHidden";
 
 import palette from "../../utils/palette";
 import slide1 from "./slide1.jpg";
@@ -40,8 +42,18 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
 `;
-const Next = onNext => <Button onClick={onNext}>⟩</Button>;
-const Previous = onPrevious => <Button onClick={onPrevious}>⟨</Button>;
+const Next = onNext => (
+  <Button onClick={onNext}>
+    <ReaderHidden>⟩</ReaderHidden>
+    <VisuallyHidden>Next</VisuallyHidden>
+  </Button>
+);
+const Previous = onPrevious => (
+  <Button onClick={onPrevious}>
+    <ReaderHidden>⟨</ReaderHidden>
+    <VisuallyHidden>Previous</VisuallyHidden>
+  </Button>
+);
 
 export default class extends React.Component {
   static defaultProps = {
