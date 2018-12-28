@@ -12,13 +12,14 @@ import Point from "../components/point";
 import Markdown from "../components/markdown";
 import RelatedContent from "../components/relatedContent";
 import Breakpoints from "../components/breakpoints";
-import ExpandableBlockquote from '../components/expandableBlockquote';
-import { FulcrumImageVideo, FulcrumTextAudio } from '../components/fulcrum';
-import { Game1, Game2, PieChart, WordCloud } from '../components/games';
-import AboutTheAuthor from '../components/aboutTheAuthor';
+import ExpandableBlockquote from "../components/expandableBlockquote";
+import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum";
+import { Game1, Game2, PieChart, WordCloud } from "../components/games";
+import AboutTheAuthor from "../components/aboutTheAuthor";
 
 // eslint-disable-next-line
 import styles from "../styles/global.css";
+import VisuallyHidden from "../components/visuallyHidden";
 
 function mapLinkProperties(edges) {
   if (!edges) {
@@ -77,9 +78,18 @@ class ContentPages extends Component {
       pageContext: { title },
       data
     } = this.props;
-    const contextComponents = { ExpandableBlockquote, FulcrumImageVideo, FulcrumTextAudio, Game1, Game2, PieChart, WordCloud, AboutTheAuthor };
-    const newScope = { ...this.props.scope, ...contextComponents};
-    const newProps = {...{...this.props, ...{ scope: newScope }}};
+    const contextComponents = {
+      ExpandableBlockquote,
+      FulcrumImageVideo,
+      FulcrumTextAudio,
+      Game1,
+      Game2,
+      PieChart,
+      WordCloud,
+      AboutTheAuthor
+    };
+    const newScope = { ...this.props.scope, ...contextComponents };
+    const newProps = { ...{ ...this.props, ...{ scope: newScope } } };
 
     return (
       <Breakpoints>
@@ -91,7 +101,11 @@ class ContentPages extends Component {
             <meta charSet="utf-8" />
             <title>{title} | Developing Writers</title>
           </Helmet>
-          {(data.post.wordCount.words || data.post.frontmatter.title === "About The Authors") && (
+          <VisuallyHidden>
+            <h1>{title}</h1>
+          </VisuallyHidden>
+          {(data.post.wordCount.words ||
+            data.post.frontmatter.title === "About The Authors") && (
             <ContentArea>
               <h1>{title}</h1>
               <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>

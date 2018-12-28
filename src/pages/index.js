@@ -23,6 +23,7 @@ import {
   Link as LinkButton,
   LinkBackground
 } from "../components/secondaryNavigation";
+import VisuallyHidden from "../components/visuallyHidden";
 
 const StyledLinkButton = styled(LinkButton)`
   ${LinkBackground}
@@ -86,6 +87,9 @@ export default class Pages extends Component {
             <meta charSet="utf-8" />
             <title>Developing Writers</title>
           </Helmet>
+          <VisuallyHidden>
+            <h1>Developing Writers home</h1>
+          </VisuallyHidden>
           <ContentWrapper>
             <Fragment>
               <Carousel>

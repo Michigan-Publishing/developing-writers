@@ -24,7 +24,7 @@ const BreadcrumbWrapper = styled.div`
   }
 
   & span { 
-    display: inline-block
+    display: inline-block;
     max-width: 300px;
     white-space: nowrap;
     overflow: hidden;
@@ -39,6 +39,11 @@ const BreadcrumbWrapper = styled.div`
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     flex-direction: column !important;
+
+    & span { 
+      max-width: 300px;
+      white-space: unset;
+    }
   }
 `;
 
