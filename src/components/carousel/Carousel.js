@@ -80,7 +80,7 @@ export default class extends React.Component {
                     nobody remembers what was spoken, what was said
                   </p>
                 </blockquote>
-                <cite>Manit Limlamai, Software Engineer Google</cite>
+                <cite>Manit Limlamai, Software Engineer. Google</cite>
               </Fragment>
             }
             descriptionId="slide1"
@@ -99,7 +99,7 @@ export default class extends React.Component {
                   </p>
                 </blockquote>
                 <cite>
-                  Priya Jacob, Child Psychiatrist, University of Michigan Alumna
+                  Priya Jacob, Child Psychiatrist. University of Michigan Alumna
                 </cite>
               </Fragment>
             }
@@ -117,7 +117,7 @@ export default class extends React.Component {
                     ways unknown, even to ourselves, and the outside world.
                   </p>
                 </blockquote>
-                <cite>Mike Boyle, Stay-at-home dad, Creative Writer</cite>
+                <cite>Mike Boyle, Stay-at-home dad. Creative Writer</cite>
               </Fragment>
             }
             descriptionId="slide3"
