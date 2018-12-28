@@ -86,6 +86,7 @@ const Right = styled(Left)`
   }
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    max-width: calc(100% - 2rem);
     padding-left: 1rem;
     padding-right: 1rem;
     flex-direction: column;
@@ -122,6 +123,21 @@ const LogoWrapper = styled.div`
   }
 `;
 
+const LogoRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: ${props => props.height}px;
+
+  & img {
+    height: 100%;
+    width: auto;
+  }
+  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    margin-top: 1rem;
+  }
+`;
+
 const OtherLogos = styled.div`
   border-left: 2px solid rgba(${palette.rgbBlue}, 0.5);
   padding-left: 2rem;
@@ -137,23 +153,14 @@ const OtherLogos = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     min-width: unset;
+
+    & img.max {
+      width: 100%;
+      height: auto;
+    }
   }
 `;
 
-const LogoRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  height: ${props => props.height}px;
-
-  & img {
-    height: 100%;
-    width: auto;
-  }
-  @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
-    margin-top: 1rem;
-  }
-`;
 class Footer extends Component {
   getLinkColumn = link => {
     return (
@@ -199,7 +206,11 @@ class Footer extends Component {
               <img src={press} alt="University of Michigan Press Logo" />
             </LogoRow>
             <LogoRow height={40}>
-              <img src={collaboratory} alt="Humanities Collaboratory Logo" />
+              <img
+                src={collaboratory}
+                className="max"
+                alt="Humanities Collaboratory Logo"
+              />
             </LogoRow>
           </OtherLogos>
         </Right>
