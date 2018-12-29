@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import WordCloud from "react-d3-cloud";
@@ -38,7 +38,7 @@ export default class extends Component {
             </thead>
             <tbody>
               {data.map(item => (
-                <tr>
+                <tr key={item.value}>
                   <td>{item.text}</td>
                   <td>{item.value}</td>
                 </tr>
