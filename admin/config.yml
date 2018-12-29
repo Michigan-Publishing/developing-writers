@@ -31,7 +31,7 @@ collections:
         displayFields: ["title"]
         valueField: "key"
         required: false
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
       - label: "Points"
         name: "points"
         widget: "list"
