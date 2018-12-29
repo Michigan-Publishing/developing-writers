@@ -24,14 +24,14 @@ const BackgroundBox = styled.div`
     z-index: -1;
   }
 `;
+
 const Background = styled.div`
   background: url(${props => props.src}) no-repeat center center fixed;
   background-origin: border-box;
   background-size: cover;
   transform-origin: top center;
-  transform: perspective(500px)
-    skewY(-${props => props.backgroundCalculation / 10000}turn)
-    scale(${props => 1 + props.backgroundCalculation / 2000});
+  transform: perspective(500px) skewY(var(--skewBackground))
+    scale(var(--scaleBackground));
   transition: transform 200ms;
   min-width: 100%;
   min-height: 100%;
@@ -48,25 +48,27 @@ function getPercentScrolled() {
 }
 
 export default class BackgroundWrapper extends React.Component {
+  rootElement = null;
   state = { backgroundCalculation: 0 };
   element = React.createRef();
+
   componentDidMount() {
-    window.addEventListener("scroll", this.throttledOnScroll);
+    this.rootElement = document.documentElement;
+    window.addEventListener("scroll", this.onScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.throttledOnScroll);
+    window.removeEventListener("scroll", this.onScroll);
   }
 
   onScroll = e => {
     const percentScrolled = getPercentScrolled();
+    const skew = `-${percentScrolled / 10000}turn`;
+    const scale = 1 + percentScrolled / 2000;
 
-    this.setState({
-      backgroundCalculation: percentScrolled
-    });
+    this.rootElement.style.setProperty("--skewBackground", skew);
+    this.rootElement.style.setProperty("--scaleBackground", scale);
   };
-
-  throttledOnScroll = throttle(this.onScroll, 100);
 
   render() {
     const { children } = this.props;
