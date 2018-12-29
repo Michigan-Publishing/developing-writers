@@ -155,8 +155,8 @@ const OtherLogos = styled.div`
     min-width: unset;
 
     & img.max {
-      width: 100%;
-      height: auto;
+      max-width: 100%;
+      height: inherit;
     }
   }
 `;
@@ -182,11 +182,6 @@ class Footer extends Component {
         <Left>
           <Heading>Developing Writers</Heading>
           <ColumnWrapper>
-            <Column>
-              <Link to="/pages/about/">
-                <strong>About</strong>
-              </Link>
-            </Column>
             {this.props.links.map(link => (
               <Column key={link.slug}>{this.getLinkColumn(link)}</Column>
             ))}
