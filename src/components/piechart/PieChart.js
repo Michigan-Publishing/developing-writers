@@ -1,7 +1,4 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-
-import palette from "../../utils/palette";
+import React, { Fragment } from "react";
 
 import VisuallyHidden from "../visuallyHidden";
 
@@ -35,7 +32,7 @@ const Chart = ({ data }) => (
         </thead>
         <tbody>
           {data.map(item => (
-            <tr>
+            <tr key={item.key}>
               <td>{item.key}</td>
               <td>{item.value}</td>
             </tr>
