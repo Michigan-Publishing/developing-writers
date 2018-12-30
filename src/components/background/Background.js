@@ -1,7 +1,6 @@
 import React from "react";
 import standard from "./background.jpg";
 import styled from "styled-components";
-import throttle from "lodash.throttle";
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 const BackgroundContainer = styled.div`
