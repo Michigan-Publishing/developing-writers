@@ -14,7 +14,17 @@ const Wrapper = styled.div`
 `;
 
 export default class extends Component {
+  mounted = false;
+
+  componentDidMount() {
+    this.mounted = true;
+  }
+
   render() {
+    if (!this.mounted) {
+      return null;
+    }
+
     const { data } = this.props;
 
     return (

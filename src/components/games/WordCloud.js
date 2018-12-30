@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import WordCloudGame from '../wordcloud';
+import WordCloudGame from "../wordcloud";
 
 const data = [
-  { text: "Some item", value: 1000 },
-  { text: "Another", value: 200 },
-  { text: "Third one", value: 800 },
-  { text: "Fourth one", value: 1000000 },
-  { text: "Fifth one", value: 10 }
+  { text: "Email", value: 124 },
+  { text: "Text", value: 101 },
+  { text: "To-do list", value: 46 },
+  { text: "Journal", value: 44 },
+  { text: "Correspondence", value: 31 },
+  { text: "Social media", value: 24 },
+  { text: "Lesson plan", value: 22 },
+  { text: "Blog", value: 20 }
 ];
 
 export default class WordCloud extends Component {
