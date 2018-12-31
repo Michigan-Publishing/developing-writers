@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "start": "NODE_PATH=./src/components npm run develop",
+    "start": "cross-env NODE_PATH=./src/components npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "deploy": "gatsby build && node deployPublicSite.js",
@@ -16,6 +16,7 @@
     "@mdx-js/tag": "^0.15.0",
     "@reach/menu-button": "^0.1.7",
     "core-js": "^2.6.1",
+    "cross-env": "^5.2.0",
     "formik": "^1.4.1",
     "gatsby": "^2.0.0",
     "gatsby-mdx": "^0.2.0",
