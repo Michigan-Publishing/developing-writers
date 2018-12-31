@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": ["ie >= 11", "not dead"]
+        }
+      }
+    ]
+  ]
+}
