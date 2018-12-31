@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    "gatsby-plugin-core-js",
     "gatsby-plugin-resolve-src",
     "gatsby-plugin-styled-components",
     {
@@ -35,6 +36,6 @@ module.exports = {
       options: {
         modules: [`gatsby-mdx`]
       }
-    },
+    }
   ]
 };
