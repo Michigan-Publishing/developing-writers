@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import PieChartGame from '../piechart';
+import PieChartGame from "../piechart";
 
 const data = [
-  { key: "Something", value: 100, color: "#aaac84" },
-  { key: "Other thing", value: 200, color: "#dce7c5" },
-  { key: "Final thing", value: 50, color: "#e3a51a" }
+  { key: "Friends and colleagues", value: 14, color: "#F6D3FD" },
+  { key: "Mentors", value: 9, color: "#E9FFD1" },
+  { key: "Teachers", value: 5, color: "#FFE4B9" },
+  { key: "Writing groups", value: 2, color: "#FAF097" },
+  { key: "Editors", value: 2, color: "#F2FFF0" }
 ];
 
 export default class Game1 extends Component {
