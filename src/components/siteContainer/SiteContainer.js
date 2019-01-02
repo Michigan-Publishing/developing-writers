@@ -127,7 +127,12 @@ export default class extends Component {
     const linkTree = this.buildLinkTree();
 
     return (
-      <MenuProvider>
+      <MenuProvider
+        onClose={() => {
+          this.setState({ showFlyout: false });
+          document.body.classList.remove("modalOpen");
+        }}
+      >
         <Fragment>
           <HeadingWrapper
             ref={headingWrapper => (this.headingWrapper = headingWrapper)}
@@ -156,11 +161,7 @@ export default class extends Component {
           </HeadingWrapper>
 
           <Background>
-            <FlyoutMenu
-              onClose={() => this.setState({ showFlyout: false })}
-              isVisible={this.state.showFlyout}
-              items={linkTree}
-            />
+            <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
             <ContentArea style={contentStyles}>
               {this.props.children}
             </ContentArea>
