@@ -73,7 +73,11 @@ export default class extends Component {
   render() {
     const { items } = this.props;
 
-    const links = buildLinks(items);
+    const sortedItems = items.sort((a, b) => {
+      return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+    });
+
+    const links = buildLinks(sortedItems);
     return (
       <MenuConsumer>
         {({ toggleElement, setCloseElement }) => {
