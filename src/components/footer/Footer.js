@@ -182,9 +182,13 @@ class Footer extends Component {
         <Left>
           <Heading>Developing Writers</Heading>
           <ColumnWrapper>
-            {this.props.links.map(link => (
-              <Column key={link.slug}>{this.getLinkColumn(link)}</Column>
-            ))}
+            {this.props.links
+              .sort((a, b) => {
+                return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+              })
+              .map(link => (
+                <Column key={link.slug}>{this.getLinkColumn(link)}</Column>
+              ))}
           </ColumnWrapper>
         </Left>
         <Right>
