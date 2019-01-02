@@ -136,6 +136,7 @@ export default class extends Component {
         <Fragment>
           <HeadingWrapper
             ref={headingWrapper => (this.headingWrapper = headingWrapper)}
+            id="heading-wrapper"
           >
             <HeadingRow>
               <SiteHeading />
@@ -162,7 +163,7 @@ export default class extends Component {
 
           <Background>
             <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
-            <ContentArea style={contentStyles}>
+            <ContentArea style={contentStyles} id="content-area-wrapper">
               {this.props.children}
             </ContentArea>
             <Footer links={linkTree} />
