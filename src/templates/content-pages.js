@@ -66,6 +66,8 @@ class ContentPages extends Component {
   }
 
   componentDidMount() {
+    document.body.classList.remove("modalOpen");
+
     this.setState({
       headerOffset: this.siteContainer
         ? this.siteContainer.headingWrapper.clientHeight

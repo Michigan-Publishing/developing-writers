@@ -83,7 +83,6 @@ export default class extends Component {
                 setCloseElement={setCloseElement}
                 toggleElement={toggleElement}
                 Heading={() => <Heading>NAVIGATION</Heading>}
-                onClose={() => document.body.classList.remove("modalOpen")}
               >
                 <LinkContainer opacity={this.props.opacity}>
                   {links}

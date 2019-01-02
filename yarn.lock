@@ -10406,9 +10406,9 @@ react-faux-dom@^4.1.0, react-faux-dom@^4.2.0:
     query-selector "^1.0.9"
     style-attr "^1.0.1"
 
-react-flyout-menu@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-flyout-menu/-/react-flyout-menu-1.0.7.tgz#2f156bdbc86b97f6ad438691f86db1ca12a7e57f"
+react-flyout-menu@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-flyout-menu/-/react-flyout-menu-1.0.9.tgz#c0ea3dcdf63ad95ba5f3db5affcc081c0cfd7f52"
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.10"
     "@fortawesome/free-solid-svg-icons" "^5.6.1"
