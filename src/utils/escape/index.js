@@ -1,5 +1,5 @@
 // import escapeRegExp from 'lodash.escaperegexp';
 
-export const escapeWithRegexp = (originalString) => escape(originalString || '');
+export const escapeWithRegexp = (originalString) => escape(originalString || '').replace(/\*/g, '\\\*');
 
-export const unescapeWithRegexp = (originalString) => unescape( (originalString || '') ); //.replace(/\\(.)/g, ($0, $1) => $1) );
+export const unescapeWithRegexp = (originalString) => unescape( (originalString || '') ).replace(/\\\*/g, '*');
