@@ -59,6 +59,20 @@ function shouldShowChildLinks(data) {
   return !!(data.childPages && data.childPages.edges.length > 0);
 }
 
+function isIE11() {
+  try {
+    return !!window.MSInputMethodContext && !!document.documentMode;
+  } catch (ex) {
+    return false;
+  }
+}
+
+function getBodyContent(data) {
+  const items = data.post.rawBody.split("---");
+
+  return items.length > 0 ? items[items.length - 1] : "";
+}
+
 class ContentPages extends Component {
   constructor(props) {
     super(props);
@@ -91,6 +105,8 @@ class ContentPages extends Component {
     const newScope = { ...this.props.scope, ...contextComponents };
     const newProps = { ...{ ...this.props, ...{ scope: newScope } } };
 
+    const useMarkdownInsteadOfMDX = isIE11();
+
     return (
       <Breakpoints>
         <SiteContainer
@@ -108,7 +124,11 @@ class ContentPages extends Component {
             data.post.frontmatter.title === "About The Authors") && (
             <ContentArea>
               <h1>{title}</h1>
-              <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
+              {useMarkdownInsteadOfMDX ? (
+                <Markdown>{getBodyContent(data)}</Markdown>
+              ) : (
+                <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
+              )}
               {data.post.frontmatter && data.post.frontmatter.points && (
                 <Point
                   points={data.post.frontmatter.points}
@@ -138,6 +158,7 @@ export const pageQuery = graphql`
   query($id: String!, $key: String!, $parentKey: String) {
     post: mdx(id: { eq: $id }) {
       id
+      rawBody
       code {
         body
       }
