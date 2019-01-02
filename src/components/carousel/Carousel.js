@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ImageContent, Whirl } from "react-whirl";
 import { ReaderHidden } from "../readerHidden";
 import VisuallyHidden from "../visuallyHidden";
+import smoothscroll from "smoothscroll-polyfill";
 
 import palette from "../../utils/palette";
 import slide1 from "./slide1.jpg";
@@ -18,6 +19,11 @@ import slide10 from "./slide10.jpg";
 import slide11 from "./slide11.jpg";
 
 import { textCss } from "../text/Text";
+
+try {
+  smoothscroll.polyfill();
+} catch (ex) {}
+
 const Wrapper = styled.div`
   ${textCss}
   background-color: rgba(${palette.rgbContentBackground}, .9);

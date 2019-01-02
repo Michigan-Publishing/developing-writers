@@ -66,3 +66,10 @@ h5,
 h6 {
   line-height: 2.5rem;
 }
+
+/* IE styles */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #heading-wrapper {
+    position: relative;
+  }
+}
