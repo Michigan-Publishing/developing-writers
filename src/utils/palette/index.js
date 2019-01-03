@@ -18,7 +18,8 @@ const palette = {
   blue: "rgba(0, 39, 76)",
   rgbBlue: "0, 39, 76",
   success: "#C1DACA",
-  successBorder: "#365242"
+  successBorder: "#365242",
+  greenCheck: "#00A40A"
 };
 
 export default palette;
