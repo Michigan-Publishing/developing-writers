@@ -14,7 +14,7 @@ import RelatedContent from "../components/relatedContent";
 import Breakpoints from "../components/breakpoints";
 import ExpandableBlockquote from "../components/expandableBlockquote";
 import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum";
-import { Game1, Game2, PieChart, WordCloud } from "../components/games";
+import { Game1, Game2, PieChart, WordCloud, MultimodalGame } from "../components/games";
 import AboutTheAuthor from "../components/aboutTheAuthor";
 
 // eslint-disable-next-line
@@ -102,6 +102,7 @@ class ContentPages extends Component {
       Game2,
       PieChart,
       WordCloud,
+      MultimodalGame,
       AboutTheAuthor
     };
     const newScope = { ...this.props.scope, ...contextComponents };
