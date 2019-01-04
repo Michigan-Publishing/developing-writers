@@ -8,7 +8,7 @@ const values = [
     id: "essay",
     label: "Essay",
     description: "",
-    link: "https://umich.app.box.com/file/294323019327"
+    link: "https://doi.org/10.3998/mpub.10079890.cmp.219"
   },
   {
     id: "newspaper",
@@ -101,7 +101,7 @@ const values = [
     label: "Video",
     description:
       "Video can also help readers understand and experience meaning in more dynamic terms",
-    link: "https://drive.google.com/open?id=1Q7x9WkgHwH3dPr7dGuf6x1uGImiY53sA"
+    link: "https://doi.org/10.3998/mpub.10079890.cmp.339"
   },
   {
     id: "audio",
@@ -114,7 +114,7 @@ const values = [
     id: "portfolio",
     label: "E-portfolio",
     description: "",
-    link: "https://umich.app.box.com/file/34273619647"
+    link: "https://hdl.handle.net/2027/fulcrum.10079890/poi.23"
   }
 ];
 
