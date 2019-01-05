@@ -166,7 +166,7 @@ const gameSteps = [
     responses.uncriticalResistance.key,
     "Katie has decided that her peers have nothing useful to offer her, and so has decided that peer feedback is not useful. Although her decision is likely to be based in experience, she has ruled out different experiences she might have. This is uncritical resistance.",
     "If you’d like to see more of the interview transcript with Katie, click here",
-    "https://doi.org/10.3998/mpub.10079890.cmp.44",
+    "https://doi.org/10.3998/mpub.10079890.cmp.92",
     "From Katie's interview transcript"
   )
 ];
