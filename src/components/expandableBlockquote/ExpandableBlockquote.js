@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import TouchableOpacity from "../touchableOpacity";
 import Markdown from "../../components/markdown";
 import pallette from "../../utils/palette";
+
+import VisuallyHidden from "../visuallyHidden";
+import { ReaderHidden } from "../readerHidden";
 
 const Wrapper = styled.div`
   & .hidden {
@@ -49,31 +52,43 @@ export default class ExpandableBlockquote extends Component {
     const opacityStyle = { color: pallette.white, cursor: "pointer" };
 
     return (
-      <Wrapper>
-        <blockquote
-          ref={this.element}
-          className={this.state.expanded ? "visible" : "hidden"}
-          aria-hidden={!this.state.expanded}
-        >
-          <Markdown>{unescape(this.props.fullText)}</Markdown>&nbsp;
-          <TouchableOpacity style={opacityStyle} onClick={this.toggleExpanded}>
-            [Less]
-          </TouchableOpacity>
-        </blockquote>
-        <blockquote
-          className={!this.state.expanded ? "visible" : "hidden"}
-          aria-hidden={!this.state.expanded}
-        >
-          {unescape(this.props.previewText)}&nbsp;
-          <TouchableOpacity
-            style={opacityStyle}
-            onClick={this.toggleExpanded}
-            ref={this.moreButton}
-          >
-            [More]
-          </TouchableOpacity>
-        </blockquote>
-      </Wrapper>
+      <Fragment>
+        <ReaderHidden>
+          <Wrapper>
+            <blockquote
+              ref={this.element}
+              className={this.state.expanded ? "visible" : "hidden"}
+              aria-hidden={!this.state.expanded}
+            >
+              <Markdown>{unescape(this.props.fullText)}</Markdown>&nbsp;
+              <TouchableOpacity
+                style={opacityStyle}
+                onClick={this.toggleExpanded}
+              >
+                [Less]
+              </TouchableOpacity>
+            </blockquote>
+            <blockquote
+              className={!this.state.expanded ? "visible" : "hidden"}
+              aria-hidden={!this.state.expanded}
+            >
+              {unescape(this.props.previewText)}&nbsp;
+              <TouchableOpacity
+                style={opacityStyle}
+                onClick={this.toggleExpanded}
+                ref={this.moreButton}
+              >
+                [More]
+              </TouchableOpacity>
+            </blockquote>
+          </Wrapper>
+        </ReaderHidden>
+        <VisuallyHidden>
+          <blockquote ref={this.element}>
+            <Markdown>{unescape(this.props.fullText)}</Markdown>&nbsp;
+          </blockquote>
+        </VisuallyHidden>
+      </Fragment>
     );
   }
 }
