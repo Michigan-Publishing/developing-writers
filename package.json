@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "developing-writers",
+  "description": "Companion website to the Developing Writers book",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
