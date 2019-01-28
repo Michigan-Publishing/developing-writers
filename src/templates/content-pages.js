@@ -69,8 +69,12 @@ function isIE11() {
 
 function getBodyContent(data) {
   const items = data.post.rawBody.split("---");
-
+  
   return items.length > 0 ? items[items.length - 1] : "";
+}
+
+function hasContent(data) { 
+  return data.post.wordCount.words || getBodyContent(data) != "";
 }
 
 class ContentPages extends Component {
@@ -123,8 +127,7 @@ class ContentPages extends Component {
           <VisuallyHidden>
             <h1>{title}</h1>
           </VisuallyHidden>
-          {(data.post.wordCount.words ||
-            data.post.frontmatter.title === "About The Authors") && (
+          {hasContent(data) && (
             <ContentArea>
               <h1>{title}</h1>
               {useMarkdownInsteadOfMDX ? (
