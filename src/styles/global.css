@@ -32,7 +32,7 @@ blockquote {
   border-left: 0.75rem solid #ccc;
   margin: 1.5em 0;
   padding: 0.5em 10px;
-  quotes: "\201C" "\201D" "\2018" "\2019";
+  quotes: "\201C""\201D""\2018""\2019";
 }
 
 blockquote:before {
@@ -46,6 +46,16 @@ blockquote:before {
 
 blockquote p {
   display: inline;
+}
+
+blockquote a {
+  text-decoration: none;
+}
+
+blockquote a:link,
+blockquote a:hover,
+blockquote a:visited {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
 }
 
 a,
