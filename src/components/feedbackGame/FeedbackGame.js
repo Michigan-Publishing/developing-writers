@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
 import { Formik, Form, Field } from "formik";
-import { LiveAnnouncer, LiveMessenger } from 'react-aria-live';
+import { LiveAnnouncer, LiveMessenger } from "react-aria-live";
 import palette from "../../utils/palette";
 import { textCss } from "../text/Text";
 
@@ -66,6 +66,9 @@ const Row = styled.div`
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     display: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    line-height: 3rem;
   }
 `;
 
@@ -185,6 +188,7 @@ const RadioWrapper = styled.div`
     padding: 20px;
     border-radius: 40px;
     border: 1px solid #ddd;
+    white-space: nowrap;
   }
 
   & input[type="radio"] + label:hover {
@@ -287,7 +291,7 @@ class GameStepButtons extends Component {
         </Strong>
         <LiveAnnouncer>
           <LiveMessenger>
-            {({announcePolite, announceAssertive}) => 
+            {({ announcePolite, announceAssertive }) => (
               <Formik
                 initialValues={{ result: "" }}
                 validate={values => {
@@ -353,7 +357,11 @@ class GameStepButtons extends Component {
                         >
                           <p>{correctOutput}</p>
                           <p>
-                            <a href={link} target="_blank" rel="nofollow noopener noreferrer">
+                            <a
+                              href={link}
+                              target="_blank"
+                              rel="nofollow noopener noreferrer"
+                            >
                               {linkText}
                             </a>
                           </p>
@@ -363,7 +371,7 @@ class GameStepButtons extends Component {
                   </Fragment>
                 )}
               </Formik>
-            }
+            )}
           </LiveMessenger>
         </LiveAnnouncer>
       </Fragment>
@@ -378,7 +386,9 @@ export default class FeedbackGame extends Component {
         <Tabs>
           <TabList>
             {gameSteps.map((item, index) => (
-              <Tab style={{ color: palette.black }} key={index}>Question {index + 1}</Tab>
+              <Tab style={{ color: palette.black }} key={index}>
+                Question {index + 1}
+              </Tab>
             ))}
           </TabList>
           {gameSteps.map((step, index) => (
