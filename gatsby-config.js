@@ -25,6 +25,10 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      trackingId: "UA-136072240-1"
+    },
     "gatsby-plugin-zopfli",
     "gatsby-transformer-remark",
     "gatsby-plugin-react-helmet",
@@ -35,6 +39,6 @@ module.exports = {
       options: {
         modules: [`gatsby-mdx`]
       }
-    },
+    }
   ]
 };
