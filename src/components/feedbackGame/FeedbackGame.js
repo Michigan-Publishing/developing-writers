@@ -11,8 +11,7 @@ import "react-tabs/style/react-tabs.css";
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
 
 const Fieldset = styled.fieldset`
-  ${textCss}
-  border: none;
+  ${textCss} border: none;
   border-left: 0.75rem solid #ccc;
   margin-bottom: 2rem;
   color: ${palette.black};
@@ -44,8 +43,7 @@ const Strong = styled.p`
 `;
 
 const TopLink = styled.a`
-  ${textCss}
-  display: inline-block;
+  ${textCss} display: inline-block;
   color: #555;
   margin: 1rem 0 1rem 1rem;
   font-size: 1.5rem;
@@ -61,11 +59,14 @@ const Row = styled.div`
   margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  flex-flow: wrap;
+  line-height: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
   align-items: center;
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
-    display: column;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
     line-height: 3rem;
