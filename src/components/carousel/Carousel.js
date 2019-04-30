@@ -34,6 +34,19 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & div[role=region]{
+    height: 100%;
+  }
+
+  & div[role=region] > ul {
+    height: 100%;
+  }
+
+  & div[role=region] > ul img {
+    object-fit: unset;
+  }
+
 `;
 
 const Button = styled.button`
