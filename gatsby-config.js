@@ -1,5 +1,12 @@
 module.exports = {
   plugins: [
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-136072240-1",
+        head: true
+      }
+    },
     "gatsby-plugin-resolve-src",
     "gatsby-plugin-styled-components",
     {
@@ -24,10 +31,6 @@ module.exports = {
          */
         modulePath: `${__dirname}/src/cms/cms.js`
       }
-    },
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      trackingId: "UA-136072240-1"
     },
     "gatsby-plugin-zopfli",
     "gatsby-transformer-remark",
